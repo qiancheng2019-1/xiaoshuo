@@ -12,34 +12,33 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::options('/{all}', function (Request $request) {
-    $origin = $request->header('ORIGIN', '*');
-    header("Access-Control-Allow-Origin: $origin");
-
-    header('Content-Type: application/json; charset=utf-8');
-    header("Access-Control-Allow-Credentials: true");
-    header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
-    header('Access-Control-Allow-Headers: Content-Type, api_key, Authorization');
-})->where(['all' => '([a-zA-Z0-9-]|/)+']);
-
 $api = app('Dingo\Api\Routing\Router');
 $api->group(['version' => 'v1', 'namespace' => 'App\\V1\\Admin\\Controllers', 'prefix' => 'api/admin'], function ($api) {
+    //admin接口文档
     $api->get('swagger', 'BaseController@index');
 
     $api->get('captcha', 'BaseController@getCaptcha');
     $api->post('captcha', 'BaseController@validateCaptcha');
 
     $api->post('token', 'UserController@login');
-    $api->group(['middleware' => 'auth:api'], function($api){
+
+    $api->group(['middleware' => 'auth:api'], function ($api) {
+        $api->post('files', 'BaseController@uploadFile');
+
         $api->delete('token', 'UserController@loginOut');
-        $api->get('test', function (Request $request){
-            return $request->bearerToken();
-        });
+        $api->put('token', 'UserController@loginOut');
+
+        $api->get('category','ArticlesController@getCategoryList');
+        $api->post('category','ArticlesController@postCategory');
+        $api->delete('category/{id}','ArticlesController@deleteCategory');
+        $api->get('category/{id}','ArticlesController@getCategoryDetail');
+        $api->put('category/{id}','ArticlesController@putCategory');
+
+        $api->get('articles/{page}/{limit}','ArticlesController@getArticlesList');
+        $api->post('articles','ArticlesController@postArticles');
+        $api->delete('articles/{id}','ArticlesController@deleteArticles');
+        $api->get('articles/{id}','ArticlesController@getArticles');
+        $api->put('articles/{id}','ArticlesController@putArticles');
     });
 
     app('Dingo\Api\Auth\Auth')->extend('basic', function ($app) {

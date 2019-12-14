@@ -53,7 +53,7 @@ class ValidationException extends Exception
      */
     public function __construct($validator, $response = null, $errorBag = 'default')
     {
-        parent::__construct('The given data was invalid.');
+        parent::__construct('给定的数据无效');
 
         $this->response = $response;
         $this->errorBag = $errorBag;

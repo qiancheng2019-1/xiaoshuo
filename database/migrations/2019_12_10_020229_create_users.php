@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->char('nickname', 32)->nullable(false)->default('');
             $table->char('username', 64)->nullable(false)->default('')->unique();
             $table->char('password', 64)->nullable(false)->default('');
-            $table->string('api_token', 80)->nullable(false)->default('')->unique();
+            $table->char('api_token', 64)->nullable(false)->default('')->unique();
             $table->bigInteger('group_id')->nullable(false)->default(0);
             $table->timestamps();
         });

@@ -6,6 +6,8 @@ namespace App\V1\Admin\Controllers;
 use App\Http\Controllers\Controller;
 use Dingo\Api\Routing\Helpers;
 use Dingo\Api\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use function OpenApi\scan;
 
 class BaseController extends Controller
@@ -22,30 +24,74 @@ class BaseController extends Controller
      *         @OA\Contact(name="Crazypeak")
      *     )
      * )
+     * @OA\Tag(
+     *     name="Default",
+     *     description="公用接口(#默认)"
+     * )
+     * @OA\Tag(
+     *     name="Category",
+     *     description="书本分类模块"
+     * )
+     * @OA\Tag(
+     *     name="Articles",
+     *     description="书本模块"
+     * )
+     * @OA\Tag(
+     *     name="Users",
+     *     description="用户模块"
+     * )
      * @OA\SecurityScheme(
      *   securityScheme="Token",
      *   type="apiKey",
      *   in="header",
      *   name="Authorization"
      * )
+     * @OA\Schema(
+     *     schema="PageModel",
+     *     required={"per_page", "last_page", "current_page", "count", "total"},
+     *     @OA\Property(
+     *         property="data",
+     *         description="列表数据",
+     *         type="object"
+     *     ),
+     *     @OA\Property(
+     *         property="per_page",
+     *         description="每页的数据条数",
+     *         type="integer"
+     *     ),
+     *     @OA\Property(
+     *         property="last_page",
+     *         description="最后一页的页码",
+     *         type="integer"
+     *     ),
+     *     @OA\Property(
+     *         property="current_page",
+     *         description="当前页页码",
+     *         type="integer"
+     *     ),
+     *     @OA\Property(
+     *         property="count",
+     *         description="当前页数据的数量",
+     *         type="integer"
+     *     ),
+     *     @OA\Property(
+     *         property="total",
+     *         description="数据总数",
+     *         type="integer"
+     *     )
+     * )
      */
     public function index()
     {
-        header('Access-Control-Allow-Headers: Content-Type, api_key, Authorization');
-        header('Access-Control-Allow-Methods: GET, POST, DELETE, PUT');
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json; charset=utf-8');
-
         $path = __DIR__ . '/'; //你想要哪个文件夹下面的注释生成对应的API文档
-        $openApi = scan($path);
-
-        return $openApi->toJson();
+        return scan($path)->toJson();
     }
 
     /**
      * @OA\Get(
      *     path="/captcha",
-     *     description="获取验证码",
+     *     tags={"Default"},
+     *     summary="获取验证码",
      *     @OA\Response(
      *         response=200,
      *         description="SUCCESS/成功",
@@ -71,13 +117,14 @@ class BaseController extends Controller
         $captcha = app('captcha')->create('default', true);
         $result['key'] = $captcha['key'];
         $result['img'] = $captcha['img'];
-        return $this->jsonResult('图形验证码', 200, 0,$result);
+        return $this->apiReturn('图形验证码', 200, 0, $result);
     }
 
     /**
      * @OA\Post(
      *     path="/captcha",
-     *     description="测试验证码，非正式接口",
+     *     tags={"Default"},
+     *     summary="测试验证码用(#非正式接口)",
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/x-www-form-urlencoded",
@@ -116,7 +163,60 @@ class BaseController extends Controller
     protected function validateCaptcha(Request $request)
     {
         $validate = captcha_api_check($request->input('captcha'), $request->input('key'));
-        return $this->jsonResult('图形验证码',200,0, ['validate' => $validate]);
+        return $this->apiReturn('图形验证码', 200, 0, ['validate' => $validate]);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/files",
+     *     tags={"Default"},
+     *     summary="上传文件，缓存十分钟",
+     *     security={
+     *          {
+     *              "Token":{}
+     *          }
+     *      },
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 required={"file"},
+     *                 @OA\Property(
+     *                     property="file",
+     *                     description="上传文件对象",
+     *                     type="file",
+     *                 )
+     *             ),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="SUCCESS/成功",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *              @OA\Property(property="file_path", type="string", description="文件对象路径"),
+     *              @OA\Property(property="file_url", type="string", description="文件访问链接")
+     *         )
+     *        )
+     *     )
+     * )
+     */
+    protected function uploadFile(Request $request)
+    {
+//        $class_arr = ['articles','chapter','default'];
+//        $class = in_array($class,$class_arr) ? $class : 'default';
+
+        $request
+            ->validate([
+                'file' => 'required|max:10000|mimes:png,jpg,jpeg'
+            ]);
+        $filePath = $request->file('file')->store('default', 'public');
+        Storage::disk();
+
+        $result['file_path'] = $result['file_url'] = $filePath;
+        return $this->apiReturn('上传临时文件成功，十分钟有效期', 201, 0, $result);
     }
 
     /**
@@ -126,25 +226,23 @@ class BaseController extends Controller
      * @param int $status_code
      */
     use Helpers;
-    protected function jsonResult($msg = '异常拦截', $status_code = 500, $code = -1, $data = [])
+
+    protected function apiError(bool $if = false, int $true_code = 200, $false_code = 404, string $msg = '资源失效')
     {
-        $result['code'] = $code;
+        if ($if) return $this->apiReturn('操作成功', $true_code, 0);
+        else return $this->apiReturn($msg, $false_code, 1);
+    }
+
+    protected function apiReturn($msg = '异常拦截', $status_code = 500, $code = -1, $data = [])
+    {
+        $status_code < 400 && $result['code'] = $code;
         $result['message'] = $msg;
         $result['status_code'] = $status_code;
         $result['version'] = 'v1';
-        $result['data'] = self::arrayGetImgUrl($data) ?: [];
-
-//        $header = [
-//            'Content-Type' => 'application/json; charset=utf-8',
-//            //            'Access-Control-Allow-Origin'      => 'http://localhost:8081',
-//            'Access-Control-Allow-Credentials' => 'true',
-//        ];
+        $result['data'] = self::sortResponseData($data) ?: [];
 
         return $this->response
             ->array($result)
-            ->withHeader('Access-Control-Allow-Credentials', 'true')
-            ->withHeader('Access-Control-Allow-Origin', \request()->header('ORIGIN','*'))
-            ->withHeader('Access-Control-Allow-Headers',' Content-Type, api_key, Authorization')
             ->setStatusCode($status_code);
     }
 
@@ -154,13 +252,25 @@ class BaseController extends Controller
      * 字段验证器
      * 字段类型限制，强制检测与转换
      */
-    protected static function arrayGetImgUrl($data)
+    protected static function sortResponseData($data)
     {
         if (is_string($data))
             return $data;
-        is_object($data) && $data = @$data->toArray();
         if (is_array($data))
             foreach ($data as $key => &$item) {
+                //忽略部分字段
+                if ($key === 'file_path') continue;
+
+                if (is_null($item)) {
+                    $item = '';
+                    continue;
+                }
+
+                if (is_array($item)) {
+                    $item = self::sortResponseData($item);
+                    continue;
+                }
+
                 if (is_string($item)) {
                     $item = str_replace('"/protected', '"' . config('app.url') . '/protected', $item);
                     switch ($key) {
@@ -172,16 +282,13 @@ class BaseController extends Controller
                         default:
                             break;
                     }
-                } else if (is_null($item))
-                    $item = '';
-                if (is_array($item)) {
-                    $item = self::arrayGetImgUrl($item);
-                    continue;
+
+                    if (in_array(substr($item, -4), ['.png', '.jpg', 'jpeg'])) {
+//                        $item = self::sortImagesUrl($item);
+                        $item = url($item);
+                        continue;
+                    }
                 }
-                if (is_string($item) && in_array(substr($item, -4), ['.png', '.jpg', 'jpeg'])) {
-                    $item = self::get_asset_url($item);
-                    continue;
-                };
             }
         return $data;
     }
@@ -192,16 +299,79 @@ class BaseController extends Controller
      * @param mixed $style 图片样式,支持各大云存储
      * @return string
      */
-    protected static function get_asset_url($file)
+    protected static function sortImagesUrl(string $file_path = '')
     {
-        if (strpos($file, "http") === 0) {
-            return $file;
-        } else if (strpos($file, "/") === 0) {
-            return config('app.url') . $file;
-            //            return $file;
+        if (strpos($file_path, "http") === 0) {
+            return $file_path;
+        } else if (strpos($file_path, "/") === 0) {
+            return url($file_path);
         } else {
-            return config('app.url') . '/' . $file;
+            return url($file_path);
         }
     }
 
+    protected function sortRequest(array $input = [],array $columns = []){
+        $data = [];
+        foreach ($columns as $key => $item) $data[$key] = $input[$key] ?? null;
+        return $data;
+    }
+
+    /**
+     * @param string $model
+     * @param string $keyword
+     * @param Request $request
+     * @return array
+     */
+    protected function sortWhere(Request $request, string $model = '', array $arr = [])
+    {
+        $where = [];
+        $request = $request->query();
+
+        switch ($model) {
+            case 'articles':
+                $keyword_arr = ['title', 'author'];
+                $select_arr = ['status'];
+                $time_status = false;
+                break;
+            default:
+                $keyword_arr = $arr[0];
+                $select_arr = $arr[1];
+                $time_status = $arr[2];
+                break;
+        }
+
+        //时间范围搜索
+        if ($time_status) {
+            $time['str_at'] = isset($request['str_at']) ? strtotime($request['str_at']) : strtotime(date('Y-m'));
+            $time['end_at'] = isset($request['end_at']) ? strtotime($request['end_at']) : time();
+
+            $where['created_at'] = ['BETWEEN', [$request['str_at'], $request['end_at']]];
+        }
+
+        //一般选择
+        foreach ($request as $key => $item) {
+            //状态下拉菜单搜索
+            if (in_array($key, $select_arr) and is_numeric($item)) {
+                $where[$key] = $item;
+            }
+        }
+
+        //模糊搜索
+        if (isset($request['keyword'])) {
+            global $keyword;
+            $request['keyword'] = $request['keyword'] . '%';
+            foreach ($keyword_arr as $item) {
+                $keyword[$item] = $request['keyword'];
+            }
+
+            $where['keyword'] = function ($query) {
+                global $keyword;
+                foreach ($keyword as $key => $item) {
+                    $query->orWhere($key, 'like', $item);
+                }
+            };
+        }
+
+        return $where;
+    }
 }

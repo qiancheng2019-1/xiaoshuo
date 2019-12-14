@@ -32,7 +32,7 @@ class GitHubCheckerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider jsonResults
+     * @dataProvider apiReturns
      *
      * @param bool  $assertion
      * @param mixed $input
@@ -49,7 +49,7 @@ class GitHubCheckerTest extends \PHPUnit\Framework\TestCase
     /**
      * @return array
      */
-    public function jsonResults()
+    public function apiReturns()
     {
         return [
             [false, \json_decode('{"tag_name":"v9.0.0"}')],
