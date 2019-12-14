@@ -15,7 +15,7 @@ class BaseController extends Controller
     /**
      * @OA\OpenApi(
      *     @OA\Server(
-     *         url="http://192.168.1.34/api/admin",
+     *         url="http://f1b8bf7d.ngrok.io/api/admin",
      *         description="Fiction API server"
      *     ),
      *     @OA\Info(

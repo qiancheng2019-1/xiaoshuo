@@ -2,33 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/V1/Admin/Controllers/ArticlesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/V1/Admin/Model/ArticlesModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/Admin/Controllers/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Admin/Controllers/BaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Admin/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Admin/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Admin/Model/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Admin/Model/BaseModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Admin/Model/UserModel.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/cache/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_10_020229_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_10_020229_create_users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Validation/ValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Validation/ValidationException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/psy/psysh/test/VersionUpdater/GitHubCheckerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/psy/psysh/test/VersionUpdater/GitHubCheckerTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +31,11 @@
     <select />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="GitHub" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IgnoredFileRootStore">
@@ -228,7 +208,7 @@
       <workItem from="1575941004667" duration="8331000" />
       <workItem from="1575949445278" duration="588000" />
       <workItem from="1575950057355" duration="38646000" />
-      <workItem from="1576059625297" duration="76888000" />
+      <workItem from="1576059625297" duration="77246000" />
     </task>
     <task id="LOCAL-00001" summary="初始化Larvel项目">
       <created>1575950366240</created>
@@ -244,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576118764772</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="1.后台完成进度80%&#10;2.分类模块完成&#10;3.书本模块完成&#10;4.登录模块完成">
+      <created>1576319425848</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1576319425848</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +251,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="初始化Larvel项目" />
     <MESSAGE value="初始化dingo、swagger、captcha控件" />
-    <option name="LAST_COMMIT_MESSAGE" value="初始化dingo、swagger、captcha控件" />
+    <MESSAGE value="1.后台完成进度80%&#10;2.分类模块完成&#10;3.书本模块完成&#10;4.登录模块完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.后台完成进度80%&#10;2.分类模块完成&#10;3.书本模块完成&#10;4.登录模块完成" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Custom_Plugin_Repositories" timestamp="1575948948845">
@@ -287,10 +275,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576136644361" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1576118763818">
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1576319804489">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1576118763818" />
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1576319804489" />
     <state x="740" y="260" key="FileChooserDialogImpl" timestamp="1576145880104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -307,10 +295,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1575949488285" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1576118767004">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1576319809304">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576118767004" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576319809304" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1576135165024">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
