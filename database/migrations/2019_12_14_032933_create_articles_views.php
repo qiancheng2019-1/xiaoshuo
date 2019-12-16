@@ -14,13 +14,12 @@ class CreateArticlesViews extends Migration
     public function up()
     {
         Schema::create('articles_views', function (Blueprint $table) {
-            $table->unsignedBigInteger('articles_id');
+            $table->unsignedBigInteger('article_id');
             $table->integer('week_views')->nullable(false)->default(0)->comment('周点击');
             $table->integer('month_views')->nullable(false)->default(0)->comment('月点击');
             $table->integer('total_views')->nullable(false)->default(0)->comment('总点击');
             $table->smallInteger('week')->nullable(false)->default(0)->comment('最后统计周');
             $table->smallInteger('month')->nullable(false)->default(0)->comment('最后统计月');
-            $table->timestamps();
         });
 
         Schema::table('articles_views', function (Blueprint $table) {

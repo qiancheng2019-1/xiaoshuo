@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Str;
 
 
-class UserController extends BaseController
+class UserController extends IndexController
 {
     use AuthenticatesUsers;
 
@@ -80,7 +80,7 @@ class UserController extends BaseController
         ]);
 
         //验证码验证
-        if (!captcha_api_check($request->input('captcha'), $request->input('key'))) return $this->apiReturn('验证码检验不通过', 401, 100);
+        if (!captcha_api_check($request->input('captcha'), $request->input('key'))) return $this->apiReturn('验证码检验不通过', 401, 10);
 
         //登录验证
         $this->validateLogin($request);
@@ -178,7 +178,7 @@ class UserController extends BaseController
             'password_reset' => 'required|max:64',
         ]);
 
-        if ($request->input('password') !== $request->input('password_reset')) return $this->apiReturn('验证码检验不通过', 422, 100);
+        if ($request->input('password') !== $request->input('password_reset')) return $this->apiReturn('验证码检验不通过', 422, 10);
 
         $user = $this->guard('api')->user();
         if ($user) {

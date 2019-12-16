@@ -13,7 +13,7 @@ class Admin extends Seeder
     {
 //        //
 //
-        DB::table('users')->insert([
+        DB::table('admin_users')->insert([
             'nickname' => 'Admin',
             'username' => 'admin',
             'password' => bcrypt('qweqwe'),
@@ -21,7 +21,7 @@ class Admin extends Seeder
             'group_id' => 1,
         ]);
 
-        DB::table('users')->insert([
+        DB::table('admin_users')->insert([
             'nickname' => 'AdminTest',
             'username' => 'test',
             'password' => bcrypt('qweqwe'),
