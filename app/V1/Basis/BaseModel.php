@@ -12,24 +12,15 @@ class BaseModel
     protected static function removeEmpty(array $data = [])
     {
         foreach ($data as $key => $item) {
+            if (in_array($key,['title','name'])){
+                $data[$key] = trim($item);
+            }
             if (is_null($item)) {
                 unset($data[$key]);
             }
         }
 
         return $data;
-    }
-
-    protected static function sortPageObject(Object $page)
-    {
-        $result['data'] = $page->items();
-        $result['per_page'] = $page->perPage();
-        $result['last_page'] = $page->lastPage();
-        $result['current_page'] = $page->currentPage();
-        $result['count'] = $page->count();
-        $result['total'] = $page->total();
-
-        return $result;
     }
 
     public static function updateOrInsert(string $table, array $data, array $where = [])

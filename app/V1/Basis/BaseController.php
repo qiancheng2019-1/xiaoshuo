@@ -6,12 +6,45 @@ namespace App\V1\Basis;
 use App\Http\Controllers\Controller;
 use Dingo\Api\Routing\Helpers;
 use Dingo\Api\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class BaseController extends Controller
 {
+    public function __construct()
+    {
+        $config = Cache::get('config',[]);
+        if (!$config){
+            foreach (\App\Config::all(['key','value']) as $item) $config['env.'.$item['key']] = $item['value'];
+            Cache::forever('config',$config);
+        }
+
+        foreach ($config as &$item){
+            strstr($item, '{web_name}') and $item = str_replace('{web_name}',$config['env.web_name'],$item);
+        }
+
+        config($config);
+    }
+
     public function index(string $path)
     {
         return \OpenApi\scan($path . '/')->toJson();
+    }
+
+    public function getCaptcha()
+    {
+        $captcha = app('captcha')->create('default', true);
+        $result['key'] = $captcha['key'];
+        $result['img'] = $captcha['img'];
+        return $this->apiReturn('图形验证码', 200, 0, $result);
+    }
+
+    public function validateCaptcha(Request $request)
+    {
+        $validate = captcha_api_check($request->input('captcha'), $request->input('key'));
+        if ($validate)
+            return $this->apiReturn('图形验证码成功', 200, 0, ['validate' => $validate]);
+        else
+            return $this->apiReturn('图形验证码失败', 401, 10, ['validate' => $validate]);
     }
 
     protected function uploadFile(Request $request)
@@ -24,7 +57,7 @@ class BaseController extends Controller
                 'file' => 'required|max:10000|mimes:png,jpg,jpeg'
             ]);
 
-        $filePath = \Illuminate\Support\Facades\Storage::disk('public')->putFile('default', $request->file('file'));
+        $filePath = \Illuminate\Support\Facades\Storage::disk('public')->putFile(config('env.','default'), $request->file('file'));
         $result['file_path'] = $result['file_url'] = \Illuminate\Support\Facades\Storage::url($filePath);
         return $this->apiReturn('上传成功', 201, 0, $result);
     }
@@ -79,11 +112,11 @@ class BaseController extends Controller
             if ($key === 'file_path') continue;
 
             if (is_null($item)) {
-                $item = '';
+                $item = 0;
                 continue;
             }
 
-            if (is_array($item)) {
+            if (is_array($item) or is_object($item)) {
                 $item = self::sortResponseData($item);
                 continue;
             }
@@ -146,34 +179,30 @@ class BaseController extends Controller
      * @param Request $request
      * @return array
      */
-    protected function sortWhere(Request $request, string $model, array $arr = [])
+    protected function sortWhere(array $query, string $model, array $arr = [])
     {
         $where = [];
-        $request = $request->query();
-
-        switch ($model) {
-            case 'articles':
-                $keyword_arr = ['title', 'author'];
-                $select_arr = ['status'];
-                $time_status = false;
-                break;
-            default:
-                $keyword_arr = $arr[0];
-                $select_arr = $arr[1];
-                $time_status = $arr[2];
-                break;
+        $model .= '_where_model';
+        if (isset($this->$model)) {
+            $keyword_arr = $this->$model['keyword'];
+            $select_arr = $this->$model['status'];
+            $time_status = $this->$model['time'];
+        } else {
+            $keyword_arr = $arr[0];
+            $select_arr = $arr[1];
+            $time_status = $arr[2];
         }
 
         //时间范围搜索
         if ($time_status) {
-            $time['str_at'] = isset($request['str_at']) ? strtotime($request['str_at']) : strtotime(date('Y-m'));
-            $time['end_at'] = isset($request['end_at']) ? strtotime($request['end_at']) : time();
+            $time['str_at'] = isset($query['str_at']) ? strtotime($query['str_at']) : strtotime(date('Y-m'));
+            $time['end_at'] = isset($query['end_at']) ? strtotime($query['end_at']) : time();
 
-            $where['created_at'] = ['BETWEEN', [$request['str_at'], $request['end_at']]];
+            $where['created_at'] = ['BETWEEN', [$query['str_at'], $query['end_at']]];
         }
 
         //一般选择
-        foreach ($request as $key => $item) {
+        foreach ($query as $key => $item) {
             //状态下拉菜单搜索
             if (in_array($key, $select_arr) and is_numeric($item)) {
                 $where[$key] = $item;
@@ -181,11 +210,11 @@ class BaseController extends Controller
         }
 
         //模糊搜索
-        if (isset($request['keyword'])) {
+        if (isset($query['keyword'])) {
             global $keyword;
-            $request['keyword'] = $request['keyword'] . '%';
+            $query['keyword'] = $query['keyword'] . '%';
             foreach ($keyword_arr as $item) {
-                $keyword[$item] = $request['keyword'];
+                $keyword[$item] = $query['keyword'];
             }
 
             $where['keyword'] = function ($query) {
@@ -197,5 +226,12 @@ class BaseController extends Controller
         }
 
         return $where;
+    }
+
+    protected function queryExplode(string $query,string $key = '-'){
+        if (!$query) return [];
+
+        $query = strstr($query, $key) ? explode($key, $query) : [$query];
+        return $query;
     }
 }

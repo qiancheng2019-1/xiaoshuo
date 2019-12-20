@@ -7,10 +7,16 @@ namespace App\V1\Admin\Controllers;
 use App\V1\Admin\Model\ArticlesModel;
 use Dingo\Api\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
-class ArticlesController extends IndexController
+class ArticlesController extends IndexController {
+    protected $articles_where_model = [
+        'keyword' => [
+            'title',
+            'author'],
+        'status'  => ['status'],
+        'time'    => false,];
 
-{
     /**
      * @OA\Get(
      *     path="/category",
@@ -103,13 +109,12 @@ class ArticlesController extends IndexController
     public function postCategory(Request $request)
     {
         $columns = [
-            'name' => 'required|string|max:64',
-            'title' => 'string|max:64',
+            'name'    => 'required|string|max:64',
+            'title'   => 'string|max:64',
             'keyword' => 'string|max:64',
-            'desc' => 'string|max:255',
-            'order' => 'integer|max:9999',
-            'status' => 'integer|max:1',
-        ];
+            'desc'    => 'string|max:255',
+            'order'   => 'integer|max:9999',
+            'status'  => 'integer|max:1',];
         $request->validate($columns);
 
         $result = ArticlesModel::postCategory($this->sortRequest($request->input(), $columns));
@@ -137,7 +142,7 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function deleteCategory($id = 0)
+    public function deleteCategory($id)
     {
         $id = strstr($id, '-') ? explode('-', $id) : [$id];
         $sql_result = ArticlesModel::deleteCategory($id);
@@ -210,16 +215,15 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function putCategory(Request $request, int $id = 0)
+    public function putCategory(Request $request, int $id)
     {
         $columns = [
-            'name' => 'string|max:64',
-            'title' => 'string|max:64',
+            'name'    => 'string|max:64',
+            'title'   => 'string|max:64',
             'keyword' => 'string|max:64',
-            'desc' => 'string|max:255',
-            'order' => 'integer|max:4',
-            'status' => 'integer|max:4',
-        ];
+            'desc'    => 'string|max:255',
+            'order'   => 'integer|max:9999',
+            'status'  => 'integer|max:1',];
         $request->validate($columns);
 
         $category = ArticlesModel::getCategory($id, 'id');
@@ -261,9 +265,16 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function getCategory(int $id = 0)
+    public function getCategory(int $id)
     {
-        $category = ArticlesModel::getCategory($id, ['id', 'name', 'title', 'keyword', 'desc', 'order', 'status']);
+        $category = ArticlesModel::getCategory($id, [
+            'id',
+            'name',
+            'title',
+            'keyword',
+            'desc',
+            'order',
+            'status']);
         if (!$category) return $this->apiReturn('分类数据不存在', 404, 21);
 
         return $this->apiReturn('书本分类详情', 200, 0, $category);
@@ -311,19 +322,19 @@ class ArticlesController extends IndexController
      *       name="push",
      *       in="query",
      *       description="是否推荐，单选栏目",
-     *       @OA\Schema(type="integer")
+     *       @OA\Schema(type="integer",enum={"1","0"})
      *     ),
      *     @OA\Parameter(
      *       name="status",
      *       in="query",
      *       description="是否上架，单选栏目",
-     *       @OA\Schema(type="integer")
+     *       @OA\Schema(type="integer",enum={"1","0"})
      *     ),
      *     @OA\Parameter(
      *       name="full",
      *       in="query",
      *       description="是否完结，单选栏目",
-     *       @OA\Schema(type="integer")
+     *       @OA\Schema(type="integer",enum={"1","0"})
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -344,10 +355,20 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function getArticlesList(Request $request, int $page = 0, int $limit = 1)
+    public function getArticlesList(Request $request, int $page, int $limit)
     {
-        $field = ['id', 'title', 'author', 'category', 'full', 'status', 'articles.created_at', 'push'];
-        $articles_list = ArticlesModel::getList($field, $this->sortWhere($request, 'articles'), $request->order ?? 'id', [$page, $limit]);
+        $columns = [
+            'id',
+            'title',
+            'author',
+            'category',
+            'full',
+            'status',
+            'articles.created_at',
+            'push'];
+        $articles_list = ArticlesModel::getList($columns, $this->sortWhere($request->query(), 'articles'), $request->order ?? 'id', [
+            $page,
+            $limit]);
         return $this->apiReturn('书本列表', 200, 0, $articles_list);
     }
 
@@ -409,24 +430,28 @@ class ArticlesController extends IndexController
      *                     default="1",
      *                     description="推荐状态",
      *                     type="integer",
+     *                     enum={"1","0"}
      *                 ),
      *                 @OA\Property(
      *                     property="full",
      *                     default="1",
      *                     description="完结状态",
      *                     type="integer",
+     *                     enum={"1","0"}
      *                 ),
      *                 @OA\Property(
      *                     property="original",
      *                     default="1",
      *                     description="原创状态",
      *                     type="integer",
+     *                     enum={"1","0"}
      *                 ),
      *                 @OA\Property(
      *                     property="status",
      *                     default="1",
      *                     description="启动状态",
      *                     type="integer",
+     *                     enum={"1","0"}
      *                 ),
      *                 @OA\Property(
      *                     property="info",
@@ -452,26 +477,25 @@ class ArticlesController extends IndexController
     public function postArticles(Request $request)
     {
         $columns = [
-//            'url' => 'required|string|max:128',
-            'title' => 'required|string|max:64',
-            'category_id' => 'integer|max:20',
-            'author' => 'string|max:64',
+            //            'url' => 'required|string|max:128',
+            'title'       => 'required|string|max:64',
+            'category_id' => 'integer',
+            'author'      => 'string|max:64',
             'total_views' => 'integer',
-            'week_views' => 'integer',
+            'week_views'  => 'integer',
             'month_views' => 'integer',
-            'thumb' => 'string|max:128',
-            'push' => 'integer|max:4',
-            'full' => 'integer|max:4',
-            'original' => 'integer|max:4',
-            'status' => 'integer|max:4',
-            'info' => 'string|max:512',
-        ];
+            'thumb'       => 'string|max:128',
+            'push'        => 'integer|max:1',
+            'full'        => 'integer|max:1',
+            'original'    => 'integer|max:1',
+            'status'      => 'integer|max:1',
+            'info'        => 'string|max:512',];
         $request->validate($columns);
 
         $category = ArticlesModel::getCategory($request->input('category_id'), 'name');
         if (!$category) return $this->apiReturn('分类数据不存在', 404, 21);
 
-        $result = ArticlesModel::post($this->sortRequest($request->input(), $columns)+['category'=>$category->name]);
+        $result = ArticlesModel::post($this->sortRequest($request->input(), $columns) + ['category' => $category->name]);
         return $this->apiReturn($result['msg'], $result['code'] ? 500 : 201, $result['code'], ['id' => $result['id'] ?? 0]);
     }
 
@@ -496,7 +520,7 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function deleteArticles($id = 0)
+    public function deleteArticles($id)
     {
         $id = strstr($id, '-') ? explode('-', $id) : [$id];
         $sql_result = ArticlesModel::delete($id);
@@ -571,24 +595,28 @@ class ArticlesController extends IndexController
      *                     default="1",
      *                     description="推荐状态",
      *                     type="integer",
+     *                     enum={"1","0"}
      *                 ),
      *                 @OA\Property(
      *                     property="full",
      *                     default="1",
      *                     description="完结状态",
      *                     type="integer",
+     *                     enum={"1","0"}
      *                 ),
      *                 @OA\Property(
      *                     property="original",
      *                     default="1",
      *                     description="原创状态",
      *                     type="integer",
+     *                     enum={"1","0"}
      *                 ),
      *                 @OA\Property(
      *                     property="status",
      *                     default="1",
      *                     description="启动状态",
      *                     type="integer",
+     *                     enum={"1","0"}
      *                 ),
      *                 @OA\Property(
      *                     property="info",
@@ -605,23 +633,22 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function putArticles(Request $request, int $id = 0)
+    public function putArticles(Request $request, int $id)
     {
         $columns = [
-//            'url' => 'required|string|max:128',
-            'title' => 'string|max:64',
-            'category_id' => 'integer|max:20',
-            'author' => 'string|max:64',
+            //            'url' => 'required|string|max:128',
+            'title'       => 'string|max:64',
+            'category_id' => 'integer',
+            'author'      => 'string|max:64',
             'total_views' => 'integer',
-            'week_views' => 'integer',
+            'week_views'  => 'integer',
             'month_views' => 'integer',
-            'thumb' => 'string|max:128',
-            'full' => 'integer|max:4',
-            'push' => 'integer|max:4',
-            'original' => 'integer|max:4',
-            'status' => 'integer|max:4',
-            'info' => 'string|max:512',
-        ];
+            'thumb'       => 'string|max:128',
+            'full'        => 'integer|max:1',
+            'push'        => 'integer|max:1',
+            'original'    => 'integer|max:1',
+            'status'      => 'integer|max:1',
+            'info'        => 'string|max:512',];
         $request->validate($columns);
 
         $articles = ArticlesModel::get($id, 'id');
@@ -630,7 +657,7 @@ class ArticlesController extends IndexController
         $category = ArticlesModel::getCategory($request->input('category_id'), 'name');
         if (!$category) return $this->apiReturn('分类数据不存在', 404, 21);
 
-        ArticlesModel::update($id, $this->sortRequest($request->input(), $columns)+['category'=>$category->name]);
+        ArticlesModel::update($id, $this->sortRequest($request->input(), $columns) + ['category' => $category->name]);
         return $this->apiReturn('操作成功', 200, 0);
     }
 
@@ -672,9 +699,22 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function getArticles(int $id = 0)
+    public function getArticles(int $id)
     {
-        $articles = ArticlesModel::get($id, ['id', 'title', 'category_id', 'author', 'week_views', 'month_views', 'total_views', 'thumb', 'push', 'full', 'original', 'status', 'info']);
+        $articles = ArticlesModel::get($id, [
+            'id',
+            'title',
+            'category_id',
+            'author',
+            'week_views',
+            'month_views',
+            'total_views',
+            'thumb',
+            'push',
+            'full',
+            'original',
+            'status',
+            'info']);
         if (!$articles) return $this->apiReturn('书本数据不存在', 404, 21);
 
         return $this->apiReturn('书本详情', 200, 0, $articles);
@@ -729,15 +769,15 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function getChapterList(int $article_id = 0, int $page = 0, int $limit = 1)
+    public function getChapterList(int $article_id, int $page, int $limit)
     {
         $category = ArticlesModel::get($article_id, ['id']);
         if (!$category) return $this->apiReturn('书本数据不存在', 404, 21);
 
-        $cache_id = floor($article_id / 1000) . '/' . $article_id;
-        $cache = Cache::store('file');
+        $storage_id = floor($article_id / 1000) . '/' . $article_id;
+        $Storage = Storage::disk('local');
 
-        $chapter_list = $cache->get($cache_id . '/chapters', []);
+        $chapter_list = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
         $total = count($chapter_list);
 
         if (!empty($chapter_list)) {
@@ -802,30 +842,32 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function postChapter(Request $request, int $article_id = 0)
+    public function postChapter(Request $request, int $article_id)
     {
         $category = ArticlesModel::get($article_id, ['id']);
         if (!$category) return $this->apiReturn('书本数据不存在', 404, 21);
 
         $columns = [
-//            'url' => 'required|string|max:128',
-            'title' => 'required|string|max:128',
-            'content' => 'string|max:20480',
-        ];
+            //            'url' => 'required|string|max:128',
+            'title'   => 'required|string|max:128',
+            'content' => 'string|max:20480',];
         $request->validate($columns);
         $request = $this->sortRequest($request->input(), $columns);
 
-        $cache_id = floor($article_id / 1000) . '/' . $article_id;
-        $cache = Cache::store('file');
+        $storage_id = floor($article_id / 1000) . '/' . $article_id;
+        $Storage = Storage::disk('local');
 
-        $title_data = ['title' => $request['title'], 'article_id' => $article_id];
-        $chapter = $cache->get($cache_id . '/chapters', []);
+        $title_data = ['title' => $request['title']];
+        $chapter = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
 
         $chapter_id = count($chapter);
         array_push($chapter, $title_data + ['id' => $chapter_id]);
-        $cache->forever($cache_id . '/chapters', $chapter);
+        $Storage->put($storage_id . '/chapters', json_encode($chapter));
+        $Storage->put($storage_id . '/' . $chapter_id, json_encode($request));
 
-        $cache->forever($cache_id . '/' . $chapter_id, $request);
+        ArticlesModel::update($article_id, [
+            'last_chapter'    => $title_data['title'],
+            'last_chapter_id' => $chapter_id]);
 
         return $this->apiReturn('成功', 201, 0, ['id' => $chapter_id]);
     }
@@ -861,23 +903,38 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function deleteChapter(int $article_id = 0, $id = 0)
+    public function deleteChapter(int $article_id, $id)
     {
         $article = ArticlesModel::get($article_id, ['id']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
-        $cache_id = floor($article_id / 1000) . '/' . $article_id;
-        $cache = Cache::store('file');
-        $chapters_list = $cache->get($cache_id . '/chapters', []);
+        $storage_id = floor($article_id / 1000) . '/' . $article_id;
+        $Storage = Storage::disk('local');
+        $chapters_list = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
 
+        //批量删除
         $id = strstr($id, '-') ? explode('-', $id) : [$id];
-        foreach ($id as $item){
-            $cache->forget($cache_id . '/' . $item);
+        foreach ($id as $item) {
+            $Storage->delete($storage_id . '/' . $item);
 
-            if(isset($chapters_list[$item])) unset($chapters_list[$item]);
+            if (isset($chapters_list[$item])) unset($chapters_list[$item]);
         }
-        empty($chapters_list) ? $cache->forget($cache_id . '/chapters'):
-        $cache->forever($cache_id . '/chapters', $chapters_list);
+
+        //清空目录 or 最后章节获取
+        if (empty($chapters_list)) {
+            $Storage->delete($storage_id . '/chapters');
+            $last_chapter = [
+                'id'    => 0,
+                'title' => ''];
+        } else {
+            $Storage->put($storage_id . '/chapters', $chapters_list);
+            $last_chapter = end($chapters_list);
+        }
+
+        //更新书本最后章节
+        ArticlesModel::update($article_id, [
+            'last_chapter_id' => $last_chapter['id'],
+            'last_chapter'    => $last_chapter['title']]);
 
         return $this->apiReturn('成功', 204, 0, []);
     }
@@ -933,32 +990,36 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function putChapter(Request $request, int $article_id = 0, int $id = 0)
+    public function putChapter(Request $request, int $article_id, int $id)
     {
         $columns = [
-//            'url' => 'required|string|max:128',
-            'title' => 'required|string|max:128',
-            'content' => 'string|max:20480',
-        ];
+            //            'url' => 'required|string|max:128',
+            'title'   => 'required|string|max:128',
+            'content' => 'string|max:20480',];
         $request->validate($columns);
         $request = $this->sortRequest($request->input(), $columns);
 
         $article = ArticlesModel::get($article_id, ['id']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
-        $cache_id = floor($article_id / 1000) . '/' . $article_id;
-        $cache = Cache::store('file');
+        $storage_id = floor($article_id / 1000) . '/' . $article_id;
+        $Storage = Storage::disk('local');
 
-        $chapter = $cache->get($cache_id . '/' . $id, []);
+        $chapter = $Storage->exists($storage_id . '/' . $id) ? json_decode($Storage->get($storage_id . '/' . $id), true) : [];
         if (!$chapter) return $this->apiReturn('章节数据不存在', 404, 21);
 
         $chapter['title'] = $request['title'] ?: $chapter['title'];
         $chapter['content'] = $request['content'] ?: $chapter['content'];
-        $cache->forever($cache_id . '/' . $id, $chapter);
+        $Storage->put($storage_id . '/' . $id, $chapter);
 
-        $chapters_list = $cache->get($cache_id . '/chapters', []);
+        $chapters_list = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
         $chapters_list[$id]['title'] = $chapter['title'];
-        $cache->forever($cache_id . '/chapters', $chapters_list);
+        $Storage->put($storage_id . '/chapters', $chapters_list);
+
+        //最后一章时同步更新
+        count($chapters_list) == $id + 1 and ArticlesModel::update($article_id, [
+            'last_chapter'    => $chapter['title'],
+            'last_chapter_id' => $id]);
 
         return $this->apiReturn('成功', 200, 0, []);
 
@@ -1002,15 +1063,15 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function getChapter(int $article_id = 0, int $id = 0)
+    public function getChapter(int $article_id, int $id)
     {
         $article = ArticlesModel::get($article_id, ['id']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
-        $cache_id = floor($article_id / 1000) . '/' . $article_id;
-        $cache = Cache::store('file');
+        $storage_id = floor($article_id / 1000) . '/' . $article_id;
+        $Storage = Storage::disk('local');
 
-        $chapter = $cache->get($cache_id . '/' . $id, []);
+        $chapter = $Storage->exists($storage_id . '/' . $id) ? json_decode($Storage->get($storage_id . '/' . $id), true) : [];
         if (!$chapter) return $this->apiReturn('章节数据不存在', 404, 21);
 
         return $this->apiReturn('章节详情', 200, 0, $chapter);

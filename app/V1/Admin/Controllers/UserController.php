@@ -4,17 +4,20 @@
 namespace App\V1\Admin\Controllers;
 
 use Dingo\Api\Http\Request;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
 class UserController extends IndexController
 {
-    use AuthenticatesUsers;
-
     public function username()
     {
         return 'username';
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 
     /**
@@ -64,7 +67,8 @@ class UserController extends IndexController
      *              @OA\Property(property="nickname", type="string", description="用户昵称"),
      *              @OA\Property(property="username", type="string", description="用户账号"),
      *              @OA\Property(property="api_token", type="string", description="api_token凭证令牌")
-     *          )
+     *             ),
+     *             example={{"id": 0,"nickname": "string","username": "string","api_token": "Ens77JIGHSOetUSsPtNgaF4bExDZk4WwLsvlbJZUnCEQNId4x8swY9ZGO1Hc"}}
      *        )
      *     )
      * )
@@ -82,17 +86,19 @@ class UserController extends IndexController
         //验证码验证
         if (!captcha_api_check($request->input('captcha'), $request->input('key'))) return $this->apiReturn('验证码检验不通过', 401, 10);
 
+        $user = $this->guard()->getProvider()->retrieveByCredentials($request->only($this->username(), 'password'));
+
         //登录验证
-        $this->validateLogin($request);
-        if ($this->attemptLogin($request)) {
-            $user = $this->guard('api')->user();
+        if ($this->guard()->getProvider()->validateCredentials($user, $request->only($this->username(), 'password'))) {
+            $this->guard()->setUser($user);
+            $user = $this->guard()->user();
             $reuslt['id'] = $user->id;
             $reuslt['nickname'] = $user->nickname;
             $reuslt['username'] = $user->username;
 
             //每次登陆刷新token
             $token = Str::random(60);
-            $request->user()->forceFill([
+            $request->user('admin')->forceFill([
                 'api_token' => hash('sha256', $token),
             ])->save();
             $reuslt['api_token'] = $token;
@@ -116,7 +122,7 @@ class UserController extends IndexController
      */
     public function loginOut(Request $request)
     {
-        $user = $this->guard('api')->user();
+        $user = $this->guard()->user();
 
         if ($user) {
             $user->api_token = '';
@@ -146,13 +152,7 @@ class UserController extends IndexController
      *                 @OA\Property(
      *                     property="password",
      *                     default="qweqwe",
-     *                     description="密码",
-     *                     type="string",
-     *                 ),
-     *                 @OA\Property(
-     *                     property="password_reset",
-     *                     default="qweqwe",
-     *                     description="重复输入密码",
+     *                     description="新密码",
      *                     type="string",
      *                 )
      *             ),
@@ -174,15 +174,14 @@ class UserController extends IndexController
     {
         //表单验证
         $request->validate([
-            'password' => 'required|max:64',
-            'password_reset' => 'required|max:64',
+            'password' => 'required|max:64'
         ]);
 
-        if ($request->input('password') !== $request->input('password_reset')) return $this->apiReturn('验证码检验不通过', 422, 10);
+        'Ens77JIGHSOetUSsPtNgaF4bExDZk4WwLsvlbJZUnCEQNId4x8swY9ZGO1Hc';
 
-        $user = $this->guard('api')->user();
+        $user = $this->guard()->user();
         if ($user) {
-            $token = hash('sha256',Str::random(60));
+            $token = hash('sha256', Str::random(60));
             $request->user()->forceFill([
                 'password' => bcrypt($request->input('password')),
                 'api_token' => $token

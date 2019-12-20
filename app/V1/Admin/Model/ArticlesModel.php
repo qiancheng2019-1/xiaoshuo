@@ -51,8 +51,8 @@ class ArticlesModel extends IndexModel
             ->where($where)
             ->where($keyword)
             ->orderByDesc($order)
-            ->paginate($page_arr[1], $columns, 'page', $page_arr[0]);
-        return self::sortPageObject($sql);
+            ->simplePaginate($page_arr[1], $columns, 'page', $page_arr[0]);
+        return $sql;
     }
 
     public static function get(int $id = 0, $columns = ['*'])
@@ -66,27 +66,33 @@ class ArticlesModel extends IndexModel
     public static function post(array $data = [])
     {
         $data = self::removeEmpty($data);
-        $views_data['total_views'] = $data['total_views'];
-        $views_data['month_views'] = $data['month_views'];
-        $views_data['week_views'] = $data['week_views'];
+        $views_data['total_views'] = $data['total_views'] ?? null;
+        $views_data['month_views'] = $data['month_views'] ?? null;
+        $views_data['week_views'] = $data['week_views'] ?? null;
 
         unset($data['total_views'], $data['month_views'], $data['week_views']);
         $article = self::updateOrInsert('articles', self::removeEmpty($data));
 
-        if (!$article['code']) DB::table('articles_views')->updateOrInsert(['article_id' => $article['id']], $views_data);
+        if (!$article['code']) self::updateViews($article['id'],$views_data);
         return $article;
     }
 
-    public static function update(int $id = 0, array $data)
+    public static function update(int $id, array $data)
     {
         $data = self::removeEmpty($data);
-        $views_data['total_views'] = $data['total_views'];
-        $views_data['month_views'] = $data['month_views'];
-        $views_data['week_views'] = $data['week_views'];
-        DB::table('articles_views')->updateOrInsert(['article_id' => $id], $views_data);
+
+        $views_data['total_views'] = $data['total_views'] ?? null;
+        $views_data['month_views'] = $data['month_views'] ?? null;
+        $views_data['week_views'] = $data['week_views'] ?? null;
+        self::updateViews($id,$views_data);
 
         unset($data['total_views'], $data['month_views'], $data['week_views']);
         return self::updateOrInsert('articles', $data, ['id' => $id]);
+    }
+
+    public static function updateViews(int $id=0,array $data = [])
+    {
+        return DB::table('articles_views')->updateOrInsert(['article_id' => $id], self::removeEmpty($data));
     }
 
     public static function delete(array $ids = [])

@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+
 class Admin extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'admin_users';
+    protected $table='admin_users';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'password',
+        'username', 'nickname', 'password','api_token'
     ];
 
     /**
@@ -26,7 +26,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password'
+        'password', 'api_token',
     ];
 
     /**
@@ -35,6 +35,5 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $casts = [
-        //
     ];
 }

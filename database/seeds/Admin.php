@@ -17,7 +17,7 @@ class Admin extends Seeder
             'nickname' => 'Admin',
             'username' => 'admin',
             'password' => bcrypt('qweqwe'),
-            'api_token' => hash('sha256', Str::random(60)),
+            'api_token' => Hash::make(Str::random(60)),
             'group_id' => 1,
         ]);
 
@@ -25,7 +25,7 @@ class Admin extends Seeder
             'nickname' => 'AdminTest',
             'username' => 'test',
             'password' => bcrypt('qweqwe'),
-            'api_token' => hash('sha256', Str::random(60)),
+            'api_token' => Hash::make(Str::random(60)),
             'group_id' => 1,
         ]);
     }
