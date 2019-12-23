@@ -41,6 +41,7 @@ $api->group(['middleware' => 'throttle:60,1', 'version' => 'v1', 'namespace' => 
         $api->delete('articles/{id}', 'ArticlesController@deleteArticles');
         $api->get('articles/{id}', 'ArticlesController@getArticles');
         $api->put('articles/{id}', 'ArticlesController@putArticles');
+        $api->post('articles/list', 'ArticlesController@insertList');
 
         $api->get('articles/{article_id}/chapters/{page}/{limit}', 'ArticlesController@getChapterList');
         $api->post('articles/{article_id}/chapters', 'ArticlesController@postChapter');

@@ -4,9 +4,9 @@
 namespace App\V1\Admin\Controllers;
 
 
+use App\V1\Basis\ReptileModel;
 use App\V1\Admin\Model\ArticlesModel;
 use Dingo\Api\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ArticlesController extends IndexController {
@@ -763,6 +763,7 @@ class ArticlesController extends IndexController {
      *             mediaType="application/json",
      *             @OA\Schema(
      *              @OA\Property(property="id", type="integer", description="章节id #chapter_id"),
+     *              @OA\Property(property="link", type="string", description="章节源url"),
      *              @OA\Property(property="title", type="string", description="章节标题")
      *         ),
      *        )
@@ -815,10 +816,17 @@ class ArticlesController extends IndexController {
      *             mediaType="application/x-www-form-urlencoded",
      *             @OA\Schema(
      *                 type="object",
+     *                 required={"title","url"},
      *                 @OA\Property(
      *                     property="title",
      *                     default="测试章节",
      *                     description="标题",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="link",
+     *                     default="",
+     *                     description="源网址",
      *                     type="string",
      *                 ),
      *                 @OA\Property(
@@ -848,7 +856,7 @@ class ArticlesController extends IndexController {
         if (!$category) return $this->apiReturn('书本数据不存在', 404, 21);
 
         $columns = [
-            //            'url' => 'required|string|max:128',
+            'link' => 'required|string|max:128',
             'title'   => 'required|string|max:128',
             'content' => 'string|max:20480',];
         $request->validate($columns);
@@ -969,10 +977,17 @@ class ArticlesController extends IndexController {
      *             mediaType="application/x-www-form-urlencoded",
      *             @OA\Schema(
      *                 type="object",
+     *                 required={"title","link"},
      *                 @OA\Property(
      *                     property="title",
      *                     default="测试章节",
      *                     description="标题",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="link",
+     *                     default="",
+     *                     description="源网址",
      *                     type="string",
      *                 ),
      *                 @OA\Property(
@@ -993,7 +1008,7 @@ class ArticlesController extends IndexController {
     public function putChapter(Request $request, int $article_id, int $id)
     {
         $columns = [
-            //            'url' => 'required|string|max:128',
+            'link' => 'required|string|max:128',
             'title'   => 'required|string|max:128',
             'content' => 'string|max:20480',];
         $request->validate($columns);
@@ -1057,6 +1072,7 @@ class ArticlesController extends IndexController {
      *             mediaType="application/json",
      *             @OA\Schema(
      *              @OA\Property(property="title", type="string", description="章节标题"),
+     *              @OA\Property(property="link", type="string", description="章节源网址url"),
      *              @OA\Property(property="content", type="string", description="章节内容")
      *         ),
      *        )
@@ -1075,5 +1091,25 @@ class ArticlesController extends IndexController {
         if (!$chapter) return $this->apiReturn('章节数据不存在', 404, 21);
 
         return $this->apiReturn('章节详情', 200, 0, $chapter);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/articles/list",
+     *     tags={"Articles"},
+     *     summary="采集导入书本列表",
+     *     security={{"Token":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="SUCCESS/成功"
+     *     )
+     * )
+     */
+    public function insertList()
+    {
+        $reptile = new ReptileModel();
+        $reptile->getList();
+        sleep(1);
+        return $this->apiReturn('导入成功', 200, 0);
     }
 }

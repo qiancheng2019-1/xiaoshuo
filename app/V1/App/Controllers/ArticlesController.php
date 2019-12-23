@@ -4,13 +4,13 @@
 namespace App\V1\App\Controllers;
 
 
+use App\V1\Basis\ReptileModel;
 use App\V1\App\Model\ArticlesModel;
 use Dingo\Api\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
-class ArticlesController extends IndexController
-{
+class ArticlesController extends IndexController {
     /**
      * @OA\Schema(
      *     schema="TypeModel",
@@ -48,17 +48,14 @@ class ArticlesController extends IndexController
      */
     private $type_all = ['push', 'newsInsert', 'newsUpdate', 'rank', 'month', 'week'];
     protected $articles_where_model = [
-        'keyword' => ['title', 'author'],
-        'status' => [],
-        'time' => false,
-    ];
+        'keyword' => ['title', 'author'], 'status' => [], 'time' => false,];
 
     private function getTypeList(string $type, array $columns = [], array $where = [], int $page = 1, int $limit = 10)
     {
         $where['status'] = 1;
         switch ($type) {
             case 'push':
-                return ArticlesModel::getList($columns, $where, 'push', [$page, $limit]);
+                return ArticlesModel::getList($columns, $where, 'push', [mt_rand(1,9), $limit]);
                 break;
             case 'newsInsert':
                 return ArticlesModel::getList($columns, $where, 'created_at', [$page, $limit]);
@@ -134,17 +131,15 @@ class ArticlesController extends IndexController
     public function getList(Request $request)
     {
         $request->validate(['type' => 'string']);
-        $limit = $request->query('limit',10);
+        $limit = $request->query('limit', 10);
 
-        $columns = ['id', 'title', 'author', 'category', 'thumb', 'info','total_views'=>'IFNULL(total_views,0)'];
+        $columns = ['id', 'title', 'author', 'category', 'thumb', 'info', 'total_views' => 'IFNULL(total_views,0)'];
 
-        $type = $this->queryExplode($request->query('type',''));
-        foreach ($type as $item)
-            $data[$item] = $this->getTypeList($item, $columns, $this->sortWhere($request->query(), 'articles'), 1, $limit)->items();
+        $type = $this->queryExplode($request->query('type', ''));
+        foreach ($type as $item) $data[$item] = $this->getTypeList($item, $columns, $this->sortWhere($request->query(), 'articles'), 1, $limit)->items();
 
-        $category = $this->queryExplode($request->query('category',''));
-        foreach ($category as $item)
-            $data['category_' . $item] = ArticlesModel::getList($columns, $this->sortWhere($request->query(), 'articles')+['category_id' => $item], 'push', [1, $limit])->items();
+        $category = $this->queryExplode($request->query('category', ''));
+        foreach ($category as $item) $data['category_' . $item] = ArticlesModel::getList($columns, $this->sortWhere($request->query(), 'articles') + ['category_id' => $item], 'push', [1, $limit])->items();
 
         return $this->apiReturn('批量列表', 200, 0, $data ?? []);
     }
@@ -234,21 +229,16 @@ class ArticlesController extends IndexController
      */
     public function getPage(Request $request, string $type)
     {
-        $columns = ['id', 'title', 'author', 'category', 'thumb', 'info','total_views'=>'IFNULL(total_views,0)'];
+        $columns = ['id', 'title', 'author', 'category', 'thumb', 'info', 'total_views' => 'IFNULL(total_views,0)'];
         $where = $this->sortWhere($request->query(), 'articles');
         $where['status'] = 1;
 
         $request->validate([
-            'page' => 'integer',
-            'limit' => 'integer|max:9999',
-        ]);
+            'page' => 'integer', 'limit' => 'integer|max:9999',]);
         $page = $request->query('page');
         $limit = $request->query('limit');
 
-        if (in_array($type, $this->type_all))
-            $articles_list = $this->getTypeList($type, $columns, $where, $page, $limit);
-        elseif (is_numeric($type))
-            $articles_list = ArticlesModel::getList($columns, $where + ['category_id' => $type], 'push', [$page, $limit]);
+        if (in_array($type, $this->type_all)) $articles_list = $this->getTypeList($type, $columns, $where, $page, $limit); elseif (is_numeric($type)) $articles_list = ArticlesModel::getList($columns, $where + ['category_id' => $type], 'push', [$page, $limit]);
         else return $this->apiReturn($type . '资源不存在', 404, 1);
 
         return $this->apiReturn('书本分页列表', 200, 0, $articles_list);
@@ -295,11 +285,20 @@ class ArticlesController extends IndexController
      */
     public function getDetail(int $id)
     {
-        $articles = ArticlesModel::get($id, ['id', 'title', 'category_id', 'author', 'week_views', 'month_views', 'total_views', 'thumb', 'push', 'full', 'info', 'last_chapter_id', 'last_chapter', 'created_at', 'updated_at']);
-        if (!$articles) return $this->apiReturn('书本数据不存在', 404, 21);
+        $article = ArticlesModel::get($id, ['id', 'url', 'title', 'category_id', 'author', 'week_views', 'month_views', 'total_views', 'thumb', 'push', 'full', 'info', 'last_chapter_id', 'last_chapter', 'created_at', 'updated_at']);
+        if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
         ArticlesModel::updateViews($id);
-        return $this->apiReturn('书本详情', 200, 0, $articles);
+
+        if ((time() - strtotime($article->updated_at)) > 43200 or !$article->last_chapter_id) {
+            $reptileModel = new ReptileModel();
+            $reptileModel->getArticle($article->id, $article->url);
+            unset($article->url);
+
+            $article = ArticlesModel::get($id, ['id', 'url', 'title', 'category_id', 'author', 'week_views', 'month_views', 'total_views', 'thumb', 'push', 'full', 'info', 'last_chapter_id', 'last_chapter', 'created_at', 'updated_at']);
+        }
+
+        return $this->apiReturn('书本详情', 200, 0, $article);
     }
 
     /**
@@ -348,8 +347,11 @@ class ArticlesController extends IndexController
      *     )
      * )
      */
-    public function getChapterList(int $article_id, int $page = 0, int $limit = 10)
+    public function getChapterList(Request $request,int $article_id)
     {
+        $page = $request->query('page',1);
+        $limit = $request->query('limit',10);
+
         $category = ArticlesModel::get($article_id, ['id']);
         if (!$category) return $this->apiReturn('书本数据不存在', 404, 21);
 
@@ -363,7 +365,12 @@ class ArticlesController extends IndexController
             $chapter_list = array_chunk($chapter_list, $limit);
         }
 
-        $result['data'] = $chapter_list[$page ? $page - 1 : 0] ?? [];
+        foreach ($chapter_list[$page ? $page - 1 : 0] ?? [] as $item) {
+            unset($item['link']);
+            $data[] = $item;
+        }
+
+        $result['data'] = $data ?? [];
         $result['per_page'] = $limit;
         $result['last_page'] = count($chapter_list) ?: 1;
         $result['current_page'] = $page;
@@ -412,23 +419,24 @@ class ArticlesController extends IndexController
      */
     public function getChapter(int $article_id, int $id)
     {
-        $article = ArticlesModel::get($article_id, ['id']);
+        $article = ArticlesModel::get($article_id, ['id','url']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
         $storage_id = floor($article_id / 1000) . '/' . $article_id;
         $Storage = Storage::disk('local');
 
         $chapter_list = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
-        $page['prev_id'] = $id ? $id - 1 : 0;
+        if (!$chapter_list[$id]) return $this->apiReturn('章节数据不存在', 404, 21);
 
-        $chapter = [];
-        for ($i = $id; $i < count($chapter_list); $i++) {
-            if ($Storage->exists($storage_id . '/' . $i)){
-                $chapter = json_decode($Storage->get($storage_id . '/' . $i),true) ?: [];
-                break;
-            }
+        if (!$Storage->exists($storage_id.'/'.$id)){
+            $reptileModel = new ReptileModel();
+            if (!$reptileModel->getChapter($article,$chapter_list[$id]))
+                return $this->apiReturn('章节数据不存在', 404, 21);
         }
-        $page['next_id'] = $id == $i ? $id : $id + 1;
+
+        $chapter = json_decode($Storage->get($storage_id.'/'.$id),true);
+        $page['prev_id'] = $id ? $id - 1 : 0;
+        $page['next_id'] = $id + 1;
         if (!$chapter) return $this->apiReturn('章节数据不存在', 404, 21);
 
         return $this->apiReturn('章节详情', 200, 0, $chapter + $page);

@@ -19,7 +19,11 @@ class IndexController extends BaseController
      * @OA\OpenApi(
      *     @OA\Server(
      *         url="http://192.168.1.34/api/admin",
-     *         description="Fiction API server"
+     *         description="Localhost Fiction API server"
+     *     ),
+     *     @OA\Server(
+     *         url="http://47.56.151.114:9101/api/admin",
+     *         description="Online Fiction API server"
      *     ),
      *     @OA\Info(
      *         version="1.0.0",

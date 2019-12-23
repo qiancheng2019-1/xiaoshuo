@@ -5,7 +5,7 @@ namespace App\V1\App\Controllers;
 use App\Rules\mobile;
 use Dingo\Api\Http\Request;
 use App\V1\Basis\BaseController;
-use App\V1\App\Model\ReptileModel;
+use App\V1\Basis\ReptileModel;
 use Illuminate\Support\Facades\Cache;
 
 class IndexController extends BaseController
@@ -23,8 +23,10 @@ class IndexController extends BaseController
      * )
      */
     public function test(){
+
+
         $reptile = new ReptileModel();
-        return $reptile->getHtml('https://www.35zww.net/modules/article/articlelist.php');
+        return $reptile->getChapter(13,'','https://www.35kushu.com/35zwhtml/96/96500/14383986.html');
         return [date('Y-m-d H:i:s')];
 
         return config('env');
@@ -71,7 +73,11 @@ class IndexController extends BaseController
      * @OA\OpenApi(
      *     @OA\Server(
      *         url="http://192.168.1.34/api/app",
-     *         description="Fiction API server"
+     *         description="Localhost Fiction API server"
+     *     ),
+     *     @OA\Server(
+     *         url="http://47.56.151.114:9101/api/app",
+     *         description="Online Fiction API server"
      *     ),
      *     @OA\Info(
      *         version="1.0.0",
