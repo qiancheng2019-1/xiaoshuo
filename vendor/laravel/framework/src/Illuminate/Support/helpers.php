@@ -420,7 +420,7 @@ if (! function_exists('tap')) {
         }
 
         $callback($value);
-
+        
         return $value;
     }
 }

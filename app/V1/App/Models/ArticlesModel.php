@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\V1\App\Model;
+namespace App\V1\App\Models;
 
 
 use Illuminate\Support\Facades\Cache;
@@ -25,7 +25,7 @@ class ArticlesModel extends IndexModel
         if ($cache) return $cache;
 
         if (isset($where['keyword'])) {
-            $keyword = $where['keyword'];
+            $keyword = $where['keyword']['function'];
             unset($where['keyword']);
         } else $keyword = [];
 
@@ -61,7 +61,7 @@ class ArticlesModel extends IndexModel
         }
 
         $views = DB::table('articles_views')->where(['article_id' => $article_id])->first();
-        if (!$views) return false;
+        if (!$views) return (bool) DB::table('articles_views')->insert(['article_id' => $article_id,'week_views'=>1,'month_views'=>1,'total_views'=>1,'week'=>date('W'),'month'=>date('m')]);
 
         if ($views->week != date('W')) {
             $views->week = date('W');
@@ -75,7 +75,7 @@ class ArticlesModel extends IndexModel
 
         $views->total_views += $amount;
 
-        return (bool)DB::table('articles_views')->updateOrInsert(['article_id' => $article_id], (array)$views);
+        return (bool) DB::table('articles_views')->updateOrInsert(['article_id' => $article_id], (array)$views);
     }
 
     public static function collect(int $article_id,int $user_id){

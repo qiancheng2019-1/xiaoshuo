@@ -10,6 +10,17 @@
       'API' => 'Dingo\\Api\\Facade\\API',
     ),
   ),
+  'encore/laravel-admin' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Encore\\Admin\\AdminServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Admin' => 'Encore\\Admin\\Facades\\Admin',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -37,6 +48,13 @@
     'aliases' => 
     array (
       'Image' => 'Intervention\\Image\\Facades\\Image',
+    ),
+  ),
+  'laravel-admin-ext/ckeditor' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Encore\\CKEditor\\CKEditorServiceProvider',
     ),
   ),
   'laravel/tinker' => 

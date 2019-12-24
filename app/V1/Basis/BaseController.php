@@ -211,14 +211,14 @@ class BaseController extends Controller
 
         //模糊搜索
         if (isset($query['keyword'])) {
-            global $keyword;
+            $keyword = [];
             $query['keyword'] = $query['keyword'] . '%';
             foreach ($keyword_arr as $item) {
                 $keyword[$item] = $query['keyword'];
             }
 
-            $where['keyword'] = function ($query) {
-                global $keyword;
+            $where['keyword']['key'] = $keyword;
+            $where['keyword']['function'] = function ($query) use ($keyword) {
                 foreach ($keyword as $key => $item) {
                     $query->orWhere($key, 'like', $item);
                 }

@@ -5,7 +5,7 @@ namespace App\V1\App\Controllers;
 
 
 use Dingo\Api\Http\Request;
-use App\V1\App\Model\AdModel;
+use App\V1\App\Models\AdModel;
 
 class AdController extends IndexController {
 

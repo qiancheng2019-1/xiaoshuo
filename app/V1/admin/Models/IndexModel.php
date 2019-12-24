@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\V1\App\Model;
+namespace App\Admin\Models;
 
 use App\V1\Basis\BaseModel;
 
 class IndexModel extends BaseModel
 {
+
 }

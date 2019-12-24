@@ -27,9 +27,9 @@ class CreateArticles extends Migration
             $table->string('tags', 255)->nullable(false)->default('')->comment('标签相关');
             $table->string('last_chapter', 255)->nullable(false)->default('')->comment('最新章节');
             $table->bigInteger('last_chapter_id')->nullable(false)->default(0)->comment('最新章节ID');
-            $table->tinyInteger('full')->nullable(false)->default(0)->comment('是否完本');
-            $table->tinyInteger('push')->nullable(false)->default(0)->comment('推送标记');
-            $table->tinyInteger('original')->nullable(false)->default(0)->comment('原创');
+            $table->tinyInteger('is_full')->nullable(false)->default(0)->comment('是否完本');
+            $table->tinyInteger('is_push')->nullable(false)->default(0)->comment('推送标记');
+            $table->tinyInteger('is_original')->nullable(false)->default(0)->comment('原创');
             $table->tinyInteger('status')->nullable(false)->default(0)->comment('状态');
             $table->timestamps();
         });

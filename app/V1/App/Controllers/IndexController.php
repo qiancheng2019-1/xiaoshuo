@@ -5,7 +5,6 @@ namespace App\V1\App\Controllers;
 use App\Rules\mobile;
 use Dingo\Api\Http\Request;
 use App\V1\Basis\BaseController;
-use App\V1\Basis\ReptileModel;
 use Illuminate\Support\Facades\Cache;
 
 class IndexController extends BaseController
@@ -23,14 +22,6 @@ class IndexController extends BaseController
      * )
      */
     public function test(){
-
-
-        $reptile = new ReptileModel();
-        return $reptile->getChapter(13,'','https://www.35kushu.com/35zwhtml/96/96500/14383986.html');
-        return [date('Y-m-d H:i:s')];
-
-        return config('env');
-        return Cache::store('redis')->get('config');
         Cache::flush();
         return $this->apiReturn('成功',200,0);
     }
