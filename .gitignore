@@ -12,3 +12,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 !/.gitignore
+/public/favicon.png
+/public/index.html
+/public/static/

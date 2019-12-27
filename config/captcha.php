@@ -11,10 +11,14 @@ return [
     ],
     'math' => [
         'length' => 9,
-        'width' => 120,
-        'height' => 36,
+        'width' => 160,
+        'height' => 48,
         'quality' => 90,
         'math' => true,
+        'bgImage' => false,
+        'bgColor' => '#ecf2f4',
+        'textLeftPadding'=>8,
+        'lines'=>1,
     ],
 
     'flat' => [

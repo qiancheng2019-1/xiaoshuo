@@ -7,7 +7,8 @@ use QL\QueryList;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class ReptileModel extends BaseModel {
+class ReptileModel {
+    use BaseModel;
 
     private $rand_ip,$timeout,$user_agent,$referer,$reptile;
 
@@ -45,9 +46,10 @@ class ReptileModel extends BaseModel {
             $data['status'] = 1;
 
             DB::table('articles')->updateOrInsert(['url'=>$item['url']],$data);
+            return DB::table('articles_category')->where(['id'=>$category->id])->increment('page');
         }
 
-        return DB::table('articles_category')->where(['id'=>$category->id])->increment('page');
+        return false;
     }
 
     public function getArticle(int $article_id,string $url){
@@ -59,10 +61,11 @@ class ReptileModel extends BaseModel {
         $rules['area_html'] = [$this->reptile['chapter_area_selector'],'html'];
 
         $article = $this->getHtml($url,$rules)[0];
+        if (!$article) return false;
+
         $thumb = file_get_contents($article['thumb'])?:'';
 
-        $Storage = Storage::disk('public');
-        $data['thumb'] = $Storage->put('thumb/'.$article_id.substr($article['thumb'], -5),$thumb) ? Storage::url('thumb/'.$article_id.substr($article['thumb'], -5)):'';
+        $data['thumb'] = Storage::disk('public')->put('thumb/'.$article_id.substr($article['thumb'], -5),$thumb) ? 'thumb/'.$article_id.substr($article['thumb'], -5):'';
         $data['info'] = $article['content'];
 
         //章节目录处理
@@ -88,8 +91,16 @@ class ReptileModel extends BaseModel {
         }
 
         if ($chapter_list??false){
+            $Storage = Storage::disk('local');
             $storage_id = floor($article_id / 1000) . '/' . $article_id;
-            Storage::disk('local')->put($storage_id . '/chapters',json_encode($chapter_list));
+
+            //清除后台手动修改章节造成的数据冗余
+            $chapter_list_old = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
+            foreach (array_diff(array_keys($chapter_list_old),array_keys($chapter_list)) as $item){
+                Storage::disk('local')->delete($storage_id.'/'.$item['id']);
+            }
+
+            $Storage->put($storage_id . '/chapters',json_encode($chapter_list));
 
             $last = end($chapter_list);
             $data['last_chapter'] = $last['title'];
@@ -98,15 +109,15 @@ class ReptileModel extends BaseModel {
         }
 
         DB::table('articles')->where(['id'=>$article_id])->update($data);
-        return $data;
+        return $chapter_list??false;
     }
 
     public function getChapter(object $article,array $chapter){
         $Storage = Storage::disk('local');
         $rules['content'] = [$this->reptile['chapter_cont_selector'],'html','-script -a'];
-        $content = $this->getHtml($article->url.'/'.$chapter['link'],$rules,'chapter_cont_pre_filter')[0]['content'];
+        $content = $this->getHtml($article->url.'/'.$chapter['link'],$rules,'chapter_cont_pre_filter');
 
-        if ($content){
+        if ($content = $content[0]['content'] ?? false){
             $storage_id = floor($article->id / 1000) . '/' . $article->id;
             $data['title'] = $chapter['title'];
             $data['content'] =$content;
@@ -117,29 +128,34 @@ class ReptileModel extends BaseModel {
     }
 
     private function getHtml(string $url,array $rules = [],string $pre_filter = ''){
-        $html_contents = $this->curlGetContents($url,true);
+        try {
+            $html_contents = $this->curlGetContents($url,true);
 
-        if (strtoupper($this->reptile['charset']) !== 'UTF-8')
-            $html_contents = $this->changeCharset($html_contents);
+            if (strtoupper($this->reptile['charset']) !== 'UTF-8')
+                $html_contents = $this->changeCharset($html_contents);
 
-        if ($pre_filter){
-            $pre_filter = explode('[line]', $this->reptile[$pre_filter]);
-            foreach ($pre_filter as $item) {
-                preg_match('#^\\{filter\\s+replace\\s*=\\s*\'([^\']*)\'\\s*\\}(.*)\\{/filter\\}#', $item, $matches);
-                if (isset($matches[2]) && !empty($matches[2])) {
-                    $matches[2] = str_replace('~', '\\~', $matches[2]);
-                    $matches[2] = str_replace('"', '\\"', $matches[2]);
-                    $html_contents = preg_replace('~' . $matches[2] . '~iUs', $matches[1], $html_contents);
-                } else {
-                    $html_contents = str_replace($item, '', $html_contents);
+            if ($pre_filter){
+                $pre_filter = explode('[line]', $this->reptile[$pre_filter]);
+                foreach ($pre_filter as $item) {
+                    preg_match('#^\\{filter\\s+replace\\s*=\\s*\'([^\']*)\'\\s*\\}(.*)\\{/filter\\}#', $item, $matches);
+                    if (isset($matches[2]) && !empty($matches[2])) {
+                        $matches[2] = str_replace('~', '\\~', $matches[2]);
+                        $matches[2] = str_replace('"', '\\"', $matches[2]);
+                        $html_contents = preg_replace('~' . $matches[2] . '~iUs', $matches[1], $html_contents);
+                    } else {
+                        $html_contents = str_replace($item, '', $html_contents);
+                    }
                 }
             }
+
+            $query = QueryList::setHtml($html_contents)->rules($rules)->query();
+            !($data = $query->getData()) and $data = $query->encoding('UTF-8','UTF-8')->removeHead()->getData();
+
+            return $data->all();
+
+        }catch (\ErrorException $e){
+            return [];
         }
-
-        $query = QueryList::setHtml($html_contents)->rules($rules)->query();
-        !($data = $query->getData()) and $data = $query->encoding('UTF-8','UTF-8')->removeHead()->getData();
-
-        return $data->all();
     }
 
     //编码过滤

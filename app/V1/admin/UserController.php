@@ -68,7 +68,6 @@ class UserController extends IndexController
      *              @OA\Property(property="username", type="string", description="用户账号"),
      *              @OA\Property(property="api_token", type="string", description="api_token凭证令牌")
      *             ),
-     *             example={{"id": 0,"nickname": "string","username": "string","api_token": "Ens77JIGHSOetUSsPtNgaF4bExDZk4WwLsvlbJZUnCEQNId4x8swY9ZGO1Hc"}}
      *        )
      *     )
      * )

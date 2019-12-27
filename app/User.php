@@ -9,6 +9,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function collect()
+    {
+        return $this->hasMany('App\V1\App\Models\UsersCollectModel');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -772,8 +772,8 @@ class ArticlesController extends IndexController {
      */
     public function getChapterList(int $article_id, int $page, int $limit)
     {
-        $category = ArticlesModel::get($article_id, ['id']);
-        if (!$category) return $this->apiReturn('书本数据不存在', 404, 21);
+        $article = ArticlesModel::get($article_id, ['id']);
+        if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
         $storage_id = floor($article_id / 1000) . '/' . $article_id;
         $Storage = Storage::disk('local');

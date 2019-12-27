@@ -5,27 +5,11 @@ namespace App\V1\App\Controllers;
 use App\Rules\mobile;
 use Dingo\Api\Http\Request;
 use App\V1\Basis\BaseController;
+use App\V1\App\Models\CCPRestSDK;
 use Illuminate\Support\Facades\Cache;
 
 class IndexController extends BaseController
 {
-    /**
-     * @OA\Get(
-     *     path="/test",
-     *     tags={"Invalid"},
-     *     summary="清空redis缓存",
-     *     @OA\Response(
-     *         response=200,
-     *         description="SUCCESS/成功"
-     *        )
-     *     )
-     * )
-     */
-    public function test(){
-        Cache::flush();
-        return $this->apiReturn('成功',200,0);
-    }
-
     public function index($path = './')
     {
         //你想要哪个文件夹下面的注释生成对应的API文档
@@ -37,7 +21,6 @@ class IndexController extends BaseController
      *     path="/config",
      *     tags={"Default"},
      *     summary="获取网站基础设置参数",
-     *     security={{"Token":{}}},
      *     @OA\Response(
      *         response=200,
      *         description="SUCCESS/成功",
@@ -273,7 +256,6 @@ class IndexController extends BaseController
      *     path="/captcha/sms",
      *     tags={"Default"},
      *     summary="获取短信验证码",
-     *     description="开发期间假想验证码：888888",
      *     @OA\RequestBody(
      *         @OA\MediaType(
      *             mediaType="application/x-www-form-urlencoded",
@@ -312,8 +294,23 @@ class IndexController extends BaseController
         if (!captcha_api_check($request->input('captcha'), $request->input('key'))) return $this->apiReturn('验证码检验不通过', 401, 10);
 
         $mobile = $request->validate(['mobile'=>['required','string',new mobile()]])['mobile'];
-        Cache::put(md5($mobile),888888,600);
 
+        $code = mt_rand(000000,999999);
+
+        $SDK = new CCPRestSDK('app.cloopen.com',8883,'2013-12-26');
+        $SDK->setAccount('8a216da86f17653b016f4000bb7b1c17','63538b36c8d54197ab3932a65699b64a');
+        $SDK->setAppId('8a216da86f17653b016f4000bc691c1e');
+
+        $result = $SDK->sendTemplateSMS($mobile,[$code,10],1);
+        if($result == NULL ) {
+            return $this->apiReturn('未知短信平台错误，请稍后再试', 422, 11);
+        }
+        if($result->statusCode!=0) {
+            file_put_contents('sms.log',json_encode($result).'\r');
+            return $this->apiReturn('短信发送失败，请稍后再试', 422, 12);
+        }
+
+        Cache::put(md5($mobile),$code,600);
         return $this->apiReturn(' 验证码已发送，请关注手机接收', 200, 0);
     }
 

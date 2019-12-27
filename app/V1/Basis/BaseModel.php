@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 DB::beginTransaction();
 
-class BaseModel
+Trait BaseModel
 {
     protected static function removeEmpty(array $data = [])
     {

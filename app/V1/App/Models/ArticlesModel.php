@@ -7,15 +7,12 @@ namespace App\V1\App\Models;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class ArticlesModel extends IndexModel
-{
+class ArticlesModel extends IndexModel {
+    protected $table = 'articles';
+
     public static function getCategoryList()
     {
-        return DB::table('articles_category')
-            ->select(['id', 'name', 'title', 'keyword', 'desc'])
-            ->where(['status' => 1])
-            ->orderBy('order')
-            ->get();
+        return DB::table('articles_category')->select(['id', 'name', 'title', 'keyword', 'desc'])->where(['status' => 1])->orderBy('order')->get();
     }
 
     public static function getList(array $columns = ['*'], array $where = [], string $order = 'id', array $page_arr = [1, 1])
@@ -29,16 +26,9 @@ class ArticlesModel extends IndexModel
             unset($where['keyword']);
         } else $keyword = [];
 
-        foreach ($columns as $key => $item)
-            is_string($key) ? $select[] = DB::raw($item.' as '.$key) : $select[] = $item;
+        foreach ($columns as $key => $item) is_string($key) ? $select[] = DB::raw($item . ' as ' . $key) : $select[] = $item;
 
-       $sql = DB::table('articles')
-            ->leftJoin('articles_views', 'articles.id', '=', 'articles_views.article_id')
-            ->where($where)
-            ->where($keyword)
-            ->orderByDesc('total_views')
-            ->orderByDesc($order)
-            ->paginate($page_arr[1], $select, 'page', $page_arr[0]);
+        $sql = DB::table('articles')->leftJoin('articles_views', 'articles.id', '=', 'articles_views.article_id')->where($where)->where($keyword)->orderByDesc('total_views')->orderByDesc($order)->paginate($page_arr[1], $select, 'page', $page_arr[0]);
 
         Cache::put($cache_key, $sql, config('env.cache_select_time'));
         return $sql;
@@ -46,10 +36,7 @@ class ArticlesModel extends IndexModel
 
     public static function get(int $id = 0, $columns = ['*'])
     {
-        return DB::table('articles')
-            ->leftJoin('articles_views', 'articles.id', '=', 'articles_views.article_id')
-            ->select($columns)
-            ->find($id);
+        return DB::table('articles')->leftJoin('articles_views', 'articles.id', '=', 'articles_views.article_id')->select($columns)->find($id);
     }
 
     public static function updateViews(int $article_id = 0, int $amount = 0)
@@ -61,7 +48,7 @@ class ArticlesModel extends IndexModel
         }
 
         $views = DB::table('articles_views')->where(['article_id' => $article_id])->first();
-        if (!$views) return (bool) DB::table('articles_views')->insert(['article_id' => $article_id,'week_views'=>1,'month_views'=>1,'total_views'=>1,'week'=>date('W'),'month'=>date('m')]);
+        if (!$views) return (bool)DB::table('articles_views')->insert(['article_id' => $article_id, 'week_views' => 1, 'month_views' => 1, 'total_views' => 1, 'week' => date('W'), 'month' => date('m')]);
 
         if ($views->week != date('W')) {
             $views->week = date('W');
@@ -75,14 +62,6 @@ class ArticlesModel extends IndexModel
 
         $views->total_views += $amount;
 
-        return (bool) DB::table('articles_views')->updateOrInsert(['article_id' => $article_id], (array)$views);
-    }
-
-    public static function collect(int $article_id,int $user_id){
-
-    }
-
-    public static function getCollectList(int $user_id,array $page_arr = [1,10]){
-
+        return (bool)DB::table('articles_views')->updateOrInsert(['article_id' => $article_id], (array)$views);
     }
 }

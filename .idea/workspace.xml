@@ -2,66 +2,119 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesCategoryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesCategoryModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesViewsModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/V1/admin/Models/ArticlesModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/zh-CN/fiction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Admin/Actions/Articles/Reptile.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/V1/App/Models/CCPRestSDK.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/V1/App/Models/UsersCollectModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/css/chunk-vendors.09529c81.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/img/10.abaabe80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/img/default.711fcc01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/img/login.420aa4a1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/img/min.3c55a422.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/img/reader_s.ce9130e9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/img/reader_x.b4dfc322.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/img/yj.1c3efa73.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ar/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/az/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/en/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/es/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/fa/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/fr/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/he/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/id/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ja/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ko/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ms/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/nl/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/pl/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/pt-BR/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/pt/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ru/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/tr/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/uk/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ur/admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Admin/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/admin/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Admin/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/admin/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Admin/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/admin/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Admin/Model/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Admin/Model/IndexModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/admin/Models/IndexModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/AdController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/AdController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/bootstrap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/DingoApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/DingoApi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Model/AdModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/AdModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Model/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/ArticlesModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Model/IndexModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/IndexModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/ArticlesModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/IndexModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/IndexModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/Basis/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Basis/BaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/Basis/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Basis/BaseModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/Basis/ReptileModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Basis/ReptileModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/admin/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/admin/ArticlesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/admin/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/admin/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bootstrap/cache/packages.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/packages.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bootstrap/cache/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/services.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/reptile.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/reptile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/captcha.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/captcha.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_18_085828_create_articles_comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_26_034455_create_users_collects.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/storage/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/storage/default/jlSvyzLaCj3ZwLovaQvO8i0qgqSIWFZDHiBsS2tF.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/pagination.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/passwords.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/en/validation.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/zh-CN/fiction.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/zh-CN/fiction.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-09.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-10.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-11.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-12.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-13.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-14.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-16.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-17.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-18.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-19.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-20.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/21" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/23" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/24" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/25" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/26" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/27" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/28" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/29" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/30" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/31" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/32" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/33" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/34" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/35" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/36" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/70" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/71" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/13/chapters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/198/1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/198/2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/198/3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/198/4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/198/5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/198/6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/198/chapters" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/data/0/198/chapters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/201/11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/201/12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/201/13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/data/0/201/chapters" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/data/0/201/chapters" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/encore/laravel-admin/src/Actions/Action.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/encore/laravel-admin/src/Actions/Action.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/encore/laravel-admin/src/Actions/Interactor/Form.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/encore/laravel-admin/src/Actions/Interactor/Form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/encore/laravel-admin/src/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/encore/laravel-admin/src/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,10 +141,17 @@
     <expand />
     <select />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="admin" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -216,11 +276,11 @@
       <path value="$PROJECT_DIR$/vendor/cache/adapter-common" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
-      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/encore/laravel-admin" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/vendor/laravel-admin-ext/ckeditor" />
     </include_path>
   </component>
@@ -234,6 +294,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
@@ -242,24 +304,24 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="add_unversioned_files" value="true&#10;D:/PHPCode/laravel/storage/app/data/thumb/201s.jpg" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Admin/Models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/static" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\PHPCode\laravel\app\Admin\Models" />
-      <recent name="D:\PHPCode\laravel\app\Admin\Controllers" />
-      <recent name="D:\PHPCode\laravel\app\V1\admin" />
-      <recent name="D:\PHPCode\laravel\app\V1\Basis" />
-      <recent name="D:\PHPCode\laravel\app" />
+      <recent name="D:\PHPCode\laravel\public\static" />
+      <recent name="D:\PHPCode\laravel\public" />
+      <recent name="D:\PHPCode\laravel\app\V1\App\Models" />
+      <recent name="D:\PHPCode\laravel\storage\app\data\0\201" />
+      <recent name="D:\PHPCode\laravel\storage\app\data\0\13" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PHPCode\laravel\app\V1\App\Models" />
+      <recent name="D:\PHPCode\laravel\public" />
       <recent name="D:\PHPCode\laravel\app\V1\admin" />
       <recent name="D:\PHPCode\laravel\app\Admin" />
       <recent name="D:\PHPCode\laravel\app\Admin\Controllers" />
-      <recent name="D:\PHPCode\laravel\app\V1\Basis" />
-      <recent name="D:\PHPCode\laravel\public" />
     </key>
   </component>
   <component name="RunManager">
@@ -301,7 +363,7 @@
       <workItem from="1576632524066" duration="23200000" />
       <workItem from="1576718585695" duration="43105000" />
       <workItem from="1577064406734" duration="24606000" />
-      <workItem from="1577153023851" duration="25138000" />
+      <workItem from="1577153023851" duration="103034000" />
     </task>
     <task id="LOCAL-00001" summary="初始化Larvel项目">
       <created>1575950366240</created>
@@ -359,7 +421,21 @@
       <option name="project" value="LOCAL" />
       <updated>1577095604014</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Laravel-Admin">
+      <created>1577185208143</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1577185208143</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Laravel-Admin">
+      <created>1577185315881</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1577185315881</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,6 +455,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/public/swagger" />
     </ignored-roots>
@@ -390,17 +467,18 @@
     <MESSAGE value="1.爬虫模块&#10;2.新增用户表、评论表等" />
     <MESSAGE value="1.数据表结构迁移" />
     <MESSAGE value="爬虫模块完成，差压力测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="爬虫模块完成，差压力测试" />
+    <MESSAGE value="Laravel-Admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Laravel-Admin" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Custom_Plugin_Repositories" timestamp="1575948948845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="177" key="#Custom_Plugin_Repositories/0.0.1920.1040@0.0.1920.1040" timestamp="1575948948845" />
-    <state x="552" y="177" key="#Deployment" timestamp="1577082227881">
+    <state x="552" y="177" key="#Deployment" timestamp="1577418032405">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="177" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1577082227881" />
+    <state x="552" y="177" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1577418032405" />
     <state x="552" y="177" key="#HTTP_Proxy" timestamp="1575949369499">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -409,34 +487,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="177" key="#SmartIM/0.0.1920.1040@0.0.1920.1040" timestamp="1576483328698" />
-    <state x="680" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577090030877">
+    <state x="680" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577262813199">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="680" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1577090030877" />
+    <state x="680" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1577262813199" />
     <state x="761" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1576466422114">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="761" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1576466422114" />
-    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1576490668462">
+    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577348222597">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576490668462" />
+    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577348222597" />
     <state x="690" y="265" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1576720566887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="265" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576720566887" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577171512933">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577435414626">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577171512933" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1577185207381">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577435414626" />
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1577443646931">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577185207381" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1577176609603">
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577443646931" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1577268448464">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577176609603" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577268448464" />
     <state x="92" y="92" width="1736" height="856" key="DirDiffDialog" timestamp="1577185188427">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -449,6 +527,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="253" key="IDE.errors.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576484961268" />
+    <state x="669" y="234" key="MultipleFileMergeDialog" timestamp="1577238730004">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="669" y="234" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577238730004" />
     <state x="232" y="399" key="NewPhpClassDialog" timestamp="1577156252951">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -461,22 +543,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576744027379" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1577185209728">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1577238769582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577185209728" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577238769582" />
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1" timestamp="1577082112260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1/0.0.1920.1040@0.0.1920.1040" timestamp="1577082112260" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1577176609607">
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1577268448464">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577176609607" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1577091331740">
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577268448464" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1577435693059">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577091331740" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577435693059" />
     <state x="645" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1575941009732">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -485,21 +567,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576830794866" />
-    <state x="538" y="59" width="844" height="792" key="find.popup" timestamp="1577184657847">
+    <state x="730" y="45" width="844" height="792" key="find.popup" timestamp="1577443651809">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="538" y="59" width="844" height="792" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577184657847" />
+    <state x="730" y="45" width="844" height="792" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577443651809" />
     <state x="859" y="249" key="ftp.server.browser" timestamp="1577082155860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="859" y="249" key="ftp.server.browser/0.0.1920.1040@0.0.1920.1040" timestamp="1577082155860" />
-    <state x="616" y="235" key="run.anything.popup" timestamp="1577182742607">
+    <state x="722" y="231" key="git4idea.branch.GitSmartOperationDialog" timestamp="1577238718873">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577182742607" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577171373910">
+    <state x="722" y="231" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577238718873" />
+    <state x="616" y="235" key="run.anything.popup" timestamp="1577342079651">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577171373910" />
+    <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577342079651" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577443330381">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577443330381" />
   </component>
 </project>

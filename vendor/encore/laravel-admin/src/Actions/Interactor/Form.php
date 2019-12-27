@@ -477,7 +477,7 @@ SCRIPT;
                 for (var key in data) {
                     formData.append(key, data[key]);
                 }
-                
+
                 $.ajax({
                     method: '{$this->action->getMethod()}',
                     url: '{$this->action->getHandleRoute()}',

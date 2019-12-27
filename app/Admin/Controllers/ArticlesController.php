@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use Encore\Admin\Grid;
 use Encore\Admin\Form;
 use App\Admin\Models\ArticlesModel;
+use App\Admin\Actions\Articles\Reptile;
 use App\Admin\Actions\Articles\Chapters;
 use App\Admin\Models\ArticlesCategoryModel;
 use Encore\Admin\Controllers\AdminController;
@@ -46,7 +47,8 @@ class ArticlesController extends AdminController
         // 在表单提交前调用
         $form->saving(function (Form $form) {
             //...
-            $form->category = ArticlesCategoryModel::query()->find($form->category_id)->name;
+            $category = ArticlesCategoryModel::query()->find($form->category_id);
+            $category and $form->category = $category->name;
         });
 
         return $form;
@@ -64,13 +66,17 @@ class ArticlesController extends AdminController
             $filter->where(function ($query) {
                 $query->where('title', 'like', "{$this->input}%")
                     ->orWhere('author', 'like', "{$this->input}%");
-            }, 'title or author');;
+            }, trans('admin.title').' or '.trans('fiction.author'));;
+        });
+        $grid->tools(function (Grid\Tools $tools) {
+            $tools->append(new Reptile());
         });
 
         $grid->column('id', 'ID')->sortable();
         $grid->column('title', trans('admin.title'));
         $grid->column('category', trans('fiction.category'))->sortable();
         $grid->column('author', trans('fiction.author'));
+        $grid->column('url', trans('fiction.url'));
         $grid->column('views.week_views',trans('fiction.week_views'))->sortable();
         $grid->column('views.month_views', trans('fiction.month_views'))->sortable();
         $grid->column('views.total_views', trans('fiction.total_views'))->sortable();

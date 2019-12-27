@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Dingo\Api\Routing\Helpers;
 use Dingo\Api\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class BaseController extends Controller
 {
@@ -32,7 +33,7 @@ class BaseController extends Controller
 
     public function getCaptcha()
     {
-        $captcha = app('captcha')->create('default', true);
+        $captcha = app('captcha')->create('math', true);
         $result['key'] = $captcha['key'];
         $result['img'] = $captcha['img'];
         return $this->apiReturn('图形验证码', 200, 0, $result);
@@ -57,8 +58,8 @@ class BaseController extends Controller
                 'file' => 'required|max:10000|mimes:png,jpg,jpeg'
             ]);
 
-        $filePath = \Illuminate\Support\Facades\Storage::disk('public')->putFile(config('env.','default'), $request->file('file'));
-        $result['file_path'] = $result['file_url'] = \Illuminate\Support\Facades\Storage::url($filePath);
+        $filePath = Storage::disk('public')->putFile(config('env.','default'), $request->file('file'));
+        $result['file_path'] = $result['file_url'] = $filePath;
         return $this->apiReturn('上传成功', 201, 0, $result);
     }
 
@@ -90,75 +91,12 @@ class BaseController extends Controller
         $result['message'] = $msg;
         $result['status_code'] = $status_code;
         $result['version'] = 'v1';
-        $result['data'] = self::sortResponseData($data) ?: [];
+        $result['data'] = $data;
 
         return $this->response
             ->array($result)
             ->setStatusCode($status_code);
     }
-
-    /**
-     * @param $data
-     * @return mixed
-     * 字段验证器
-     * 接口数据清洗，强制检测与转换
-     */
-    protected static function sortResponseData($data = [])
-    {
-//        if (is_string($data)) return [$data];
-//        if (is_array($data) or is_object($data))
-        foreach ($data as $key => &$item) {
-            //忽略部分字段
-            if ($key === 'file_path') continue;
-
-            if (is_null($item)) {
-                $item = 0;
-                continue;
-            }
-
-            if (is_array($item) or is_object($item)) {
-                $item = self::sortResponseData($item);
-                continue;
-            }
-
-            if (is_string($item)) {
-//                    switch ($key) {
-//                        case 'content':
-//                            $content = json_decode($item);
-//                            if (json_last_error() == JSON_ERROR_NONE)
-//                                $item = $content;
-//                            break;
-//                        default:
-//                            break;
-//                    }
-
-                if (in_array(substr($item, -4), ['.png', '.jpg', 'jpeg'])) {
-                    $item = url($item);
-                    continue;
-                }
-            }
-        }
-        return $data;
-    }
-
-    /**
-     * #作废
-     * 转化数据库保存的文件路径，为可以访问的url
-     * @param string $file
-     * @param mixed $style 图片样式,支持各大云存储
-     * @return string
-     */
-    protected static function sortImagesUrl(string $file_path = '')
-    {
-        if (strpos($file_path, "http") === 0) {
-            return $file_path;
-        } else if (strpos($file_path, "/") === 0) {
-            return url($file_path);
-        } else {
-            return url($file_path);
-        }
-    }
-
     /**
      * 遍历数据快照
      * @param array $input
