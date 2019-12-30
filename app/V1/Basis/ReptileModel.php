@@ -35,6 +35,7 @@ class ReptileModel {
         $rules['author'] = [$this->reptile['list_author_selector'],'text'];
 
         $list = $this->getHtml($url,$rules);
+        if (!$list) return false;
 
         foreach ($list as $item){
             $data['title'] = $item['title'];
@@ -46,10 +47,8 @@ class ReptileModel {
             $data['status'] = 1;
 
             DB::table('articles')->updateOrInsert(['url'=>$item['url']],$data);
-            return DB::table('articles_category')->where(['id'=>$category->id])->increment('page');
         }
-
-        return false;
+        return DB::table('articles_category')->where(['id'=>$category->id])->increment('page');
     }
 
     public function getArticle(int $article_id,string $url){
@@ -60,9 +59,10 @@ class ReptileModel {
         $rules['category'] = [$this->reptile['view_cate_selector'],'content'];
         $rules['area_html'] = [$this->reptile['chapter_area_selector'],'html'];
 
-        $article = $this->getHtml($url,$rules)[0];
+        $article = $this->getHtml($url,$rules);
         if (!$article) return false;
 
+        $article = $article[0];
         $thumb = file_get_contents($article['thumb'])?:'';
 
         $data['thumb'] = Storage::disk('public')->put('thumb/'.$article_id.substr($article['thumb'], -5),$thumb) ? 'thumb/'.$article_id.substr($article['thumb'], -5):'';
@@ -96,7 +96,7 @@ class ReptileModel {
 
             //清除后台手动修改章节造成的数据冗余
             $chapter_list_old = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
-            foreach (array_diff(array_keys($chapter_list_old),array_keys($chapter_list)) as $item){
+            foreach (array_diff(array_keys($chapter_list_old)??[],array_keys($chapter_list)) as $item){
                 Storage::disk('local')->delete($storage_id.'/'.$item['id']);
             }
 

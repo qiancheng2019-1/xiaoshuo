@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\DB;
 class ArticlesModel extends IndexModel {
     protected $table = 'articles';
 
+    public function getCollect(){
+        return $this->hasOne('App\V1\App\Models\UsersCollectModel','article_id');
+    }
+
+    public function getViews(){
+        return $this->hasOne('App\V1\App\Models\ArticlesViewsModel','article_id');
+    }
+
     public static function getCategoryList()
     {
         return DB::table('articles_category')->select(['id', 'name', 'title', 'keyword', 'desc'])->where(['status' => 1])->orderBy('order')->get();

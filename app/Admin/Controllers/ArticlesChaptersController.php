@@ -20,7 +20,7 @@ class ArticlesChaptersController extends AdminController {
      */
     protected function title()
     {
-        return trans('book');
+        return trans('fiction.book').trans('fiction.chapter');
     }
 
     public function edit($id, Content $content)

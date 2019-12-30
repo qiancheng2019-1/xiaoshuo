@@ -26,11 +26,6 @@ class BaseController extends Controller
         config($config);
     }
 
-    public function index(string $path)
-    {
-        return \OpenApi\scan($path . '/')->toJson();
-    }
-
     public function getCaptcha()
     {
         $captcha = app('captcha')->create('math', true);
@@ -58,7 +53,7 @@ class BaseController extends Controller
                 'file' => 'required|max:10000|mimes:png,jpg,jpeg'
             ]);
 
-        $filePath = Storage::disk('public')->putFile(config('env.','default'), $request->file('file'));
+        $filePath = Storage::disk('public')->putFile(config('env.file_dir','default'), $request->file('file'));
         $result['file_path'] = $result['file_url'] = $filePath;
         return $this->apiReturn('上传成功', 201, 0, $result);
     }

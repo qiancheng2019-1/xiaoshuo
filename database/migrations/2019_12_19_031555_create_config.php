@@ -15,7 +15,9 @@ class CreateConfig extends Migration
     {
         Schema::create('config', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('key', 128)->nullable(false)->default('')->unique();
+            $table->string('key', 64)->nullable(false)->default('')->unique();
+            $table->string('name', 64)->nullable(false)->default('');
+            $table->string('desc', 128)->nullable(false)->default('');
             $table->string('value', 512)->nullable(false)->default('');
             $table->timestamps();
         });

@@ -16,4 +16,7 @@ Route::group([
     $router->resource('/articles/{article_id}/chapters', 'ArticlesChaptersController')->names('admin.articles.chapters');
     $router->resource('/articles', 'ArticlesController')->names('admin.articles');
 
+    $router->resource('/webConfig', 'WebConfigController')->names('admin.webConfig');
+    $router->resource('/adConfig', 'AdConfigController')->names('admin.adConfig');
+
 });

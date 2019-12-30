@@ -472,7 +472,7 @@ SCRIPT;
                     _token: $.admin.token,
                     _action: '{$this->action->getCalledClass()}',
                 });
-                
+
                 var formData = new FormData(form);
                 for (var key in data) {
                     formData.append(key, data[key]);

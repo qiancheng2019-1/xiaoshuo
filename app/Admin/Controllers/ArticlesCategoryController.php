@@ -13,7 +13,7 @@ class ArticlesCategoryController extends AdminController {
      */
     protected function title()
     {
-        return trans('book');
+        return trans('fiction.book').trans('fiction.category');
     }
 
     public function form()
@@ -47,7 +47,7 @@ class ArticlesCategoryController extends AdminController {
         $grid->disableBatchActions();
         $grid->actions(function ($actions) {
             $actions->disableView();
-            if (in_array($actions->getKey(), [1, 2, 3, 4, 5, 6])) {
+            if (in_array($actions->getKey(), [1, 2, 3, 4, 5, 6,7,8])) {
                 $actions->disableDelete();
             }
         });

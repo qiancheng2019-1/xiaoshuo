@@ -2,7 +2,6 @@
 
 namespace App\Admin\Actions\Articles;
 
-use Encore\Admin\Admin;
 use App\V1\Basis\ReptileModel;
 use Encore\Admin\Actions\Action;
 use Illuminate\Http\Request;
@@ -19,13 +18,16 @@ class Reptile extends Action
         $now = $request->input('now',1);
         $max = $request->input('max',1);
 
+        if ($max > 100)
+            return $this->response()->error('不建议采集次数超100次')->refresh();
 
-        if ($now >= $max)
-            return $this->response()->success('已成功采集'.$now.'次')->refresh();
-        return $this->response()->success('已成功采集'.$now.'次,共采集'.$max.'次')->download($now);
+        if ($now > $max)
+            return $this->response()->success('已成功采集'.$max.'次')->refresh();
 
         $Reptile = new ReptileModel();
         $Reptile->getList();
+//        if (!$Reptile->getList())
+//            return $this->response()->error('爬虫错误');
 
         return $this->response()->success('已成功采集'.$now.'次,共采集'.$max.'次')->download($now);
     }
@@ -45,7 +47,7 @@ HTML;
     //重写ajax回调处理方法
     public function handleActionPromise()
     {
-        return <<<'SCRIPT'
+        return <<<SCRIPT
         var actionResolver = function (data) {
             var response = data[0];
             var target   = data[1];
@@ -60,7 +62,7 @@ HTML;
                 }
 
                 if (then.action == 'download') {
-                    $('.reptile input[name="now"]').value(then.value);
+                    setTimeout(repeatAjax(then.value),2000);
                 }
             };
 
@@ -81,18 +83,40 @@ HTML;
             }
         };
 
-        var actionCatcher = function (request) {
-            if (request && typeof request.responseJSON === 'object') {
-                $.admin.toastr.error(request.responseJSON.message, '', {positionClass:"toast-bottom-center", timeOut: 10000}).css("width","500px")
-            }
-        };
+        var repeatAjax = function(now){
+            $('#'+modalId+' form input[name="now"]').val(parseInt(now)+1);
+            var ccc = new Promise(function (resolve,reject) {
+                Object.assign(data, {
+                    _token: $.admin.token,
+                    _action: '{$this->getCalledClass()}',
+                });
 
-        Promise.all([
-            process.then(actionResolver).catch(actionCatcher),
-            process.then(actionResolver).catch(actionCatcher),
-            process.then(actionResolver).catch(actionCatcher),
-            process.then(actionResolver).catch(actionCatcher),
-        ]);
+                var formData = new FormData(form);
+                for (var key in data) {
+                    formData.append(key, data[key]);
+                }
+
+                $.ajax({
+                    method: '{$this->getMethod()}',
+                    url: '{$this->getHandleRoute()}',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        resolve([data, target]);
+                        if (data.status === true) {
+                            $('#'+modalId).modal('hide');
+                        }
+                    },
+                    error:function(request){
+                        reject(request);
+                    }
+                });
+            });
+            ccc.then(actionResolver).catch(actionCatcher);
+        };
+        process.then(actionResolver).catch(actionCatcher);
 SCRIPT;
     }
 }

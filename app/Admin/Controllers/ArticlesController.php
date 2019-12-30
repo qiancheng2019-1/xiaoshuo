@@ -17,7 +17,7 @@ class ArticlesController extends AdminController
      */
     protected function title()
     {
-        return trans('book');
+        return trans('fiction.book');
     }
 
     public function form()
@@ -62,11 +62,16 @@ class ArticlesController extends AdminController
             $actions->add(new Chapters());
         });
         $grid->filter(function($filter){
+            // 去掉默认的id过滤器
+            $filter->disableIdFilter();
             // 在这里添加字段过滤器
             $filter->where(function ($query) {
                 $query->where('title', 'like', "{$this->input}%")
                     ->orWhere('author', 'like', "{$this->input}%");
-            }, trans('admin.title').' or '.trans('fiction.author'));;
+            }, trans('admin.title').' or '.trans('fiction.author'));
+
+            foreach (ArticlesCategoryModel::query()->where(['status'=>1])->get(['id','name']) as $item) $category[$item['id']] = $item['name'];
+            $filter->equal('category_id',trans('fiction.category'))->select($category ?? []);
         });
         $grid->tools(function (Grid\Tools $tools) {
             $tools->append(new Reptile());

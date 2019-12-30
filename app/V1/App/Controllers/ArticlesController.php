@@ -276,6 +276,7 @@ class ArticlesController extends IndexController {
      *              @OA\Property(property="thumb", type="string", description="封面"),
      *              @OA\Property(property="is_push", type="integer", description="是否推荐，1为推荐"),
      *              @OA\Property(property="is_full", type="integer", description="是否完本，1为完本"),
+     *              @OA\Property(property="is_collect", type="integer", description="是否收藏，1为收藏"),
      *              @OA\Property(property="info", type="string", description="简介"),
      *              @OA\Property(property="last_view", type="string", description="用户最后看的章节"),
      *              @OA\Property(property="last_view_id", type="integer", description="用户最后看的章节"),
@@ -290,30 +291,35 @@ class ArticlesController extends IndexController {
      */
     public function getDetail(Request $request,int $id)
     {
-        $columns = ['id', 'url', 'title', 'category_id', 'author', 'thumb', 'week_views','month_views','total_views','is_push', 'is_full', 'info', 'last_chapter_id', 'last_chapter', 'created_at', 'updated_at'];
+        $columns = ['id', 'url', 'title', 'category_id', 'author', 'thumb', 'is_push', 'is_full', 'info', 'last_chapter_id', 'last_chapter', 'created_at', 'updated_at'];
 
-        $article = ArticlesModel::get($id,$columns);
+        $article = ArticlesModel::query()->find($id,$columns);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
         ArticlesModel::updateViews($id);
+        $article->week_views = $article->getViews->week_views;
+        $article->month_views = $article->getViews->month_views;
+        $article->total_views = $article->getViews->total_views;
 
         if ((time() - strtotime($article->updated_at)) > 43200 or !$article->last_chapter_id) {
             $reptileModel = new ReptileModel();
             $reptileModel->getArticle($article->id, $article->url);
             unset($article->url);
 
-            $article = ArticlesModel::get($id,$columns);
-            $article->last_view_id = 0;
-        }else{
-            $user = Auth::guard('app')->user();
-            $article->last_view_id = $article->collect->last_chapter_id ?? Cache::get(($user->id??$request->ip()).'/'.$id,0);
+            $article = ArticlesModel::query()->find($id,$columns);
         }
+
+        $user = Auth::guard('app')->user();
+        $collect = $article->getCollect()->where(['user_id'=>$user->id??0])->first();
+        $article->is_collect = $collect ? 1: 0;
+        $article->last_view_id = (int)($collect->last_chapter_id ?? Cache::get(($user->id??$request->ip()).'/'.$id,0));
 
         $storage_id = floor($id / 1000) . '/' . $id;
         $chapter_list = Storage::disk('local')->exists($storage_id . '/chapters') ? json_decode(Storage::disk('local')->get($storage_id . '/chapters'), true) : [];
         $article->last_view = $chapter_list[$article->last_view_id]['title'] ?? '';
 
-        return $this->apiReturn('书本详情', 200, 0, $article);
+        unset($article->getViews,$article->getCollect);
+        return $this->apiReturn('书本详情', 200, 0, $article->toArray());
     }
 
     /**
