@@ -23,11 +23,11 @@ class CreateAdminTables extends Migration
     {
         Schema::create(config('admin.database.users_table'), function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username', 190)->unique();
-            $table->string('password', 60);
-            $table->string('name');
-            $table->string('avatar')->nullable();
-            $table->string('remember_token', 100)->nullable();
+            $table->char('nickname', 128)->nullable(false)->default('');
+            $table->char('username', 128)->nullable(false)->default('')->unique();
+            $table->char('password', 64)->nullable(false)->default('');
+            $table->char('avatar', 128)->nullable(false)->default('')->comment('头像');
+            $table->char('api_token', 64)->nullable(false)->default('')->unique();
             $table->timestamps();
         });
 

@@ -13,15 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 $api = app('Dingo\Api\Routing\Router');
-$api->group(['middleware' => 'throttle:60,1', 'version' => 'v1', 'namespace' => 'App\\V1\\Admin\\Controllers', 'prefix' => 'api/admin'], function ($api) {
-    //admin接口文档
-    $api->get('swagger', 'IndexController@index');
-});
+//$api->group(['middleware' => 'throttle:60,1', 'version' => 'v1', 'namespace' => 'App\\V1\\Admin\\Controllers', 'prefix' => 'api/admin'], function ($api) {
+//    //admin接口文档
+//    $api->get('swagger', 'IndexController@index');
+//});
 
-$api->group(['version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'prefix' => 'api/app'], function ($api) {
+$api->group(['middleware' => 'throttle:128,1','version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'prefix' => 'api/app'], function ($api) {
     //app接口文档
     $api->get('swagger', 'IndexController@index');
     $api->get('/test', 'IndexController@test');
+
     $api->get('/config', 'IndexController@getConfig');
     $api->get('/ad', 'AdController@getAdList');
 
@@ -41,7 +42,6 @@ $api->group(['version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'pre
     $api->get('articles/{article_id}', 'ArticlesController@getDetail');
     $api->get('articles/{article_id}/chapters', 'ArticlesController@getChapterList');
     $api->get('articles/{article_id}/{id}', 'ArticlesController@getChapter');
-
 
     $api->post('token', 'UserController@login');
     $api->post('user', 'UserController@register');

@@ -452,7 +452,7 @@ class ArticlesController extends IndexController {
      */
     public function getChapter(Request $request,int $article_id, int $id)
     {
-        $article = ArticlesModel::get($article_id, ['id','url']);
+        $article = ArticlesModel::query()->find($article_id, ['id','url']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
         $storage_id = floor($article_id / 1000) . '/' . $article_id;
@@ -472,16 +472,17 @@ class ArticlesController extends IndexController {
 
         $user = Auth::guard('app')->user();
         if ($user){
-            $user->collect()->where(['article_id'=>$article_id])->first()->forceFill(['last_chapter_id'=>$id])->save()
-                ?: Cache::put($user->id.'/'.$article_id,$id,86400);
-        }
-        else
+            $collect = $article->getCollect()->where(['user_id'=>$user->id])->first();
+            if ($collect){
+                $collect->last_chapter_id = $id;
+                $collect->save();
+            }else
+                Cache::put($user->id.'/'.$article_id,$id,86400);
+        }else
             Cache::put($request->ip().'/'.$article_id,$id,3600);
 
         $page['prev_id'] = $id ? $id - 1 : 0;
         $page['next_id'] = $id + 1;
         return $this->apiReturn('章节详情', 200, 0, $chapter + $page);
     }
-
-
 }

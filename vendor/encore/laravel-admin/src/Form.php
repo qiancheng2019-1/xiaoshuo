@@ -10,6 +10,7 @@ use Encore\Admin\Form\HasHooks;
 use Encore\Admin\Form\Layout\Layout;
 use Encore\Admin\Form\Row;
 use Encore\Admin\Form\Tab;
+use Encore\Admin\Traits\ShouldSnakeAttributes;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations;
@@ -74,7 +75,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class Form implements Renderable
 {
-    use HasHooks;
+    use HasHooks, ShouldSnakeAttributes;
 
     /**
      * Remove flag in `has many` form.
@@ -569,15 +570,13 @@ class Form implements Renderable
         $relations = [];
 
         foreach ($inputs as $column => $value) {
-            $column = \Illuminate\Support\Str::camel($column);
-            if (!method_exists($this->model, $column)) {
-                continue;
-            }
+            if (method_exists($this->model, $column) ||
+                method_exists($this->model, $column = Str::camel($column))) {
+                $relation = call_user_func([$this->model, $column]);
 
-            $relation = call_user_func([$this->model, $column]);
-
-            if ($relation instanceof Relations\Relation) {
-                $relations[$column] = $value;
+                if ($relation instanceof Relations\Relation) {
+                    $relations[$column] = $value;
+                }
             }
         }
 
@@ -1123,8 +1122,6 @@ class Form implements Renderable
      */
     protected function setFieldOriginalValue()
     {
-//        static::doNotSnakeAttributes($this->model);
-
         $values = $this->model->toArray();
 
         $this->builder->fields()->each(function (Field $field) use ($values) {
@@ -1152,8 +1149,6 @@ class Form implements Renderable
         $this->model = $builder->with($relations)->findOrFail($id);
 
         $this->callEditing();
-
-//        static::doNotSnakeAttributes($this->model);
 
         $data = $this->model->toArray();
 
@@ -1183,20 +1178,6 @@ class Form implements Renderable
         $this->html($fieldset->end())->plain();
 
         return $fieldset;
-    }
-
-    /**
-     * Don't snake case attributes.
-     *
-     * @param Model $model
-     *
-     * @return void
-     */
-    protected static function doNotSnakeAttributes(Model $model)
-    {
-        $class = get_class($model);
-
-        $class::$snakeAttributes = false;
     }
 
     /**
@@ -1384,7 +1365,7 @@ class Form implements Renderable
      */
     public function isCreating(): bool
     {
-        return Str::endsWith(\request()->route()->getName(), '.create');
+        return Str::endsWith(\request()->route()->getName(), ['.create', '.store']);
     }
 
     /**
@@ -1394,7 +1375,7 @@ class Form implements Renderable
      */
     public function isEditing(): bool
     {
-        return Str::endsWith(\request()->route()->getName(), '.edit');
+        return Str::endsWith(\request()->route()->getName(), '.edit', '.update');
     }
 
     /**

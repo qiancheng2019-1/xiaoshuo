@@ -72,7 +72,7 @@ $('.$class').bootstrapSwitch({
                     _status = xhr.responseJSON.status;
             }
         });
-
+        
         return _status;
     }
 });
