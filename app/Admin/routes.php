@@ -11,6 +11,7 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('admin.home');
+    $router->get('/flush', 'HomeController@flush');
 
     $router->resource('/articles/category', 'ArticlesCategoryController')->names('admin.articles.category');
     $router->resource('/articles/{article_id}/chapters', 'ArticlesChaptersController')->names('admin.articles.chapters');

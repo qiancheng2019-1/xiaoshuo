@@ -2,6 +2,7 @@
 
 
 namespace App\Admin\Models;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Request;
@@ -9,12 +10,22 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticlesChaptersModel extends Model
 {
+
+    protected $table = 'articles_chapter_test';
     private $Storage,$storage_id;
     function __construct(array $attributes = []) {
         parent::__construct($attributes);
         $this->Storage = Storage::disk('local');
         $this->storage_id = floor(ARTICLE_ID / 1000) . '/' . ARTICLE_ID;
     }
+
+//    protected static function boot()
+//    {
+//        parent::boot();
+//        static::addGlobalScope('article', function (Builder $builder) {
+//            $builder->where('title_id', ARTICLE_ID)->orderBy('chapter_id');
+//        });
+//    }
 
     public function paginate()
     {

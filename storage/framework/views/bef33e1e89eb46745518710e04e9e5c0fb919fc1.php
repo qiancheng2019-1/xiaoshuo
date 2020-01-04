@@ -36,7 +36,7 @@
             <thead>
                 <tr>
                     <?php $__currentLoopData = $grid->visibleColumns(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $column): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <th <?php echo $column->formatHtmlAttributes(); ?>><?php echo e($column->getLabel(), false); ?><?php echo $column->renderHeader(); ?></th>
+                    <th <?php echo $column->formatHtmlAttributes(); ?>><?php echo $column->getLabel(); ?><?php echo $column->renderHeader(); ?></th>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tr>
             </thead>

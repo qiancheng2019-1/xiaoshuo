@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 
 class IndexController extends BaseController
 {
+
     public function index()
     {
         return \OpenApi\scan(__DIR__ . '/')->toJson();

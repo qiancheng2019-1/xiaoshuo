@@ -1,9 +1,9 @@
 <?php $__env->startSection('content'); ?>
     <section class="content-header">
         <h1>
-            <?php echo e($header ?: trans('admin.title'), false); ?>
+            <?php echo $header ?: trans('admin.title'); ?>
 
-            <small><?php echo e($description ?: trans('admin.description'), false); ?></small>
+            <small><?php echo $description ?: trans('admin.description'); ?></small>
         </h1>
 
         <!-- breadcrumb start -->
@@ -63,7 +63,7 @@
         <?php echo $__env->make('admin::partials.toastr', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <?php if($_view_): ?>
-            <?php echo $__env->make($_view_['view'], $_view_['data'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
+            <?php echo $__env->make($_view_['view'], $_view_['data'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <?php else: ?>
             <?php echo $_content_; ?>
 
@@ -72,4 +72,4 @@
     </section>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin::index', ['header' => $header], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\phpCode\fiction\vendor\encore\laravel-admin\src/../resources/views/content.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin::index', ['header' => strip_tags($header)], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\phpCode\fiction\vendor\encore\laravel-admin\src/../resources/views/content.blade.php ENDPATH**/ ?>

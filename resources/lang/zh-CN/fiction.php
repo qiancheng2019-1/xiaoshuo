@@ -2,7 +2,6 @@
 
 return [
     'category' => '分类',
-    'chapter' => '章节',
     'author' => '作者',
     'thumb' => '封面',
     'week_views' => '周点击量',
@@ -15,9 +14,11 @@ return [
     'status' => '发布',
     'keyword' => '关键字',
     'desc' => '描述',
-    'content' => '章节内容',
     'url' => '源网址',
 
     'book'=>'书本',
     'ad'=>'广告',
+
+    'chapter' => '章节',
+    'content' => '章节内容',
 ];

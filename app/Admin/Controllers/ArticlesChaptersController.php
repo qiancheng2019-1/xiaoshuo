@@ -66,17 +66,16 @@ class ArticlesChaptersController extends AdminController {
 
     protected function grid()
     {
-        $grid = new Grid(new ArticlesChaptersModel());
+        $grid = new Grid(new ArticlesChaptersModel([]));
         $grid->disableFilter();
+//        $grid->disableCreateButton();
         $grid->actions(function ($actions) {
-            // 去掉查看
-            $actions->disableView();
+//            $actions->disableEdit();
             $actions->disableDelete();
         });
 
-        $grid->id('ID');
-        $grid->column('title', trans('admin.title'));
-        $grid->column('link', trans('fiction.url'));
+        $grid->column('chapter_id', 'ID');
+        $grid->column('chapter_name', trans('fiction.chapter'));
 
         return $grid;
     }
