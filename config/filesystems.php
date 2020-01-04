@@ -43,33 +43,46 @@ return [
 
     'disks' => [
         'local' => [
-            'driver'     => 'local',
-            'root'       => storage_path('app/data'),
+            'driver' => 'local',
+            'root' => storage_path('app/data'),
             'visibility' => 'private',
 
             'cache' => [
-                'store'  => 'redis',
+                'store' => 'redis',
+                'expire' => 600,
+                'prefix' => 'cache-prefix',],],
+
+        'sftp' => [
+            'driver' => 'sftp',
+            'host' => '47.244.114.115',
+            'username' => 'novelFtp',
+            'password' => 'qianchengnovel',
+
+            'root' => '35kushu.com/',
+
+            'cache' => [
+                'store' => 'redis',
                 'expire' => 600,
                 'prefix' => 'cache-prefix',],],
 
         'public' => [
-            'driver'     => 'local',
-            'root'       => storage_path('app/public'),
-            'url'        => env('APP_URL') . '/storage',
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
 
             'cache' => [
-                'store'  => 'redis',
+                'store' => 'redis',
                 'expire' => 600,
                 'prefix' => 'cache-prefix',],],
 
         's3' => [
             'driver' => 's3',
-            'key'    => env('AWS_ACCESS_KEY_ID'),
+            'key' => env('AWS_ACCESS_KEY_ID'),
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
-            'url'    => env('AWS_URL'),],
+            'url' => env('AWS_URL'),],
 
     ],
 

@@ -11,7 +11,7 @@ class User extends Authenticatable
 
     public function collect()
     {
-        return $this->hasMany('App\V1\App\Models\UsersCollectModel');
+        return $this->hasMany('App\V1\App\Models\UsersCollect');
     }
 
     /**

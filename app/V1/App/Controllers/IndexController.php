@@ -184,6 +184,24 @@ class IndexController extends BaseController
 
     /**
      * @OA\Get(
+     *     path="/qr",
+     *     tags={"Default"},
+     *     summary="网站二维码",
+     *     @OA\Response(
+     *         response=200,
+     *         description="SUCCESS/成功",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *              @OA\Property(property="qr_code", type="string", description="base64图像编码")
+     *             )
+     *         )
+     *     )
+     * )
+     */
+
+    /**
+     * @OA\Get(
      *     path="/captcha",
      *     tags={"Default"},
      *     summary="获取图形验证码",

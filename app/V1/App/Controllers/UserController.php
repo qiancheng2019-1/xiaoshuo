@@ -7,8 +7,8 @@ use App\Rules\mobile;
 use App\User;
 use Dingo\Api\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\V1\App\Models\UsersCollectModel;
-use App\V1\App\Models\ArticlesModel;
+use App\V1\App\Models\UsersCollect;
+use App\V1\App\Models\Articles;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -329,12 +329,12 @@ class UserController extends IndexController {
     public function postCollect(Request $request)
     {
         $article_id = $request->input('article_id', 0);
-        $article = ArticlesModel::get($article_id, ['id']);
+        $article = Articles::get($article_id, ['id']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
         $user = $this->guard()->user();
 
-        $collect = new UsersCollectModel();
+        $collect = new UsersCollect();
         $collect->user_id = $user->id;
         $collect->article_id = $article_id;
 
@@ -375,7 +375,7 @@ class UserController extends IndexController {
     public function deleteCollect($ids)
     {
         $user = $this->guard()->user();
-        $collect = new UsersCollectModel();
+        $collect = new UsersCollect();
 
         foreach (strstr($ids, '-') ? explode('-', $ids) : [$ids] as $id) {
             $collect->where(['user_id' => $user->id, 'article_id' => $id])->delete();
@@ -433,7 +433,7 @@ class UserController extends IndexController {
     public function getCollect(Request $request)
     {
         $user = $this->guard()->user();
-        $collect = new UsersCollectModel();
+        $collect = new UsersCollect();
 
         $list = $collect->query()->where(['user_id'=>$user->id])->orderByDesc('updated_at')->paginate($request->query('limit',10), ['article_id','last_chapter_id'], 'page', $request->query('page',1));
         $Storage = Storage::disk('local');

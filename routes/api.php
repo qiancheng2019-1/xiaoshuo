@@ -24,6 +24,7 @@ $api->group(['middleware' => 'throttle:128,1','version' => 'v1', 'namespace' => 
     $api->get('/test', 'IndexController@test');
 
     $api->get('/config', 'IndexController@getConfig');
+    $api->get('/qr', 'IndexController@getQrCode');
     $api->get('/ad', 'AdController@getAdList');
 
     $api->group(['middleware' => 'throttle:30,1'], function ($api) {

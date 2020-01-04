@@ -26,6 +26,7 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
         '4e8671d7be9056dcd04ddd9e8e15f9cc' => __DIR__ . '/..' . '/encore/laravel-admin/src/helpers.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'b6ec61354e97f32c0ae683041c78392a' => __DIR__ . '/..' . '/scrivo/highlight.php/HighlightUtilities/functions.php',
         'fe62ba7e10580d903cc46d808b5961a4' => __DIR__ . '/..' . '/tightenco/collect/src/Collect/Support/helpers.php',
@@ -40,6 +41,7 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
+            'phpseclib\\' => 10,
             'phpDocumentor\\Reflection\\' => 25,
         ),
         'X' => 
@@ -123,6 +125,7 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
         'L' => 
         array (
             'League\\Fractal\\' => 15,
+            'League\\Flysystem\\Sftp\\' => 22,
             'League\\Flysystem\\Cached\\' => 24,
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
@@ -187,6 +190,10 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
     );
 
     public static $prefixDirsPsr4 = array (
+        'phpseclib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
+        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -389,6 +396,10 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
         array (
             0 => __DIR__ . '/..' . '/league/fractal/src',
         ),
+        'League\\Flysystem\\Sftp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/flysystem-sftp/src',
+        ),
         'League\\Flysystem\\Cached\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem-cached-adapter/src',
@@ -536,6 +547,13 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
     );
 
     public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'SimpleSoftwareIO\\QrCode\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src',
+            ),
+        ),
         'P' => 
         array (
             'Parsedown' => 
@@ -559,6 +577,13 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
             'HighlightUtilities\\' => 
             array (
                 0 => __DIR__ . '/..' . '/scrivo/highlight.php',
+            ),
+        ),
+        'B' => 
+        array (
+            'BaconQrCode' => 
+            array (
+                0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
             ),
         ),
     );
@@ -618,17 +643,57 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
         'App\\V1\\App\\Controllers\\ArticlesController' => __DIR__ . '/../..' . '/app/V1/App/Controllers/ArticlesController.php',
         'App\\V1\\App\\Controllers\\IndexController' => __DIR__ . '/../..' . '/app/V1/App/Controllers/IndexController.php',
         'App\\V1\\App\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/V1/App/Controllers/UserController.php',
-        'App\\V1\\App\\Models\\AdModel' => __DIR__ . '/../..' . '/app/V1/App/Models/AdModel.php',
-        'App\\V1\\App\\Models\\ArticlesModel' => __DIR__ . '/../..' . '/app/V1/App/Models/ArticlesModel.php',
-        'App\\V1\\App\\Models\\ArticlesViewsModel' => __DIR__ . '/../..' . '/app/V1/App/Models/ArticlesViewsModel.php',
+        'App\\V1\\App\\Models\\Ad' => __DIR__ . '/../..' . '/app/V1/App/Models/Ad.php',
+        'App\\V1\\App\\Models\\Articles' => __DIR__ . '/../..' . '/app/V1/App/Models/Articles.php',
+        'App\\V1\\App\\Models\\ArticlesChapter' => __DIR__ . '/../..' . '/app/V1/App/Models/ArticlesChapter.php',
+        'App\\V1\\App\\Models\\ArticlesViews' => __DIR__ . '/../..' . '/app/V1/App/Models/ArticlesViews.php',
         'App\\V1\\App\\Models\\CCPRestSDK' => __DIR__ . '/../..' . '/app/V1/App/Models/CCPRestSDK.php',
         'App\\V1\\App\\Models\\IndexModel' => __DIR__ . '/../..' . '/app/V1/App/Models/IndexModel.php',
-        'App\\V1\\App\\Models\\UsersCollectModel' => __DIR__ . '/../..' . '/app/V1/App/Models/UsersCollectModel.php',
+        'App\\V1\\App\\Models\\UsersCollect' => __DIR__ . '/../..' . '/app/V1/App/Models/UsersCollect.php',
         'App\\V1\\Basis\\BaseController' => __DIR__ . '/../..' . '/app/V1/Basis/BaseController.php',
         'App\\V1\\Basis\\BaseModel' => __DIR__ . '/../..' . '/app/V1/Basis/BaseModel.php',
         'App\\V1\\Basis\\ReptileModel' => __DIR__ . '/../..' . '/app/V1/Basis/ReptileModel.php',
         'Articles' => __DIR__ . '/../..' . '/database/seeds/Articles.php',
         'ArticlesCategory' => __DIR__ . '/../..' . '/database/seeds/ArticlesCategory.php',
+        'BaconQrCode\\Common\\AbstractEnum' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/AbstractEnum.php',
+        'BaconQrCode\\Common\\BitArray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/BitArray.php',
+        'BaconQrCode\\Common\\BitMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/BitMatrix.php',
+        'BaconQrCode\\Common\\BitUtils' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/BitUtils.php',
+        'BaconQrCode\\Common\\CharacterSetEci' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/CharacterSetEci.php',
+        'BaconQrCode\\Common\\EcBlock' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/EcBlock.php',
+        'BaconQrCode\\Common\\EcBlocks' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/EcBlocks.php',
+        'BaconQrCode\\Common\\ErrorCorrectionLevel' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/ErrorCorrectionLevel.php',
+        'BaconQrCode\\Common\\FormatInformation' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/FormatInformation.php',
+        'BaconQrCode\\Common\\Mode' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/Mode.php',
+        'BaconQrCode\\Common\\ReedSolomonCodec' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/ReedSolomonCodec.php',
+        'BaconQrCode\\Common\\Version' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Common/Version.php',
+        'BaconQrCode\\Encoder\\BlockPair' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/BlockPair.php',
+        'BaconQrCode\\Encoder\\ByteMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/ByteMatrix.php',
+        'BaconQrCode\\Encoder\\Encoder' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/Encoder.php',
+        'BaconQrCode\\Encoder\\MaskUtil' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/MaskUtil.php',
+        'BaconQrCode\\Encoder\\MatrixUtil' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/MatrixUtil.php',
+        'BaconQrCode\\Encoder\\QrCode' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Encoder/QrCode.php',
+        'BaconQrCode\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/ExceptionInterface.php',
+        'BaconQrCode\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/InvalidArgumentException.php',
+        'BaconQrCode\\Exception\\OutOfBoundsException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/OutOfBoundsException.php',
+        'BaconQrCode\\Exception\\RuntimeException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/RuntimeException.php',
+        'BaconQrCode\\Exception\\UnexpectedValueException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/UnexpectedValueException.php',
+        'BaconQrCode\\Exception\\WriterException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Exception/WriterException.php',
+        'BaconQrCode\\Renderer\\Color\\Cmyk' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Cmyk.php',
+        'BaconQrCode\\Renderer\\Color\\ColorInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/ColorInterface.php',
+        'BaconQrCode\\Renderer\\Color\\Gray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Gray.php',
+        'BaconQrCode\\Renderer\\Color\\Rgb' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Rgb.php',
+        'BaconQrCode\\Renderer\\Image\\AbstractRenderer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/AbstractRenderer.php',
+        'BaconQrCode\\Renderer\\Image\\Decorator\\DecoratorInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Decorator/DecoratorInterface.php',
+        'BaconQrCode\\Renderer\\Image\\Decorator\\FinderPattern' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Decorator/FinderPattern.php',
+        'BaconQrCode\\Renderer\\Image\\Eps' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Eps.php',
+        'BaconQrCode\\Renderer\\Image\\Png' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Png.php',
+        'BaconQrCode\\Renderer\\Image\\RendererInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/RendererInterface.php',
+        'BaconQrCode\\Renderer\\Image\\Svg' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Svg.php',
+        'BaconQrCode\\Renderer\\RendererInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/RendererInterface.php',
+        'BaconQrCode\\Renderer\\Text\\Html' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Html.php',
+        'BaconQrCode\\Renderer\\Text\\Plain' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Plain.php',
+        'BaconQrCode\\Writer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/BaconQrCode/Writer.php',
         'Cache\\Adapter\\Common\\AbstractCachePool' => __DIR__ . '/..' . '/cache/adapter-common/AbstractCachePool.php',
         'Cache\\Adapter\\Common\\CacheItem' => __DIR__ . '/..' . '/cache/adapter-common/CacheItem.php',
         'Cache\\Adapter\\Common\\Exception\\CacheException' => __DIR__ . '/..' . '/cache/adapter-common/Exception/CacheException.php',
@@ -3233,6 +3298,10 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
         'League\\Flysystem\\ReadInterface' => __DIR__ . '/..' . '/league/flysystem/src/ReadInterface.php',
         'League\\Flysystem\\RootViolationException' => __DIR__ . '/..' . '/league/flysystem/src/RootViolationException.php',
         'League\\Flysystem\\SafeStorage' => __DIR__ . '/..' . '/league/flysystem/src/SafeStorage.php',
+        'League\\Flysystem\\Sftp\\ConnectionErrorException' => __DIR__ . '/..' . '/league/flysystem-sftp/src/ConnectionErrorException.php',
+        'League\\Flysystem\\Sftp\\InvalidRootException' => __DIR__ . '/..' . '/league/flysystem-sftp/src/InvalidRootException.php',
+        'League\\Flysystem\\Sftp\\SftpAdapter' => __DIR__ . '/..' . '/league/flysystem-sftp/src/SftpAdapter.php',
+        'League\\Flysystem\\Sftp\\SftpAdapterException' => __DIR__ . '/..' . '/league/flysystem-sftp/src/SftpAdapterException.php',
         'League\\Flysystem\\UnreadableFileException' => __DIR__ . '/..' . '/league/flysystem/src/UnreadableFileException.php',
         'League\\Flysystem\\Util' => __DIR__ . '/..' . '/league/flysystem/src/Util.php',
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
@@ -4939,6 +5008,21 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'SimpleSoftwareIO\\QrCode\\BaconQrCodeGenerator' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/BaconQrCodeGenerator.php',
+        'SimpleSoftwareIO\\QrCode\\DataTypes\\BTC' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/BTC.php',
+        'SimpleSoftwareIO\\QrCode\\DataTypes\\DataTypeInterface' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/DataTypeInterface.php',
+        'SimpleSoftwareIO\\QrCode\\DataTypes\\Email' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/Email.php',
+        'SimpleSoftwareIO\\QrCode\\DataTypes\\Geo' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/Geo.php',
+        'SimpleSoftwareIO\\QrCode\\DataTypes\\PhoneNumber' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/PhoneNumber.php',
+        'SimpleSoftwareIO\\QrCode\\DataTypes\\SMS' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/SMS.php',
+        'SimpleSoftwareIO\\QrCode\\DataTypes\\WiFi' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/WiFi.php',
+        'SimpleSoftwareIO\\QrCode\\Facades\\QrCode' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/Facades/QrCode.php',
+        'SimpleSoftwareIO\\QrCode\\Image' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/Image.php',
+        'SimpleSoftwareIO\\QrCode\\ImageInterface' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/ImageInterface.php',
+        'SimpleSoftwareIO\\QrCode\\ImageMerge' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/ImageMerge.php',
+        'SimpleSoftwareIO\\QrCode\\ImageMergeInterface' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/ImageMergeInterface.php',
+        'SimpleSoftwareIO\\QrCode\\QrCodeInterface' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/QrCodeInterface.php',
+        'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider' => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/QrCodeServiceProvider.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',
@@ -5811,6 +5895,30 @@ class ComposerStaticInit8e9662d35ffbc7874aec68782e7b364e
         'phpQueryEvents' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'phpQueryObject' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
         'phpQueryPlugins' => __DIR__ . '/..' . '/jaeger/phpquery-single/phpQuery.php',
+        'phpseclib\\Crypt\\AES' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
+        'phpseclib\\Crypt\\Base' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
+        'phpseclib\\Crypt\\Blowfish' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Blowfish.php',
+        'phpseclib\\Crypt\\DES' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/DES.php',
+        'phpseclib\\Crypt\\Hash' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Hash.php',
+        'phpseclib\\Crypt\\RC2' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/RC2.php',
+        'phpseclib\\Crypt\\RC4' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/RC4.php',
+        'phpseclib\\Crypt\\RSA' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/RSA.php',
+        'phpseclib\\Crypt\\Random' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Random.php',
+        'phpseclib\\Crypt\\Rijndael' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Rijndael.php',
+        'phpseclib\\Crypt\\TripleDES' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/TripleDES.php',
+        'phpseclib\\Crypt\\Twofish' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Crypt/Twofish.php',
+        'phpseclib\\File\\ANSI' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/File/ANSI.php',
+        'phpseclib\\File\\ASN1' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
+        'phpseclib\\File\\ASN1\\Element' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/File/ASN1/Element.php',
+        'phpseclib\\File\\X509' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/File/X509.php',
+        'phpseclib\\Math\\BigInteger' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Math/BigInteger.php',
+        'phpseclib\\Net\\SCP' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SCP.php',
+        'phpseclib\\Net\\SFTP' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SFTP.php',
+        'phpseclib\\Net\\SFTP\\Stream' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SFTP/Stream.php',
+        'phpseclib\\Net\\SSH1' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SSH1.php',
+        'phpseclib\\Net\\SSH2' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/Net/SSH2.php',
+        'phpseclib\\System\\SSH\\Agent' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/System/SSH/Agent.php',
+        'phpseclib\\System\\SSH\\Agent\\Identity' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/System/SSH/Agent/Identity.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

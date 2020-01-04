@@ -16,7 +16,7 @@ class CreateArticles extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title', 64)->nullable(false)->default('');
-            $table->string('pinyin', 128)->nullable(false)->default('')->comment('拼音');
+            $table->string('pinyin', 128)->nullable(false)->default('')->comment('拼音/远程爬虫id');
             $table->string('author', 64)->nullable(false)->default('')->comment('作者');
             $table->string('url', 128)->nullable(false)->default('')->comment('源');
             $table->string('info', 512)->nullable(false)->default('')->comment('简介');

@@ -13,14 +13,14 @@ class BaseController extends Controller
 {
     public function __construct()
     {
-        $config = Cache::get('config',[]);
-        if (!$config){
-            foreach (\App\Config::all(['key','value']) as $item) $config['env.'.$item['key']] = $item['value'];
-            Cache::forever('config',$config);
+        $config = Cache::get('config', []);
+        if (!$config) {
+            foreach (\App\Config::all(['key', 'value']) as $item) $config['env.' . $item['key']] = $item['value'];
+            Cache::forever('config', $config);
         }
 
-        foreach ($config as &$item){
-            strstr($item, '{web_name}') and $item = str_replace('{web_name}',$config['env.web_name'],$item);
+        foreach ($config as &$item) {
+            strstr($item, '{web_name}') and $item = str_replace('{web_name}', $config['env.web_name'], $item);
         }
 
         config($config);
@@ -32,6 +32,15 @@ class BaseController extends Controller
         $result['key'] = $captcha['key'];
         $result['img'] = $captcha['img'];
         return $this->apiReturn('图形验证码', 200, 0, $result);
+    }
+
+    public function getQrCode(string $path = '')
+    {
+        $path = $path ?: env('APP_URL');
+        $image = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')
+            ->merge(config('env.web_icon','favicon.png'), .3, true)
+            ->errorCorrection('H')->size(256)->margin(.1)->generate($path);
+        return $this->apiReturn('网站二维码', 200, 0, ['qr_code' => 'data:image/png;base64,' . base64_encode($image)]);
     }
 
     public function validateCaptcha(Request $request)
@@ -53,7 +62,7 @@ class BaseController extends Controller
                 'file' => 'required|max:10000|mimes:png,jpg,jpeg'
             ]);
 
-        $filePath = Storage::disk('public')->putFile(config('env.file_dir','default'), $request->file('file'));
+        $filePath = Storage::disk('public')->putFile(config('env.file_dir', 'default'), $request->file('file'));
         $result['file_path'] = $result['file_url'] = $filePath;
         return $this->apiReturn('上传成功', 201, 0, $result);
     }
@@ -92,6 +101,7 @@ class BaseController extends Controller
             ->array($result)
             ->setStatusCode($status_code);
     }
+
     /**
      * 遍历数据快照
      * @param array $input
@@ -161,7 +171,8 @@ class BaseController extends Controller
         return $where;
     }
 
-    protected function queryExplode(string $query,string $key = '-'){
+    protected function queryExplode(string $query, string $key = '-')
+    {
         if (!$query) return [];
 
         $query = strstr($query, $key) ? explode($key, $query) : [$query];

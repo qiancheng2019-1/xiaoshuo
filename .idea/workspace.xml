@@ -1,8 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="项目初始化部署">
+    <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="1.APP接口爬虫转型">
+      <change afterPath="$PROJECT_DIR$/app/V1/App/Models/ArticlesChapter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/data/0/3/chapters" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/data/0/4/chapters" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/data/0/6/chapters" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/2vXooJ3vP3695Du3mpSJ7sFF19DYrm5oUl4Cecie.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/6pp2JoPGtnmy8QGNh1tALALDYuj0xBzWHSBuYH8m.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/8uCZ6xlIAPFyHjtP1fNDuVqO7FuvlIzBB1Yjs43K.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/DKhM4ZPEUJg6pCRZxsWiMb7dOZ1TJPFF5rIwLRlz.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/EsnN61NXVPvhJWlCy4Cy524WcaB2XSkcGSY6AaKy.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/MQBZ7c4GIcBpWVskPvEH6rRd5FWKHY0nsIM7zwl5.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/N2eH3WxWNTJ1MA5zFij4foG3v13HwUKCGds4SJmk.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/aRWmCX71DYorg3EoKPezj7Nzs02Xg0SiJRA6WTSY.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/as86wWlbSESo2wEqt2p5ClV1tRvdHIoUCumtOcGm.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/eAS4vrJyOWTzNc9uD1NrGID6AXKGkiAu1YL5Teo0.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/f3VBHBu9rELoDiG80NUTjH5XsxQOUhEwDNLJCRQF.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/kMn91nOB31sxsWUeX8io63yZxcs6zEDUWpj7Ivpk.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/oQKxl16NJVZ3xhA9cWqrnd3aRzXK6L6qwtvGzsvB.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/uTnedspjolonP3xqZXWg2sZptCU6kmFd5rpzTdJJ.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/vefxu9SOEmybRJDZYap1NOAeJwFz1FOYAsDHjB8f.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/wh0OzlkCywU6eZdrmjEhOJTilf0NXalA8UzhNEWf.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/xwpnDKUp7PhfT9eUJjipwrBnkp68CeVM8ysyfhgC.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/default/zGATbPK346mWfv3ltziRNb2Xpgbi45AiujOGuMZO.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/thumb/3s.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/thumb/4s.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/app/public/thumb/6s.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/logs/laravel-2020-01-02.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/logs/laravel-2020-01-03.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/logs/laravel-2020-01-04.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/Module.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/autoload_classmap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/autoload_function.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/autoload_register.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/AbstractEnum.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/BitArray.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/BitMatrix.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/BitUtils.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/CharacterSetEci.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/EcBlock.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/EcBlocks.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/ErrorCorrectionLevel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/FormatInformation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/Mode.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/ReedSolomonCodec.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Common/Version.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Encoder/BlockPair.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Encoder/ByteMatrix.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Encoder/Encoder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Encoder/MaskUtil.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Encoder/MatrixUtil.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Encoder/QrCode.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Exception/ExceptionInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Exception/InvalidArgumentException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Exception/OutOfBoundsException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Exception/RuntimeException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Exception/UnexpectedValueException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Exception/WriterException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Cmyk.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/ColorInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Gray.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Color/Rgb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/AbstractRenderer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Decorator/DecoratorInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Decorator/FinderPattern.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Eps.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Png.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/RendererInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Image/Svg.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/RendererInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Html.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Renderer/Text/Plain.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/src/BaconQrCode/Writer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Common/BitArrayTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Common/BitMatrixTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Common/BitUtilsTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Common/ErrorCorrectionLevelTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Common/FormatInformationTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Common/ModeTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Common/ReedSolomonCodecTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Common/VersionTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Encoder/EncoderTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Encoder/MaskUtilTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Encoder/MatrixUtilTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Renderer/Text/HtmlTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/BaconQrCode/Renderer/Text/TextTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/bootstrap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/bacon/bacon-qr-code/tests/phpunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/league/flysystem-sftp/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/league/flysystem-sftp/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/league/flysystem-sftp/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/league/flysystem-sftp/src/ConnectionErrorException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/league/flysystem-sftp/src/InvalidRootException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/league/flysystem-sftp/src/SftpAdapter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/league/flysystem-sftp/src/SftpAdapterException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/AUTHORS" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/BACKERS.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/appveyor.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/AES.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/Base.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/Blowfish.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/DES.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/Hash.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/RC2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/RC4.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/RSA.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/Random.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/Rijndael.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/TripleDES.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Crypt/Twofish.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/File/ANSI.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/File/ASN1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/File/ASN1/Element.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/File/X509.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Math/BigInteger.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Net/SCP.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Net/SFTP.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Net/SFTP/Stream.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Net/SSH1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/Net/SSH2.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/System/SSH/Agent.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/System/SSH/Agent/Identity.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/bootstrap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/phpseclib/phpseclib/phpseclib/openssl.cnf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/en/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/es/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/fr/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/hi/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/imgs/merged-qrcode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/it/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/pt-br/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/ru/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/docs/zh/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/phpunit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/BaconQrCodeGenerator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/BTC.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/DataTypeInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/Email.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/Geo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/PhoneNumber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/SMS.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/DataTypes/WiFi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/Facades/QrCode.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/Image.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/ImageInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/ImageMerge.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/ImageMergeInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/QrCodeInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/src/SimpleSoftwareIO/QrCode/QrCodeServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/BaconQrCodeGeneratorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/DataTypes/BTCTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/DataTypes/EmailTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/DataTypes/GeoTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/DataTypes/PhoneNumberTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/DataTypes/SMSTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/DataTypes/WiFiTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/ImageMergeTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/ImageTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/Images/simplesoftware-icon-grey-blue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode/tests/bootstrap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/AdController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/AdController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/AdModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Ad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/ArticlesViewsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/ArticlesViews.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/UsersCollectModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/UsersCollect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/Basis/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Basis/BaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/Basis/ReptileModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Basis/ReptileModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/admin/ArticlesController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/admin/IndexController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/admin/Models/ArticlesModel.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/admin/Models/IndexModel.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/admin/UserController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/packages.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/packages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap/cache/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/cache/services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +377,10 @@
       <path value="$PROJECT_DIR$/vendor/encore/laravel-admin" />
       <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/vendor/laravel-admin-ext/ckeditor" />
+      <path value="$PROJECT_DIR$/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/vendor/simplesoftwareio/simple-qrcode" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/league/flysystem-sftp" />
     </include_path>
   </component>
   <component name="ProjectId" id="1UjarqNM0ggrem2BxXX9HY0mkbM" />
@@ -258,6 +469,8 @@
       <workItem from="1577763164469" duration="8601000" />
       <workItem from="1577928800573" duration="598000" />
       <workItem from="1577931078330" duration="6206000" />
+      <workItem from="1578019520905" duration="15913000" />
+      <workItem from="1578102119102" duration="1694000" />
     </task>
     <task id="LOCAL-00001" summary="初始化Larvel项目">
       <created>1575950366240</created>
@@ -336,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577443677679</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="项目初始化部署">
+      <created>1577949203268</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1577949203268</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,10 +598,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="177" key="#Custom_Plugin_Repositories/0.0.1920.1040@0.0.1920.1040" timestamp="1575948948845" />
-    <state x="552" y="177" key="#Deployment" timestamp="1577788162568">
+    <state x="552" y="177" key="#Deployment" timestamp="1578102823155">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="177" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1577788162568" />
+    <state x="552" y="177" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1578102823155" />
     <state x="552" y="177" key="#HTTP_Proxy" timestamp="1575949369499">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -398,30 +618,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="761" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1576466422114" />
-    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577348222597">
+    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1578044475735">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577348222597" />
+    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578044475735" />
     <state x="690" y="265" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1576720566887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="265" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576720566887" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577435414626">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578039698168">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577435414626" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1577949192050">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578039698168" />
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578103709501">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577949192050" />
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578103709501" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1577949172760">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577949172760" />
-    <state x="92" y="92" width="1736" height="856" key="DirDiffDialog" timestamp="1577946096822">
+    <state x="92" y="92" width="1736" height="856" key="DirDiffDialog" timestamp="1578044337248">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DirDiffDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577946096822" />
+    <state x="92" y="92" width="1736" height="856" key="DirDiffDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578044337248" />
     <state x="740" y="260" key="FileChooserDialogImpl" timestamp="1577935198175">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -446,10 +666,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577700392469" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1577443680832">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1577949204974">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577443680832" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577949204974" />
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1" timestamp="1577082112260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -470,10 +690,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576830794866" />
-    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1577948882610">
+    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578102958404">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577948882610" />
+    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578102958404" />
     <state x="859" y="249" key="ftp.server.browser" timestamp="1577082155860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -490,9 +710,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577611373686" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577443330381">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1578044136726">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577443330381" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578044136726" />
   </component>
 </project>

@@ -5,7 +5,7 @@ namespace App\V1\App\Controllers;
 
 
 use Dingo\Api\Http\Request;
-use App\V1\App\Models\AdModel;
+use App\V1\App\Models\Ad;
 
 class AdController extends IndexController {
 
@@ -29,6 +29,6 @@ class AdController extends IndexController {
      * )
      */
     public function getAdList(Request $request){
-        return $this->apiReturn('广告列表',200,0,AdModel::getList());
+        return $this->apiReturn('广告列表',200,0,Ad::getList());
     }
 }

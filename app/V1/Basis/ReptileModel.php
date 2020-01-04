@@ -212,7 +212,6 @@ class ReptileModel {
         if ($gz_code && strlen($gz_code) > strlen($contents))
             $contents = $gz_code;
 
-
         return $contents;
     }
 }
