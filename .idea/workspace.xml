@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_01_04_034533_create_articles_chapter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/WebConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/WebConfigController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/DingoApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/DingoApi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2020-01-04.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel-2020-01-04.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,6 +264,7 @@
       <workItem from="1577931078330" duration="6206000" />
       <workItem from="1578019520905" duration="15913000" />
       <workItem from="1578102119102" duration="19516000" />
+      <workItem from="1578274581449" duration="510000" />
     </task>
     <task id="LOCAL-00001" summary="初始化Larvel项目">
       <created>1575950366240</created>
@@ -381,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578108447008</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="初版爬虫——python">
+      <created>1578274663276</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1578274663276</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,7 +408,8 @@
     <MESSAGE value="项目初始化部署" />
     <MESSAGE value="1.APP接口爬虫转型" />
     <MESSAGE value="初版爬虫——PHP" />
-    <option name="LAST_COMMIT_MESSAGE" value="初版爬虫——PHP" />
+    <MESSAGE value="初版爬虫——python" />
+    <option name="LAST_COMMIT_MESSAGE" value="初版爬虫——python" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Custom_Plugin_Repositories" timestamp="1575948948845">
@@ -457,14 +448,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578130152593" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578108446539">
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578274662662">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578108446539" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1577949172760">
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578274662662" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1578275091254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577949172760" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578275091254" />
     <state x="92" y="92" width="1736" height="856" key="DirDiffDialog" timestamp="1578044337248">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -493,10 +484,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577700392469" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578108448164">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578274665262">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578108448164" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578274665262" />
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1" timestamp="1577082112260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
