@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class Articles extends IndexModel {
-    protected $table = 'articles';
+    protected $table = 'articles_test';
+
+    public function getChapter(){
+        return $this->hasOne('App\V1\App\Models\ArticlesChapter','title_id');
+    }
 
     public function getCollect(){
         return $this->hasOne('App\V1\App\Models\UsersCollect','article_id');
@@ -36,7 +40,9 @@ class Articles extends IndexModel {
 
         foreach ($columns as $key => $item) is_string($key) ? $select[] = DB::raw($item . ' as ' . $key) : $select[] = $item;
 
-        $sql = self::query()->leftJoin('articles_views', 'id', '=', 'article_id')->where($where)->where($keyword)->orderByDesc('total_views')->orderByDesc($order)->paginate($page_arr[1], $select, 'page', $page_arr[0]);
+        $sql = self::query()->leftJoin('articles_views', 'id', '=', 'article_id')->where($where)->where($keyword)->orderByDesc('total_views')->orderByDesc($order)
+//            ->dd();
+            ->paginate($page_arr[1], $select, 'page', $page_arr[0]);
 
         Cache::put($cache_key, $sql, config('env.cache_select_time'));
         return $sql;

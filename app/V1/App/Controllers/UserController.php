@@ -432,14 +432,21 @@ class UserController extends IndexController {
      */
     public function getCollect(Request $request)
     {
+//        $Storage = Storage::disk('local');
+
         $user = $this->guard()->user();
         $collect = new UsersCollect();
 
-        $list = $collect->query()->where(['user_id'=>$user->id])->orderByDesc('updated_at')->paginate($request->query('limit',10), ['article_id','last_chapter_id'], 'page', $request->query('page',1));
-        $Storage = Storage::disk('local');
-        foreach ($list as &$item){
+        $list = $collect->query()->where(['user_id'=>$user->id])->orderByDesc('updated_at')->paginate($request->query('limit',10), ['id','article_id','last_chapter_id'], 'page', $request->query('page',1));
+        foreach ($list as $key => &$item){
+            //过滤不存在书本数据
+            if (!$item->article){
+                $collect->query()->where(['id'=>$item->id])->delete();
+                unset($list[$key]);
+                continue;
+            }
+
             $item->id = $item->article_id;
-            $storage_id = floor($item->article_id / 1000) . '/' . $item->article_id;
 
             $item->title = $item->article->title;
             $item->author = $item->article->author;
@@ -447,9 +454,12 @@ class UserController extends IndexController {
             $item->thumb = $item->article->thumb;
             $item->info = $item->article->info;
 
-            $chapter = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
-
-            $item->last_view = $chapter[$item->last_chapter_id]['title'] ?? '';
+//            $storage_id = floor($item->article_id / 1000) . '/' . $item->article_id;
+//            $chapter = $Storage->exists($storage_id . '/chapters') ? json_decode($Storage->get($storage_id . '/chapters'), true) : [];
+//
+//            $item->last_view = $chapter[$item->last_chapter_id]['title'] ?? '';
+//            $item->last_view_id = $item->last_chapter_id;
+            $item->article->getChapter()->where(['chapter_id'=>$item->last_chapter_id])->title;
             $item->last_view_id = $item->last_chapter_id;
 
             $item->last_chapter = $item->article->last_chapter;

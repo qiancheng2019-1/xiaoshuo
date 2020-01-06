@@ -6,6 +6,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Form;
 use App\Admin\Models\ConfigModel;
 use Encore\Admin\Controllers\AdminController;
+use Illuminate\Support\Facades\Cache;
 
 class WebConfigController extends AdminController {
     /**
@@ -23,6 +24,12 @@ class WebConfigController extends AdminController {
         $form->display('id', 'ID');
         $form->text('name', trans('fiction.keyword'))->rules('max:64')->default('');
         $form->textarea('value', trans('fiction.desc'))->rules('max:255')->default('');
+
+        //保存后回调
+        $form->saved(function (Form $form) {
+            foreach (ConfigModel::all(['key', 'value']) as $item) $config['env.' . $item['key']] = $item['value'];
+            Cache::forever('config', $config);
+        });
 
         return $form;
     }

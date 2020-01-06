@@ -32,8 +32,10 @@ class DingoApi
         $event->response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
         $event->response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-        //分页对象处理
+        //数据清洗
         if (isset($event->content['data'])){
+
+            //分页对象处理
             if ($event->content['data'] instanceof Paginator) {
                 $paginate = $event->content['data'];
                 $event->response->headers->set('link', sprintf('<%s>; rel="first",<%s>; rel="last",<%s>; rel="next", <%s>; rel="prev"', $paginate->url(1), method_exists($paginate, 'lastPage') ? $paginate->url($paginate->lastPage()) : '', $paginate->nextPageUrl(), $paginate->previousPageUrl()));
@@ -52,7 +54,6 @@ class DingoApi
         }
     }
 
-
     /**
      * @param $data
      * @return mixed
@@ -67,7 +68,8 @@ class DingoApi
                 continue;
             }
 
-            if (is_array($item) or is_object($item)) {
+                if (is_array($item) or is_object($item)) {
+                    method_exists($item, 'toArray') and $item = $item->toArray();
                 $item = self::formatResponseData($item);
                 continue;
             }

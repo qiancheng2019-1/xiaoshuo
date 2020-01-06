@@ -2,21 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_01_04_034533_create_articles_chapter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/WebConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/WebConfigController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Listeners/DingoApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/DingoApi.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/zh-CN/fiction.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/zh-CN/fiction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/app/data/0/3/chapters" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/data/0/3/chapters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/bef33e1e89eb46745518710e04e9e5c0fb919fc1.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/bef33e1e89eb46745518710e04e9e5c0fb919fc1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/e7edf5e95a2a5547ff4ed133353d163a62564788.php" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/e7edf5e95a2a5547ff4ed133353d163a62564788.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2020-01-04.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel-2020-01-04.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +281,7 @@
       <workItem from="1577928800573" duration="598000" />
       <workItem from="1577931078330" duration="6206000" />
       <workItem from="1578019520905" duration="15913000" />
-      <workItem from="1578102119102" duration="5720000" />
+      <workItem from="1578102119102" duration="19516000" />
     </task>
     <task id="LOCAL-00001" summary="初始化Larvel项目">
       <created>1575950366240</created>
@@ -370,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578103845905</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="初版爬虫——PHP">
+      <created>1578108447008</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1578108447008</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +417,8 @@
     <MESSAGE value="魔改Laravel-admin&#10;      1.Promise.all难题" />
     <MESSAGE value="项目初始化部署" />
     <MESSAGE value="1.APP接口爬虫转型" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.APP接口爬虫转型" />
+    <MESSAGE value="初版爬虫——PHP" />
+    <option name="LAST_COMMIT_MESSAGE" value="初版爬虫——PHP" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Custom_Plugin_Repositories" timestamp="1575948948845">
@@ -441,14 +453,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="265" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576720566887" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578104274928">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578130152593">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578104274928" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578103844990">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578130152593" />
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578108446539">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578103844990" />
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578108446539" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1577949172760">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -481,10 +493,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577700392469" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578103847665">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578108448164">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578103847665" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578108448164" />
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1" timestamp="1577082112260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -493,10 +505,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577268448464" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1578107839322">
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1578126954401">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578107839322" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578126954401" />
     <state x="645" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1575941009732">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -505,10 +517,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576830794866" />
-    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578106813523">
+    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578130057332">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578106813523" />
+    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578130057332" />
     <state x="859" y="249" key="ftp.server.browser" timestamp="1577082155860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

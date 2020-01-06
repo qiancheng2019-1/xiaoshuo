@@ -74,7 +74,7 @@ class ArticlesController extends AdminController
             $filter->equal('category_id',trans('fiction.category'))->select($category ?? []);
         });
         $grid->tools(function (Grid\Tools $tools) {
-            $tools->append(new Reptile());
+//            $tools->append(new Reptile());
         });
 
         $grid->column('id', 'ID')->sortable();
