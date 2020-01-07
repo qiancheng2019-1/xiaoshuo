@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
-class UserController extends IndexController {
+class UserController extends IndexController
+{
     use AuthenticatesUsers;
 
     public function username()
@@ -113,11 +114,12 @@ class UserController extends IndexController {
      *     )
      * )
      */
-    public function get(){
+    public function get()
+    {
         $user = $this->guard()->user();
         $reuslt['id'] = $user->id;
         $reuslt['nickname'] = $user->nickname;
-        $reuslt['username'] = substr($user->username, 0, 3).'****'.substr($user->username, 7);
+        $reuslt['username'] = substr($user->username, 0, 3) . '****' . substr($user->username, 7);
         $reuslt['avatar'] = $user->avatar;
         return $this->apiReturn('个人信息', 200, 0, $reuslt);
     }
@@ -224,7 +226,7 @@ class UserController extends IndexController {
         $data = $request->validate([
             'username' => ['required', 'string', new mobile()], 'sms_code' => 'required|string|max:6',]);
 
-        if(Cache::get(md5($request->input($this->username()))) !== $request->input('sms_code'))
+        if (Cache::get(md5($request->input($this->username()))) !== $request->input('sms_code'))
             return $this->apiReturn('验证错误', 401, 101);
 
         if ($this->guard()->getProvider()->createModel()->where($request->only($this->username()))->first(['id'])) return $this->apiReturn('已存在用户账号', 422, 11);
@@ -238,7 +240,7 @@ class UserController extends IndexController {
             $user = $this->guard()->user();
             $reuslt['id'] = $user->id;
             $reuslt['nickname'] = $user->nickname;
-            $reuslt['username'] = substr($user->username, 0, 3).'****'.substr($user->username, 7);
+            $reuslt['username'] = substr($user->username, 0, 3) . '****' . substr($user->username, 7);
             $result['api_token'] = $token;
 
             return $this->apiReturn('注册成功', 201, 0, $result);
@@ -295,7 +297,7 @@ class UserController extends IndexController {
         $request->user('app')->forceFill($request->only('nickname', 'avatar'))->save();
         $reuslt['id'] = $user->id;
         $reuslt['nickname'] = $user->nickname;
-        $reuslt['username'] = substr($user->username, 0, 3).'****'.substr($user->username, 7);
+        $reuslt['username'] = substr($user->username, 0, 3) . '****' . substr($user->username, 7);
 
         return $this->apiReturn('个人资料', 200, 0, $reuslt);
     }
@@ -337,14 +339,15 @@ class UserController extends IndexController {
         $collect = new UsersCollect();
         $collect->user_id = $user->id;
         $collect->article_id = $article_id;
+        $last_chapter_id = Cache::get($request->ip() . '/' . $article_id, 0) ?: Cache::get($user->id . '/' . $article_id, 0);
 
         if ($item = $collect->withTrashed()->where(['user_id'=>$user->id,'article_id'=>$article_id])->first()) {
             $item->restore();
             $item->forceFill([
-                'last_chapter_id' => Cache::get($request->ip() . '/' . $article_id) ?: Cache::get($user->id . '/' . $article_id, 0)])->save();
+                'last_chapter_id' => $last_chapter_id])->save();
         } else
             $collect->forceFill([
-                'last_chapter_id' => Cache::get($request->ip() . '/' . $article_id) ?: Cache::get($user->id . '/' . $article_id, 0)])->save();
+                'last_chapter_id' => $last_chapter_id])->save();
 
         return $this->apiReturn('收藏成功', 200, 0);
     }
@@ -437,14 +440,18 @@ class UserController extends IndexController {
         $user = $this->guard()->user();
         $collect = new UsersCollect();
 
-        $list = $collect->query()->where(['user_id'=>$user->id])->orderByDesc('updated_at')->paginate($request->query('limit',10), ['id','article_id','last_chapter_id'], 'page', $request->query('page',1));
-        foreach ($list as $key => &$item){
+        $list = $collect->query()->where(['user_id' => $user->id])->orderByDesc('updated_at')->paginate($request->query('limit', 10), ['id', 'article_id', 'last_chapter_id'], 'page', $request->query('page', 1));
+        foreach ($list as $key => &$item) {
             //过滤不存在书本数据
-            if (!$item->article){
-                $collect->query()->where(['id'=>$item->id])->delete();
+            if (!$item->article) {
+                $collect->query()->where(['id' => $item->id])->delete();
                 unset($list[$key]);
                 continue;
             }
+
+            !$item->last_chapter_id
+                and $item->last_chapter_id = $item->article->getChapter()->orderBy('chapter_id')->first()->chapter_id
+                and $item->save();
 
             $item->id = $item->article_id;
 
@@ -459,7 +466,8 @@ class UserController extends IndexController {
 //
 //            $item->last_view = $chapter[$item->last_chapter_id]['title'] ?? '';
 //            $item->last_view_id = $item->last_chapter_id;
-            $item->article->getChapter()->where(['chapter_id'=>$item->last_chapter_id])->title;
+
+            $item->last_view = $item->article->getChapter()->where(['chapter_id' => $item->last_chapter_id])->first()->chapter_name;
             $item->last_view_id = $item->last_chapter_id;
 
             $item->last_chapter = $item->article->last_chapter;
@@ -469,10 +477,9 @@ class UserController extends IndexController {
 
             unset($item->article_id);
             unset($item->article);
-            $item = $item->first();
         }
 
-        return $this->apiReturn('收藏列表', 200, 0,$list);
+        return $this->apiReturn('收藏列表', 200, 0, $list);
     }
 }
 

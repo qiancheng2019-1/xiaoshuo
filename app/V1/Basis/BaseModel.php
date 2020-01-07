@@ -5,7 +5,7 @@ namespace App\V1\Basis;
 
 use Illuminate\Support\Facades\DB;
 
-DB::beginTransaction();
+//DB::beginTransaction();
 
 Trait BaseModel
 {
@@ -34,7 +34,7 @@ Trait BaseModel
 
     public static function transactionOn()
     {
-//        DB::beginTransaction();
+        return DB::beginTransaction();
     }
 
     public static function transactionSql(string $table,array $data,array $where = [])

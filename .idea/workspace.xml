@@ -2,25 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_01_04_034533_create_articles_chapter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_065112_create_ad_log.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/sms.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/WebConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/WebConfigController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesChaptersModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/DingoApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/DingoApi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/AdController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/AdController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_12_084948_create_articles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2020-01-04.log" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/laravel-2020-01-04.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Ad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/Basis/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Basis/BaseModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_20_025102_create_ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_20_025102_create_ad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/Ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/Ad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/nginx.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/nginx.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,24 +208,24 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="add_unversioned_files" value="true&#10;D:/PHPCode/laravel/storage/app/data/thumb/201s.jpg" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/lang/zh-CN" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pg" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\phpCode\fiction\app\V1\App\Models" />
+      <recent name="D:\phpCode\fiction\resources\lang\zh-CN" />
+      <recent name="D:\PHPCode\laravel\public" />
+      <recent name="D:\PHPCode\laravel\app\V1\App\Models" />
+      <recent name="D:\PHPCode\laravel\app\Admin\Models" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PHPCode\laravel\app\V1\App\Models" />
       <recent name="D:\PHPCode\laravel\public" />
       <recent name="D:\PHPCode\laravel\app\V1\admin" />
       <recent name="D:\PHPCode\laravel\app\Admin" />
       <recent name="D:\PHPCode\laravel\app\Admin\Controllers" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\phpCode\fiction\resources\lang\zh-CN" />
-      <recent name="D:\PHPCode\laravel\public" />
-      <recent name="D:\PHPCode\laravel\app\V1\App\Models" />
-      <recent name="D:\PHPCode\laravel\app\Admin\Models" />
-      <recent name="D:\PHPCode\laravel\app\V1\App\Controllers" />
     </key>
   </component>
   <component name="RunManager">
@@ -425,10 +419,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="177" key="#Custom_Plugin_Repositories/0.0.1920.1040@0.0.1920.1040" timestamp="1575948948845" />
-    <state x="552" y="177" key="#Deployment" timestamp="1578102823155">
+    <state x="552" y="177" key="#Deployment" timestamp="1578299844254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="177" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1578102823155" />
+    <state x="552" y="177" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1578299844254" />
     <state x="552" y="177" key="#HTTP_Proxy" timestamp="1575949369499">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -461,18 +455,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578108446539" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1577949172760">
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1578389846778">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577949172760" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578389846778" />
     <state x="92" y="92" width="1736" height="856" key="DirDiffDialog" timestamp="1578044337248">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DirDiffDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578044337248" />
-    <state x="740" y="260" key="FileChooserDialogImpl" timestamp="1577935198175">
+    <state x="740" y="260" key="FileChooserDialogImpl" timestamp="1578386115012">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="260" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1577935198175" />
+    <state x="740" y="260" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578386115012" />
     <state x="540" y="253" key="IDE.errors.dialog" timestamp="1576484961268">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -501,14 +495,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1/0.0.1920.1040@0.0.1920.1040" timestamp="1577082112260" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1577268448464">
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1578389846778">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577268448464" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1578126954401">
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578389846778" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1578365202819">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578126954401" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578365202819" />
     <state x="645" y="342" key="com.intellij.ide.util.TipDialog" timestamp="1575941009732">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -517,10 +511,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576830794866" />
-    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578130057332">
+    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578364808891">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578130057332" />
+    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578364808891" />
     <state x="859" y="249" key="ftp.server.browser" timestamp="1577082155860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

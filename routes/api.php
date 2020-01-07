@@ -25,7 +25,9 @@ $api->group(['middleware' => 'throttle:128,1','version' => 'v1', 'namespace' => 
 
     $api->get('/config', 'IndexController@getConfig');
     $api->get('/qr', 'IndexController@getQrCode');
-    $api->get('/ad', 'AdController@getAdList');
+
+    $api->get('/ad/', 'AdController@getAdList');
+    $api->put('/ad/{key}', 'AdController@clickAd');
 
     $api->group(['middleware' => 'throttle:30,1'], function ($api) {
         $api->post('/captcha/sms', 'IndexController@sendSms');

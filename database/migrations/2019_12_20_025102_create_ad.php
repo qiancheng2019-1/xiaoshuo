@@ -18,6 +18,8 @@ class CreateAd extends Migration
             $table->string('key', 64)->nullable(false)->default('')->unique();
             $table->string('name', 64)->nullable(false)->default('');
             $table->string('value', 2048)->nullable(false)->default('');
+//            $table->integer('views_num')->nullable(false)->default(0);
+//            $table->integer('click_num')->nullable(false)->default(0);
             $table->timestamps();
         });
     }
