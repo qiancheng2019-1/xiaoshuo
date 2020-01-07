@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_01_06_065112_create_ad_log.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/sms.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/AdController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/AdController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Ad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/Basis/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/Basis/BaseModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_20_025102_create_ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_20_025102_create_ad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/Ad.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/Ad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/nginx.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/public/nginx.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -375,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578108447008</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="修复用户在未阅读章节情况下收藏书本导致书架章节为null">
+      <created>1578389908410</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1578389908411</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,7 +411,8 @@
     <MESSAGE value="项目初始化部署" />
     <MESSAGE value="1.APP接口爬虫转型" />
     <MESSAGE value="初版爬虫——PHP" />
-    <option name="LAST_COMMIT_MESSAGE" value="初版爬虫——PHP" />
+    <MESSAGE value="修复用户在未阅读章节情况下收藏书本导致书架章节为null" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复用户在未阅读章节情况下收藏书本导致书架章节为null" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Custom_Plugin_Repositories" timestamp="1575948948845">
@@ -451,14 +451,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578130152593" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578108446539">
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578389907860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578108446539" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1578389846778">
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578389907860" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1578390097715">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578389846778" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578390097715" />
     <state x="92" y="92" width="1736" height="856" key="DirDiffDialog" timestamp="1578044337248">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -471,10 +471,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="253" key="IDE.errors.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576484961268" />
-    <state x="669" y="234" key="MultipleFileMergeDialog" timestamp="1577238730004">
+    <state x="669" y="234" key="MultipleFileMergeDialog" timestamp="1578389923858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="669" y="234" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577238730004" />
+    <state x="669" y="234" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578389923858" />
     <state x="232" y="399" key="NewPhpClassDialog" timestamp="1577156252951">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -487,10 +487,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577700392469" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578108448164">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578389910473">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578108448164" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578389910473" />
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1" timestamp="1577082112260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
