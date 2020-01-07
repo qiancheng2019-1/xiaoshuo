@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class Articles extends IndexModel {
-    protected $table = 'articles_test';
+    protected $table = 'articles';
 
     public function getChapter(){
         return $this->hasOne('App\V1\App\Models\ArticlesChapter','title_id');

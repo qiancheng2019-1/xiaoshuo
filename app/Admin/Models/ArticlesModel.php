@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArticlesModel extends Model
 {
-    protected $table = 'articles_test';
+    protected $table = 'articles';
 
     public function views()
     {
