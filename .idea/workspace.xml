@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/ArticlesChaptersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Models/ArticlesModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -268,6 +267,7 @@
       <workItem from="1577931078330" duration="6206000" />
       <workItem from="1578019520905" duration="15913000" />
       <workItem from="1578102119102" duration="19516000" />
+      <workItem from="1578447442657" duration="5660000" />
     </task>
     <task id="LOCAL-00001" summary="初始化Larvel项目">
       <created>1575950366240</created>
@@ -374,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578389908411</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="切换至python爬虫">
+      <created>1578390115947</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1578390115947</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,21 +419,26 @@
     <MESSAGE value="1.APP接口爬虫转型" />
     <MESSAGE value="初版爬虫——PHP" />
     <MESSAGE value="修复用户在未阅读章节情况下收藏书本导致书架章节为null" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复用户在未阅读章节情况下收藏书本导致书架章节为null" />
+    <MESSAGE value="切换至python爬虫" />
+    <option name="LAST_COMMIT_MESSAGE" value="切换至python爬虫" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Custom_Plugin_Repositories" timestamp="1575948948845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="177" key="#Custom_Plugin_Repositories/0.0.1920.1040@0.0.1920.1040" timestamp="1575948948845" />
-    <state x="552" y="177" key="#Deployment" timestamp="1578299844254">
+    <state x="552" y="177" key="#Deployment" timestamp="1578455176428">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="177" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1578299844254" />
+    <state x="552" y="177" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1578455176428" />
     <state x="552" y="177" key="#HTTP_Proxy" timestamp="1575949369499">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="177" key="#HTTP_Proxy/0.0.1920.1040@0.0.1920.1040" timestamp="1575949369499" />
+    <state x="552" y="179" key="#Notifications" timestamp="1578447902911">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="179" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1578447902911" />
     <state x="552" y="177" key="#SmartIM" timestamp="1576483328698">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -451,10 +463,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578130152593" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578389907860">
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578468613123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578389907860" />
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578468613123" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1578390097715">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -487,10 +499,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577700392469" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578389910473">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578447929265">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578389910473" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578447929265" />
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1" timestamp="1577082112260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -511,10 +523,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576830794866" />
-    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578364808891">
+    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578390578618">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578364808891" />
+    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578390578618" />
     <state x="859" y="249" key="ftp.server.browser" timestamp="1577082155860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

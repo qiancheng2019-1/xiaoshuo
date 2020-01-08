@@ -479,6 +479,7 @@ class UserController extends IndexController
             unset($item->article);
         }
 
+        if(!$list->items()) return $this->apiReturn('用户无收藏', 200, 0, $list);
         return $this->apiReturn('收藏列表', 200, 0, $list);
     }
 }

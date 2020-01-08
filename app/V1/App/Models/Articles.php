@@ -24,7 +24,7 @@ class Articles extends IndexModel {
 
     public static function getCategoryList()
     {
-        return DB::table('articles_category')->select(['id', 'name', 'title', 'keyword', 'desc'])->where(['status' => 1])->orderBy('order')->get();
+        return DB::table('articles_category')->select(['id', 'name', 'title', 'keyword', 'desc'])->orderBy('order')->get();
     }
 
     public static function getList(array $columns = ['*'], array $where = [], string $order = 'id', array $page_arr = [1, 1])

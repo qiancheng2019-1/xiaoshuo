@@ -323,7 +323,7 @@ class IndexController extends BaseController
             return $this->apiReturn('未知短信平台错误，请稍后再试', 422, 11);
         }
         if($result->statusCode!=0) {
-            file_put_contents('sms.log',json_encode($result).'\r');
+//            file_put_contents('sms.log',json_encode($result).'\r');
             return $this->apiReturn('短信发送失败，请稍后再试', 422, 12);
         }
 
