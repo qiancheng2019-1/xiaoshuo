@@ -471,7 +471,6 @@ class ArticlesController extends IndexController
      */
     public function getChapter(Request $request, int $article_id, int $id)
     {
-        $time[] = microtime(true);
         $file_type = '.txt';
         $article = Articles::query()->find($article_id, ['id','url', 'pinyin', 'category_id']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
@@ -485,7 +484,6 @@ class ArticlesController extends IndexController
             $chapter->content = $Storage->get($dir_id . '/' . $id . $file_type);
             if (!$chapter->content) return $this->apiReturn('章节数据不存在', 404, 22);
 
-            $time[] = microtime(true)-$time[0];
             $user = Auth::guard('app')->user();
             if ($user) {
                 $collect = $article->getCollect()->where(['user_id' => $user->id])->first();
@@ -499,7 +497,7 @@ class ArticlesController extends IndexController
 
             $chapter->prev_id = ArticlesChapter::query()->where('chapter_id', '<', $id)->where(['title_id' => $article_id])->orderByDesc('chapter_id')->first(['chapter_id'])->chapter_id ?? $id;
             $chapter->next_id = ArticlesChapter::query()->where('chapter_id', '>', $id)->where(['title_id' => $article_id])->orderBy('chapter_id')->first(['chapter_id'])->chapter_id ?? $id;
-            return $this->apiReturn('章节详情', 200, 0, $time);
+            return $this->apiReturn('章节详情', 200, 0, $chapter);
         }
 
 //        $storage_id = floor($article_id / 1000) . '/' . $article_id;

@@ -14,7 +14,7 @@ class CreateArticlesViews extends Migration
     public function up()
     {
         Schema::create('articles_views', function (Blueprint $table) {
-            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('article_id')->unique();
             $table->integer('week_views')->nullable(false)->default(0)->comment('周点击');
             $table->integer('month_views')->nullable(false)->default(0)->comment('月点击');
             $table->integer('total_views')->nullable(false)->default(0)->comment('总点击');

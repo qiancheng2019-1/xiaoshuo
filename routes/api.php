@@ -18,33 +18,34 @@ $api = app('Dingo\Api\Routing\Router');
 //    $api->get('swagger', 'IndexController@index');
 //});
 
-$api->group(['middleware' => 'throttle:128,1','version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'prefix' => 'api/app'], function ($api) {
+$api->group(['version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'prefix' => 'api/app'], function ($api) {
     //app接口文档
     $api->get('swagger', 'IndexController@index');
     $api->get('/test', 'IndexController@test');
-
-    $api->get('/config', 'IndexController@getConfig');
-    $api->get('/qr', 'IndexController@getQrCode');
-
-    $api->get('/ad/', 'AdController@getAdList');
-    $api->put('/ad/{key}', 'AdController@clickAd');
 
     $api->group(['middleware' => 'throttle:30,1'], function ($api) {
         $api->post('/captcha/sms', 'IndexController@sendSms');
     });
 
+    $api->group(['middleware' => 'apiCache'], function ($api) {
+        $api->get('/ad', 'AdController@getAdList');
+        $api->get('/config', 'IndexController@getConfig');
+        $api->get('/qr', 'IndexController@getQrCode');
+
+        $api->get('articles', 'ArticlesController@getList');
+        $api->get('articles/category', 'ArticlesController@getCategory');
+        $api->get('articles/category/{type}', 'ArticlesController@getPage');
+
+        $api->get('articles/{article_id}/chapters', 'ArticlesController@getChapterList');
+        $api->get('articles/{article_id}/{id}', 'ArticlesController@getChapter');
+    });
+
+    $api->put('/ad/{key}', 'AdController@clickAd');
+    $api->get('articles/{article_id}', 'ArticlesController@getDetail');
+
     $api->get('captcha', 'IndexController@getCaptcha');
     $api->put('captcha', 'IndexController@validateCaptcha');
     $api->put('captcha/sms', 'IndexController@validateSms');
-
-    $api->get('articles', 'ArticlesController@getList');
-    $api->get('articles/category', 'ArticlesController@getCategory');
-    $api->get('articles/category/{type}', 'ArticlesController@getPage');
-    $api->get('articles/category/push', 'ArticlesController@getPage');
-
-    $api->get('articles/{article_id}', 'ArticlesController@getDetail');
-    $api->get('articles/{article_id}/chapters', 'ArticlesController@getChapterList');
-    $api->get('articles/{article_id}/{id}', 'ArticlesController@getChapter');
 
     $api->post('token', 'UserController@login');
     $api->post('user', 'UserController@register');

@@ -32,6 +32,8 @@ class DingoApi
         $event->response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
         $event->response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
+        $event->response->headers->set('Connection', 'keep-alive');
+
         //数据清洗
         if (isset($event->content['data'])){
 

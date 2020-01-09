@@ -29,9 +29,9 @@ class Articles extends IndexModel {
 
     public static function getList(array $columns = ['*'], array $where = [], string $order = 'id', array $page_arr = [1, 1])
     {
-        $cache_key = hash('sha512', json_encode([$columns, $where, $order, $page_arr]));
-        $cache = Cache::get($cache_key);
-        if ($cache) return $cache;
+//        $cache_key = md5(json_encode([$columns, $where, $order, $page_arr]));
+//        $cache = Cache::get($cache_key);
+//        if ($cache) return $cache;
 
         if (isset($where['keyword'])) {
             $keyword = $where['keyword']['function'];
@@ -44,7 +44,7 @@ class Articles extends IndexModel {
 //            ->dd();
             ->paginate($page_arr[1], $select, 'page', $page_arr[0]);
 
-        Cache::put($cache_key, $sql, config('env.cache_select_time'));
+//        Cache::put($cache_key, $sql, config('env.cache_select_time'));
         return $sql;
     }
 
