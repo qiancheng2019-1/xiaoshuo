@@ -35,18 +35,24 @@ class DingoApi
         $event->response->headers->set('Connection', 'keep-alive');
 
         //数据清洗
-        if (isset($event->content['data'])){
+        if (isset($event->content['data'])) {
 
             //分页对象处理
             if ($event->content['data'] instanceof Paginator) {
                 $paginate = $event->content['data'];
                 $event->response->headers->set('link', sprintf('<%s>; rel="first",<%s>; rel="last",<%s>; rel="next", <%s>; rel="prev"', $paginate->url(1), method_exists($paginate, 'lastPage') ? $paginate->url($paginate->lastPage()) : '', $paginate->nextPageUrl(), $paginate->previousPageUrl()));
 
+                //数据集
                 $result['data'] = $paginate->toArray()['data'];
+                //单页的数据条数
                 $result['per_page'] = $paginate->perPage();
+                //最后页、最大页数
                 $result['last_page'] = method_exists($paginate, 'lastPage') ? $paginate->lastPage() : 0;
+                //当前页页码
                 $result['current_page'] = $paginate->currentPage();
+                //当前页数据条数
                 $result['count'] = $paginate->count();
+                //总数据条数
                 $result['total'] = method_exists($paginate, 'total') ? $paginate->total() : 0;
 
                 $event->content['data'] = $result;
@@ -70,8 +76,8 @@ class DingoApi
                 continue;
             }
 
-                if (is_array($item) or is_object($item)) {
-                    method_exists($item, 'toArray') and $item = $item->toArray();
+            if (is_array($item) or is_object($item)) {
+                method_exists($item, 'toArray') and $item = $item->toArray();
                 $item = self::formatResponseData($item);
                 continue;
             }

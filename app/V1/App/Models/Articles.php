@@ -76,6 +76,6 @@ class Articles extends IndexModel {
 
         $views->total_views += $amount;
 
-        return (bool) $views->save();
+        return $amount;
     }
 }

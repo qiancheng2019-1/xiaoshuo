@@ -37,11 +37,11 @@ $api->group(['version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'pre
         $api->get('articles/category/{type}', 'ArticlesController@getPage');
 
         $api->get('articles/{article_id}/chapters', 'ArticlesController@getChapterList');
-        $api->get('articles/{article_id}/{id}', 'ArticlesController@getChapter');
     });
 
     $api->put('/ad/{key}', 'AdController@clickAd');
     $api->get('articles/{article_id}', 'ArticlesController@getDetail');
+    $api->get('articles/{article_id}/{id}', 'ArticlesController@getChapter');
 
     $api->get('captcha', 'IndexController@getCaptcha');
     $api->put('captcha', 'IndexController@validateCaptcha');

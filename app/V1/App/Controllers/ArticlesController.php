@@ -5,6 +5,7 @@ namespace App\V1\App\Controllers;
 
 use App\V1\App\Models\Articles;
 use App\V1\App\Models\ArticlesChapter;
+use App\V1\App\Models\UsersCollect;
 use App\V1\Basis\ReptileModel;
 use Dingo\Api\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -301,8 +302,12 @@ class ArticlesController extends IndexController
     {
         $columns = ['id', 'url', 'title', 'category_id', 'author', 'thumb', 'is_push', 'is_full', 'info', 'last_chapter_id', 'last_chapter', 'created_at', 'updated_at'];
 
-        $article = Articles::query()->find($id, $columns);
-        if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
+        if (!$article = Cache::get('art:'.$id)){
+            $article = Articles::query()->find($id, $columns);
+            if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
+
+            Cache::put('art:'.$id,$article,config('env.cache_select_time'));
+        }
 
 //        if ((time() - strtotime($article->updated_at)) > 43200 or !$article->last_chapter_id) {
 //            $reptileModel = new ReptileModel();
@@ -471,10 +476,29 @@ class ArticlesController extends IndexController
      */
     public function getChapter(Request $request, int $article_id, int $id)
     {
-        $file_type = '.txt';
         $article = Articles::query()->find($article_id, ['id','url', 'pinyin', 'category_id']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
+        function userCollect(Request $request,int $article_id,int $chapter_id) {
+            $user = Auth::guard('app')->user();
+            if ($user) {
+                $collect = UsersCollect::query()->where(['article_id'=>$article_id,'user_id' => $user->id])->first();
+                if ($collect) {
+                    $collect->last_chapter_id = $chapter_id;
+                    $collect->save();
+                } else
+                    Cache::put($user->id . '/' . $article_id, $chapter_id, 86400);
+            } else
+                Cache::put($request->ip() . '/' . $article_id, $chapter_id, 3600);
+        }
+
+        //缓存塞爆
+        if ($chapter = Cache::get('art:'.$article_id.'-'.$id)){
+            userCollect($request,$article_id,$id);
+            return $this->apiReturn('章节详情', 200, 0, $chapter);
+        }
+
+        $file_type = '.txt';
         $chapter = ArticlesChapter::query()->where(['chapter_id' => $id, 'title_id' => $article_id])->first(['chapter_name as title']);
         if (!$chapter) return $this->apiReturn('章节数据不存在', 404, 21);
         $Storage = Storage::disk('sftp');
@@ -483,20 +507,12 @@ class ArticlesController extends IndexController
         if ($Storage->exists($dir_id . '/' . $id . $file_type)) {
             $chapter->content = $Storage->get($dir_id . '/' . $id . $file_type);
             if (!$chapter->content) return $this->apiReturn('章节数据不存在', 404, 22);
-
-            $user = Auth::guard('app')->user();
-            if ($user) {
-                $collect = $article->getCollect()->where(['user_id' => $user->id])->first();
-                if ($collect) {
-                    $collect->last_chapter_id = $id;
-                    $collect->save();
-                } else
-                    Cache::put($user->id . '/' . $article_id, $id, 86400);
-            } else
-                Cache::put($request->ip() . '/' . $article_id, $id, 3600);
+            userCollect($request,$article_id,$id);
 
             $chapter->prev_id = ArticlesChapter::query()->where('chapter_id', '<', $id)->where(['title_id' => $article_id])->orderByDesc('chapter_id')->first(['chapter_id'])->chapter_id ?? $id;
             $chapter->next_id = ArticlesChapter::query()->where('chapter_id', '>', $id)->where(['title_id' => $article_id])->orderBy('chapter_id')->first(['chapter_id'])->chapter_id ?? $id;
+
+            Cache::put('art:'.$article_id.'-'.$id,$chapter,config('env.cache_select_time'));
             return $this->apiReturn('章节详情', 200, 0, $chapter);
         }
 
