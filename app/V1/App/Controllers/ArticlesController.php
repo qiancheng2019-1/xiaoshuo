@@ -59,7 +59,7 @@ class ArticlesController extends IndexController
         switch ($type) {
             default:
             case 'push':
-                return Articles::getList($columns, $where, 'is_push', [mt_rand(1, 8), $limit]);
+                return Articles::getList($columns, $where, 'is_push', [$page, $limit]);
                 break;
             case 'newsInsert':
                 return Articles::getList($columns, $where, 'created_at', [$page, $limit]);
@@ -134,12 +134,13 @@ class ArticlesController extends IndexController
     public function getList(Request $request)
     {
         $request->validate(['type' => 'string']);
+        $page = $request->query('page', 1);
         $limit = $request->query('limit', 10);
 
         $columns = ['id', 'title', 'author', 'category', 'thumb', 'info', 'total_views' => 'IFNULL(total_views,0)', 'last_chapter_id', 'last_chapter'];
 
         $type = $this->queryExplode($request->query('type', ''));
-        foreach ($type as $item) $data[$item] = $this->getTypeList($item, $columns, $this->sortWhere($request->query(), 'articles'), 1, $limit)->items();
+        foreach ($type as $item) $data[$item] = $this->getTypeList($item, $columns, $this->sortWhere($request->query(), 'articles'), $page, $limit)->items();
 
         $category = $this->queryExplode($request->query('category', ''));
         foreach ($category as $item) $data['category_' . $item] = Articles::getList($columns, $this->sortWhere($request->query(), 'articles') + ['category_id' => $item], 'is_push', [1, $limit])->items();
