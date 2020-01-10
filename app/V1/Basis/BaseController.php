@@ -36,7 +36,7 @@ class BaseController extends Controller
 
     public function getQrCode(string $path = '')
     {
-        $path = $path ?: env('APP_URL');
+        $path = $path ?: config('app.url');
         $image = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')
             ->merge(config('env.web_icon','favicon.png'), .3, true)
             ->errorCorrection('H')->size(256)->margin(.1)->generate($path);

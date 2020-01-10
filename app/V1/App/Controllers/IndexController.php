@@ -50,7 +50,7 @@ class IndexController extends BaseController
      *         description="Localhost Fiction API server"
      *     ),
      *     @OA\Server(
-     *         url="http://47.56.151.114:9101/api/app",
+     *         url="http://xs.xxtkfp.com/api/app",
      *         description="Online Fiction API server"
      *     ),
      *     @OA\Info(
