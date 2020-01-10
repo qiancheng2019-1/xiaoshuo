@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
+    <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="优化：文章详情、章节详情个别redis优化">
+      <change afterPath="$PROJECT_DIR$/@php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/DingoApi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/DingoApi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/ArticlesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-24.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/CreatesApplication.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,7 +277,8 @@
       <workItem from="1578019520905" duration="15913000" />
       <workItem from="1578102119102" duration="19516000" />
       <workItem from="1578447442657" duration="9745000" />
-      <workItem from="1578479337117" duration="8901000" />
+      <workItem from="1578479337117" duration="17000000" />
+      <workItem from="1578621191158" duration="2599000" />
     </task>
     <task id="LOCAL-00001" summary="初始化Larvel项目">
       <created>1575950366240</created>
@@ -397,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578537203784</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="优化：文章详情、章节详情个别redis优化">
+      <created>1578540186193</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1578540186193</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -438,7 +454,8 @@
     <MESSAGE value="切换至python爬虫" />
     <MESSAGE value="修改：查询接口结果为空时返回status_code:404" />
     <MESSAGE value="优化：我特么redis内存塞爆" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化：我特么redis内存塞爆" />
+    <MESSAGE value="优化：文章详情、章节详情个别redis优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化：文章详情、章节详情个别redis优化" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Custom_Plugin_Repositories" timestamp="1575948948845">
@@ -461,14 +478,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="177" key="#SmartIM/0.0.1920.1040@0.0.1920.1040" timestamp="1576483328698" />
-    <state x="680" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1577785714422">
+    <state x="680" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578542428103">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="680" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1577785714422" />
+    <state x="680" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1578542428103" />
     <state x="761" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1576466422114">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="761" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1576466422114" />
+    <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1578620624651">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578620624651" />
     <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1578044475735">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -481,14 +502,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578130152593" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578537203195">
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578542423699">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578537203195" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1578390097715">
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578542423699" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1578540200671">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578390097715" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578540200671" />
     <state x="92" y="92" width="1736" height="856" key="DirDiffDialog" timestamp="1578044337248">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -517,10 +538,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577700392469" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578537205650">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578540187432">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578537205650" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578540187432" />
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1" timestamp="1577082112260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -541,10 +562,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576830794866" />
-    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578537396243">
+    <state x="730" y="45" width="844" height="801" key="find.popup" timestamp="1578555917898">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578537396243" />
+    <state x="730" y="45" width="844" height="801" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578555917898" />
     <state x="859" y="249" key="ftp.server.browser" timestamp="1577082155860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
