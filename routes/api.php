@@ -23,7 +23,7 @@ $api->group(['version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'pre
     $api->get('swagger', 'IndexController@index');
     $api->get('/test', 'IndexController@test');
 
-    $api->group(['middleware' => 'throttle:30,1'], function ($api) {
+    $api->group(['middleware' => 'throttle:2,1'], function ($api) {
         $api->post('/captcha/sms', 'IndexController@sendSms');
     });
 

@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="优化：文章详情、章节详情个别redis优化">
-      <change afterPath="$PROJECT_DIR$/@php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+    <list default="true" id="9e19fa5b-139a-4378-b04b-bfa322a8ef6b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/Articles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/laravel-2019-12-24.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/CreatesApplication.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Controllers/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/V1/App/Models/CCPRestSDK.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/V1/App/Models/SmsSDK.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +268,7 @@
       <workItem from="1578102119102" duration="19516000" />
       <workItem from="1578447442657" duration="9745000" />
       <workItem from="1578479337117" duration="17000000" />
-      <workItem from="1578621191158" duration="2599000" />
+      <workItem from="1578621191158" duration="6619000" />
     </task>
     <task id="LOCAL-00001" summary="初始化Larvel项目">
       <created>1575950366240</created>
@@ -413,7 +403,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578540186193</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="服务器迁移">
+      <created>1578626371654</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1578626371654</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,7 +452,8 @@
     <MESSAGE value="修改：查询接口结果为空时返回status_code:404" />
     <MESSAGE value="优化：我特么redis内存塞爆" />
     <MESSAGE value="优化：文章详情、章节详情个别redis优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化：文章详情、章节详情个别redis优化" />
+    <MESSAGE value="服务器迁移" />
+    <option name="LAST_COMMIT_MESSAGE" value="服务器迁移" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="177" key="#Custom_Plugin_Repositories" timestamp="1575948948845">
@@ -490,10 +488,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578620624651" />
-    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1578044475735">
+    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1578627732842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578044475735" />
+    <state x="89" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578627732842" />
     <state x="690" y="265" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1576720566887">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -502,10 +500,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578130152593" />
-    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578542423699">
+    <state x="416" y="112" key="CommitChangelistDialog2" timestamp="1578637148771">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578542423699" />
+    <state x="416" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1578637148771" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1578540200671">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -538,10 +536,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="151" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577700392469" />
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578540187432">
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2" timestamp="1578626373592">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578540187432" />
+    <state x="552" y="240" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1578626373592" />
     <state x="814" y="417" key="WebDeployment.AddServerDialog.v.1" timestamp="1577082112260">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -578,10 +576,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="825" y="414" key="publish.login/0.0.1920.1040@0.0.1920.1040" timestamp="1577700170350" />
-    <state x="616" y="235" key="run.anything.popup" timestamp="1577611373686">
+    <state x="616" y="235" key="run.anything.popup" timestamp="1578628876699">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577611373686" />
+    <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578628876699" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1578044136726">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

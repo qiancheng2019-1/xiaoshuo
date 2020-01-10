@@ -3,6 +3,7 @@
 namespace App\V1\App\Controllers;
 
 use App\Rules\mobile;
+use App\V1\App\Models\SmsSDK;
 use Dingo\Api\Http\Request;
 use App\V1\Basis\BaseController;
 use Illuminate\Support\Facades\Cache;
@@ -310,20 +311,14 @@ class IndexController extends BaseController
         //验证码验证
         if (!captcha_api_check($request->input('captcha'), $request->input('key'))) return $this->apiReturn('验证码检验不通过', 401, 10);
 
-        $mobile = $request->validate(['mobile'=>['required','string',new mobile()]])['mobile'];
-
         $code = mt_rand(000000,999999);
+        $mobile = $request->validate(['mobile'=>['required','string',new mobile()]])['mobile'];
+        $result = SmsSDK::mobileCode([$code,10],$mobile);
 
-        $SDK = new \App\V1\App\Models\CCPRestSDK('app.cloopen.com',8883,'2013-12-26');
-        $SDK->setAccount('8a216da86f17653b016f4000bb7b1c17','63538b36c8d54197ab3932a65699b64a');
-        $SDK->setAppId('8a216da86f17653b016f4000bc691c1e');
-
-        $result = $SDK->sendTemplateSMS($mobile,[$code,10],1);
-        if($result == NULL ) {
+        if(!$result) {
             return $this->apiReturn('未知短信平台错误，请稍后再试', 422, 11);
         }
-        if($result->statusCode!=0) {
-//            file_put_contents('sms.log',json_encode($result).'\r');
+        else if($result['code']??0) {
             return $this->apiReturn('短信发送失败，请稍后再试', 422, 12);
         }
 
