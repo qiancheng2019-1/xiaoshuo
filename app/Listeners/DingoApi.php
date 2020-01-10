@@ -26,8 +26,8 @@ class DingoApi
     public function handle(ResponseWasMorphed $event)
     {
         //公共头部
-        $origin = \request()->header('ORIGIN', '*');
-        $event->response->headers->set('Access-Control-Allow-Origin', $origin);
+//        $origin = \request()->header('ORIGIN', '*');
+//        $event->response->headers->set('Access-Control-Allow-Origin', $origin);
         $event->response->headers->set('Access-Control-Allow-Credentials', 'true');
         $event->response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
         $event->response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');

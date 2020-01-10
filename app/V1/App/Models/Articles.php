@@ -43,7 +43,6 @@ class Articles extends IndexModel {
         $sql = self::query()->leftJoin('articles_views', 'id', '=', 'article_id')->where($where)->where($keyword)->orderByDesc('total_views')->orderByDesc($order)
 //            ->dd();
             ->paginate($page_arr[1], $select, 'page', $page_arr[0]);
-        var_dump($sql);die;
 
 //        Cache::put($cache_key, $sql, config('env.cache_select_time'));
         return $sql;
