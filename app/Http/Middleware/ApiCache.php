@@ -24,9 +24,10 @@ class ApiCache
             if ($data) {
                 $data = json_decode($data, true);
                 $response = response()->json($data)
+                    ->header('Cache-Control','public')
                     ->setStatusCode($data['status_code']);
 
-                $response->isCached = true;//添加这个属性是为了避免监听器重复写入缓存
+                define('CACHE_IF',true);//添加这个属性是为了避免监听器重复写入缓存
                 return $response;
             }
         }

@@ -57,6 +57,7 @@ class ArticlesController extends IndexController
     {
         $where['status'] = 1;
         switch ($type) {
+            default:
             case 'push':
                 return Articles::getList($columns, $where, 'is_push', [mt_rand(1, 8), $limit]);
                 break;
@@ -74,9 +75,6 @@ class ArticlesController extends IndexController
                 break;
             case 'week':
                 return Articles::getList($columns, $where, 'week_views', [$page, $limit]);
-                break;
-            default:
-                return $this->apiReturn($type . '资源不存在', 404, 1);
                 break;
         }
     }
