@@ -94,6 +94,15 @@ class ArticlesController extends IndexController
      *       )
      *     ),
      *     @OA\Parameter(
+     *       name="page",
+     *       in="query",
+     *       description="页数",
+     *       @OA\Schema(
+     *          type="integer",
+     *          default="1",
+     *       )
+     *     ),
+     *     @OA\Parameter(
      *       name="keyword",
      *       in="query",
      *       description="模糊搜索关键字",
