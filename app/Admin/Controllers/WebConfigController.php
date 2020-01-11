@@ -2,52 +2,65 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Forms\Setting;
 use Encore\Admin\Grid;
 use Encore\Admin\Form;
 use App\Admin\Models\ConfigModel;
 use Encore\Admin\Controllers\AdminController;
+use Encore\Admin\Layout\Content;
 use Illuminate\Support\Facades\Cache;
 
 class WebConfigController extends AdminController {
-    /**
-     * {@inheritdoc}
-     */
-    protected function title()
+
+    public function index(Content $content)
     {
-        return trans('fiction.ad');
+        return $content
+            ->title('系统设置')
+            ->body(new Setting());
     }
 
-    public function form()
-    {
-        $form = new Form(new ConfigModel());
-
-        $form->display('id', 'ID');
-        $form->text('name', trans('fiction.keyword'))->rules('max:64')->default('');
-        $form->textarea('value', trans('fiction.desc'))->rules('max:255')->default('');
-
-        //保存后回调
-        $form->saved(function (Form $form) {
-            foreach (ConfigModel::all(['key', 'value']) as $item) $config['env.' . $item['key']] = $item['value'];
-            Cache::forever('config', $config);
-        });
-
-        return $form;
-    }
-
-    protected function grid()
-    {
-        $grid = new Grid(new ConfigModel());
-        $grid->disableBatchActions();
-        $grid->disableCreateButton();
-        $grid->disablePagination();
-        $grid->disableActions();
-        $grid->disableFilter();
-
-        $grid->column('key', 'ID')->sortable();
-        $grid->column('name', trans('admin.name'));
-        $grid->column('value', trans('fiction.info').('#JS'))->editable('textarea');
-        $grid->column('desc', trans('fiction.desc'));
-
-        return $grid;
-    }
+//    /**
+//     * {@inheritdoc}
+//     */
+//    protected function title()
+//    {
+//        return trans('fiction.ad');
+//    }
+//
+//    public function form()
+//    {
+//        $form = new Form(new ConfigModel());
+//
+//        $form->text('web_name', trans('fiction.keyword'))->rules('max:64');
+//        $form->text('web_icon', trans('fiction.keyword'))->rules('max:64');
+//        $form->text('web_desc', trans('fiction.keyword'))->rules('max:64');
+//        $form->text('file_dir', trans('fiction.uri'))->rules('max:64');
+//        $form->text('views_between', trans('fiction.keyword'))->rules('max:64');
+//        $form->text('cache_select_time', trans('fiction.keyword'))->rules('max:64');
+//
+//        //保存后回调
+//        $form->saved(function (Form $form) {
+//            foreach (ConfigModel::all(['key', 'value']) as $item) $config['env.' . $item['key']] = $item['value'];
+//            Cache::forever('config', $config);
+//        });
+//
+//        return $form;
+//    }
+//
+//    protected function grid()
+//    {
+//        $grid = new Grid(new ConfigModel());
+//        $grid->disableBatchActions();
+//        $grid->disableCreateButton();
+//        $grid->disablePagination();
+//        $grid->disableActions();
+//        $grid->disableFilter();
+//
+//        $grid->column('key', 'ID')->sortable();
+//        $grid->column('name', trans('admin.name'));
+//        $grid->column('value', trans('fiction.info').('#JS'))->editable('textarea');
+//        $grid->column('desc', trans('fiction.desc'));
+//
+//        return $grid;
+//    }
 }

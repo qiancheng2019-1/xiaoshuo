@@ -27,6 +27,7 @@ class ReptileModel {
         $category = DB::table('articles_category')->select(['id','name','page'])->where(['id'=>$cate['ocate']])->first();
 
         $now_page = $category->page?:1;
+
         $url = str_replace('{page}',$now_page,$this->reptile['list_url']);
         $url = str_replace('{cate}',$cate['cate'],$url);
 

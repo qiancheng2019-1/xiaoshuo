@@ -332,8 +332,14 @@ class ArticlesController extends IndexController
 
         $user = Auth::guard('app')->user();
         $collect = $article->getCollect()->where(['user_id' => $user->id ?? 0])->first();
-        $article->is_collect = $collect ? 1 : 0;
-        $last_view_id = (int)($collect->last_chapter_id ?? Cache::get(($user->id ?? $request->ip()) . '/' . $id, 0));
+        if ($collect){
+            $article->is_collect = 1;
+            $last_view_id = $collect->last_chapter_id;
+        }else{
+            $article->is_collect = 0;
+            $last_view_id = (int) Cache::get(($user->id ?? 0) . '/' . $id, 0);
+            !$last_view_id and $last_view_id = Cache::get($request->ip().'/'.$id,0);
+        }
 
         $last_view = ArticlesChapter::query()->where(['title_id' => $id])->find($last_view_id)
             ?: ArticlesChapter::query()->where(['title_id' => $id])->orderBy('chapter_id')->first();

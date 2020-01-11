@@ -16,9 +16,14 @@ return [
     'desc' => '描述',
     'url' => '源网址',
 
+    'web'=>'站点',
+
     'book'=>'书本',
     'ad'=>'广告',
 
     'chapter' => '章节',
     'content' => '章节内容',
+
+    'views_between' => '点击量池',
+    'cache_select_time' => '缓存周期',
 ];

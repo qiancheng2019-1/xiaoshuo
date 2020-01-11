@@ -46,9 +46,9 @@ class ArticlesChaptersController extends AdminController {
                 $tools->disableDelete();
             });
 
+        $show->divider();
         $show->field('chapter_id', 'ID');
         $show->field('chapter_name', trans('fiction.chapter'));
-        $show->divider();
         $show->field('content',trans('fiction.content'))->unescape()->as(function ($content) use ($article,$chapter){
             return Storage::disk('sftp')->get($article->category_id . '/' . $article->pinyin . '/' . $chapter->chapter_id . '.txt');;
         });
@@ -102,10 +102,10 @@ class ArticlesChaptersController extends AdminController {
         $grid = new Grid(new ArticlesChaptersModel([]));
         $grid->disableFilter();
         $grid->disableRowSelector();
-//        $grid->disableCreateButton();
+        $grid->disableCreateButton();
         $grid->actions(function ($actions) {
-//            $actions->disableEdit();
-//            $actions->disableDelete();
+            $actions->disableEdit();
+            $actions->disableDelete();
         });
 
         $grid->column('chapter_id', 'ID');
