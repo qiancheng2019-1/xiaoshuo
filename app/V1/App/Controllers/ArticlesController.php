@@ -253,12 +253,10 @@ class ArticlesController extends IndexController
         $page = $request->query('page', 1);
         $limit = $request->query('limit', 10);
 
-        if (in_array($type, $this->type_all))
-            $articles_list = $this->getTypeList($type, $columns, $where, $page, $limit);
-        elseif (is_numeric($type))
+        if (is_numeric($type))
             $articles_list = Articles::getList($columns, $where + ['category_id' => $type], 'is_push', [$page, $limit]);
         else
-            return $this->apiReturn($type . '错误', 400, 2);
+            $articles_list = $this->getTypeList($type, $columns, $where, $page, $limit);
 
         if (!$articles_list->items()) return $this->apiReturn('资源不存在', 404, 1);
         return $this->apiReturn('书本分页列表', 200, 0, $articles_list);
@@ -422,7 +420,7 @@ class ArticlesController extends IndexController
         $result = ArticlesChapter::query()->where(['title_id' => $article_id])
             ->distinct('chapter_id')
             ->orderBy('id', strtoupper($request->query('order')) == 'ASC' ? 'asc' : 'desc')
-            ->paginate($limit, ['chapter_id as id', 'chapter_name as title'], 'page', $page);
+            ->paginate($limit, ['chapter_id as id', 'cha pter_name as title'], 'page', $page);
 
 //        $storage_id = floor($article_id / 1000) . '/' . $article_id;
 //        $Storage = Storage::disk('local');

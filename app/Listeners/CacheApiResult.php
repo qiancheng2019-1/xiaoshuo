@@ -24,7 +24,7 @@ class CacheApiResult
      */
     public function handle(RequestHandled $event)
     {
-        if($event->request->isMethod('GET') and defined('CACHE_IF') and !defined('CACHE_GET')){
+        if($event->request->isMethod('GET') and defined('CACHE_IF') and !CACHE_IF){
             //这里的key生成规则是我自己定义的，可以按需更改。
             $uri = $event->request->getUri();
             $params = $event->request->all();

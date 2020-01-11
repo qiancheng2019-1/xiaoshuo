@@ -15,23 +15,22 @@ class ApiCache
      */
     public function handle($request, Closure $next)
     {
-        if ($request->isMethod('GET')) {
-            $uri = $request->getUri();
-            $params = $request->all();
-            $keyStr = $uri . '::' . json_encode($params);
-            $data = \Illuminate\Support\Facades\Cache::get(md5($keyStr));
+        $uri = $request->getUri();
+        $params = $request->all();
+        $keyStr = $uri . '::' . json_encode($params);
+        $data = \Illuminate\Support\Facades\Cache::get(md5($keyStr));
+
+        if ($data) {
+            $data = json_decode($data, true);
+            $response = response()->json($data)
+                ->header('Cache-Control','max-age='.config('env.cache_select_time'))
+                ->setStatusCode($data['status_code']);
 
             define('CACHE_IF',true);
-            if ($data) {
-                $data = json_decode($data, true);
-                $response = response()->json($data)
-                    ->header('Cache-Control','max-age='.config('env.cache_select_time'))
-                    ->setStatusCode($data['status_code']);
+            return $response;
+        }else
+            define('CACHE_IF',false);
 
-                define('CACHE_GET',true);
-                return $response;
-            }
-        }
         return $next($request);
     }
 }
