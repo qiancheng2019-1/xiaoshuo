@@ -31,7 +31,7 @@ class CacheApiResult
             $params = $event->request->all();
             $keyStr = $uri . '::' . json_encode($params);
 
-            $data = $event->response->header('Cache-Control','public')->getContent();
+            $data = $event->response->header('Cache-Control','max-age='.config('env.cache_select_time'))->getContent();
             \Illuminate\Support\Facades\Cache::put(md5($keyStr), $data, config('env.cache_select_time'));
             //这里缓存一分钟，目前看来分钟好像是最小粒度了，以后需要再改进；可以按需改成其他缓存
         }
