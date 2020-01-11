@@ -152,7 +152,8 @@ class UserController extends IndexController
     /**
      * @OA\Put(
      *     path="/token",
-     *     tags={"Invalid"},
+     *     tags={"Default"},
+     *     deprecated=true,
      *     summary="刷新token",
      *     description="需要token",
      *     security={{"Token":{}}},

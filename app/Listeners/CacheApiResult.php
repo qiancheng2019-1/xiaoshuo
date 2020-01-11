@@ -24,8 +24,7 @@ class CacheApiResult
      */
     public function handle(RequestHandled $event)
     {
-        //$event->response->isCached这个属性是在后面的中间件里面加的，对象本身是没有这个属性的。
-        if($event->request->isMethod('GET') and !defined('CACHE_IF')){
+        if($event->request->isMethod('GET') and defined('CACHE_IF') and !defined('CACHE_GET')){
             //这里的key生成规则是我自己定义的，可以按需更改。
             $uri = $event->request->getUri();
             $params = $event->request->all();

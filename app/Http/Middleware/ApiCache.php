@@ -21,13 +21,14 @@ class ApiCache
             $keyStr = $uri . '::' . json_encode($params);
             $data = \Illuminate\Support\Facades\Cache::get(md5($keyStr));
 
+            define('CACHE_IF',true);
             if ($data) {
                 $data = json_decode($data, true);
                 $response = response()->json($data)
                     ->header('Cache-Control','max-age='.config('env.cache_select_time'))
                     ->setStatusCode($data['status_code']);
 
-                define('CACHE_IF',true);//添加这个属性是为了避免监听器重复写入缓存
+                define('CACHE_GET',true);
                 return $response;
             }
         }

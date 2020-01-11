@@ -134,10 +134,6 @@ class IndexController extends BaseController
      *     name="Users",
      *     description="用户模块"
      * )
-     * @OA\Tag(
-     *     name="Invalid",
-     *     description="测试接口，不作项目用"
-     * )
      * @OA\SecurityScheme(
      *   securityScheme="Token",
      *   type="apiKey",
@@ -231,7 +227,8 @@ class IndexController extends BaseController
     /**
      * @OA\Put(
      *     path="/captcha",
-     *     tags={"Invalid"},
+     *     tags={"Default"},
+     *     deprecated=true,
      *     summary="测试图形验证码用",
      *     @OA\RequestBody(
      *         @OA\MediaType(
@@ -329,7 +326,8 @@ class IndexController extends BaseController
     /**
      * @OA\put(
      *     path="/captcha/sms",
-     *     tags={"Invalid"},
+     *     tags={"Default"},
+     *     deprecated=true,
      *     summary="测试短信验证码用",
      *     description="开发期间假想验证码：888888",
      *     @OA\RequestBody(
