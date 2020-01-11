@@ -420,7 +420,7 @@ class ArticlesController extends IndexController
         $result = ArticlesChapter::query()->where(['title_id' => $article_id])
             ->distinct('chapter_id')
             ->orderBy('id', strtoupper($request->query('order')) == 'ASC' ? 'asc' : 'desc')
-            ->paginate($limit, ['chapter_id as id', 'cha pter_name as title'], 'page', $page);
+            ->paginate($limit, ['chapter_id as id', 'chapter_name as title'], 'page', $page);
 
 //        $storage_id = floor($article_id / 1000) . '/' . $article_id;
 //        $Storage = Storage::disk('local');
