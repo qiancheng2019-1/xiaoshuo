@@ -311,7 +311,7 @@ class ArticlesController extends IndexController
             if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
             //爬虫判断
-            if ((time() - strtotime($article->updated_at)) > 86400 or !$article->last_chapter_id) {
+            if (!$article->is_full and ((time() - strtotime($article->updated_at)) > 86400 or !$article->last_chapter_id)) {
                 $reptileModel = new ReptileModel();
                 $reptileModel->getArticle($article->id, $article->url);
 
