@@ -1,7 +1,13 @@
 <?php
 return [
     'charset'        => 'GBK',
-    'domain'         => 'http://98.126.88.70/',
+    'domain'         => [
+        'http://98.126.88.66/',
+        'http://98.126.88.67/',
+        'http://98.126.88.68/',
+        'http://98.126.88.69/',
+        'http://98.126.88.70/',
+    ],
     'host'           => 'www.quanshuwang.com',
 //    'list_url'       => 'https://www.35kushu.com/zwwsort{cate}/0/{page}.htm',
     'list_url'       => '/all/postdate_{cate}_0_0_0_0_0_{page}.html',

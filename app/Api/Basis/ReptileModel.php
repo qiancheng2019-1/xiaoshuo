@@ -23,6 +23,7 @@ class ReptileModel
             Storage::disk('local')->put('cate',json_encode($this->reptile['list_cate']));
         }
 
+        $this->reptile['domain'] = array_rand($this->reptile['domain']);
         $this->rand_ip = mt_rand(13, 255) . '.' . mt_rand(13, 255) . '.' . mt_rand(13, 255) . '.' . mt_rand(13, 255);
         $this->timeout = 8;
         $this->user_agent = 'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)';
