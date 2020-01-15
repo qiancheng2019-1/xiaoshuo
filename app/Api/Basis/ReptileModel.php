@@ -81,7 +81,7 @@ class ReptileModel
             if (!$article) return FALSE;
 
             $article = $article[0];
-            if (strpos($article['thumb'], $this->reptile['domain']) !== FALSE) {
+            if (strpos($article['thumb'], $this->reptile['host']) !== FALSE) {
                 $data['thumb'] = '';
             } else {
                 $thumb = file_get_contents($article['thumb']) ?: '';
