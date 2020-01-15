@@ -26,6 +26,7 @@ class CreateArticleTables extends Migration
             $table->bigInteger('last_chapter_id')->nullable(false)->default(0)->comment('最新章节ID');
             $table->tinyInteger('is_full')->nullable(false)->default(0)->comment('是否完本');
             $table->tinyInteger('is_push')->nullable(false)->default(0)->comment('是否推送');
+            $table->integer('font_count')->nullable(false)->default(0)->comment('字数统计');
             $table->tinyInteger('status')->nullable(false)->default(0)->comment('状态');
             $table->timestamps();
         });

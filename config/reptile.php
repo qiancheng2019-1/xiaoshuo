@@ -1,8 +1,9 @@
 <?php
 return [
     'charset'        => 'GBK',
+    'domain'         => 'http://www.quanshuwang.com/',
 //    'list_url'       => 'https://www.35kushu.com/zwwsort{cate}/0/{page}.htm',
-    'list_url'       => 'http://www.quanshuwang.com/all/postdate_{cate}_0_0_0_0_0_{page}.html',
+    'list_url'       => '/all/postdate_{cate}_0_0_0_0_0_{page}.html',
     'list_url_extra' => '',
     'list_cate'      => [
         ['cate' => '1', 'my_cate' => '1',],
@@ -24,23 +25,17 @@ return [
     'list_thumb_selector'      => 'div.tab-item div img',
     'list_author_selector'     => 'div.tab-item div p',
 
-    'view_selector_pre_filter' => '{filter replace=\'1\'}玄幻小说{/filter}[line]{filter replace=\'2\'}武侠小说{/filter}[line]{filter replace=\'3\'}都市小说{/filter}[line]{filter replace=\'4\'}历史小说{/filter}[line]{filter replace=\'5\'}同人小说{/filter}[line]{filter replace=\'6\'}游戏小说{/filter}[line]{filter replace=\'7\'}科幻小说{/filter}[line]{filter replace=\'8\'}耽美小说{/filter}',
-    'view_title_selector'      => 'h1',
+    'view_selector_pre_filter' => '',
+    'view_title_selector'      => 'div.detail h1',
+    'view_full_selector'       => 'meta[property=og:novel:status]|content',
     'view_author_selector'     => 'meta[property=og:novel:author]|content',
     'view_cate_selector'       => 'meta[property=og:novel:category]|content',
     'view_selector'            => 'meta[property=og:description]|content',
     'view_thumb_selector'      => 'meta[property=og:image]|content',
+    'view_url_selector'        => 'meta[property=og:image]|content',
 
-    'is_full_sign'                => '完本',
-    'view_chapter_selector'       => '',
     'chapter_selector_pre_filter' => '',
-    'chapter_area_selector'       => '#list dl',
-    'chapter_regx'                => '<dd><a href="[link]" title="[title]">[string]</a></dd>',
-    'chapter_order'               => 'yes',
-    'chapter_order_num'           => '',
+    'chapter_area_selector'       => 'div.dirconone',
+    'chapter_regx'                => '<li><a href="[link]" title="[title]">[string]</a></li>',
     'chapter_cont_pre_filter'     => '{filter replace=\'ｗww.wbｚd.org\'}ｗww.35ｚww.la{/filter}[line]{filter replace=\'wwｗ.ｗbzd.org\'}www.35zｗｗ.la{/filter}[line]{filter replace=\'com\'}Org{/filter}[line]{filter replace=\'\'}<div class="gg_read_content_up">(.*)</script></div>{/filter}[line]{filter replace=\'\'}三↑五↑中↑文↑网<br/><br/>{/filter}[line]{filter replace=\'\'}三↑五↑中↑文↑网{/filter}[line]{filter replace=\'xs8.me\'}35dxs.com{/filter}',
-    'chapter_cont_selector'       => '#content',
-    'chapter_cont_page_sign'      => '',
-    'chapter_cont_page'           => '',
-    'chapter_cont_par'            => '',
 ];

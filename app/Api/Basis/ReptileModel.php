@@ -45,17 +45,17 @@ class ReptileModel
         $rules['thumb'] = [$this->reptile['list_thumb_selector'], 'src'];
         $rules['author'] = [$this->reptile['list_author_selector'], 'text'];
 
-        $list = $this->getHtml($url, $rules);
+        $list = $this->getHtml($this->reptile['domain'] . $url, $rules);
         if (!$list) {
             Cache::put('reptile:' . $cate['cate'], TRUE, 86400);
             return FALSE;
         }
 
         foreach ($list as $item) {
-            $data['url'] = $item['url'];
+            $data['url'] = str_replace($this->reptile['domain'], '', $item['url']);
             $data['title'] = $item['title'];
             $data['thumb'] = $item['thumb'];
-            $data['author'] = $item['author'];
+            $data['author'] = str_replace('作者：', '', $item['author']);
             $data['category_id'] = $category->id;
             $data['category'] = $category->name;
             $data['status'] = 1;
@@ -69,44 +69,68 @@ class ReptileModel
 
     public function getArticle(int $article_id, string $url)
     {
-        $rules['title'] = [$this->reptile['view_title_selector'], 'text'];
-        $rules['content'] = [$this->reptile['view_selector'], 'content'];
-        $rules['thumb'] = [$this->reptile['view_thumb_selector'], 'content'];
-        $rules['author'] = [$this->reptile['view_author_selector'], 'content'];
-        $rules['category'] = [$this->reptile['view_cate_selector'], 'content'];
-        $rules['area_html'] = [$this->reptile['chapter_area_selector'], 'html'];
+        $data['font_count'] = 0;
+        if (strpos($url, '_') !== FALSE) {
+//            $rules['title']    = [$this->reptile['view_title_selector'], 'text'];
+            $rules['content'] = [$this->reptile['view_selector'], 'content'];
+            $rules['full'] = [$this->reptile['view_full_selector'], 'content'];
+            $rules['thumb'] = [$this->reptile['view_thumb_selector'], 'content'];
+//            $rules['author']   = [$this->reptile['view_author_selector'], 'content'];
+//            $rules['category'] = [$this->reptile['view_cate_selector'], 'content'];
+            $article = $this->getHtml($this->reptile['domain'] . $url, $rules);
+            if (!$article) return FALSE;
 
-        if ($url)
+            $article = $article[0];
+            if (strpos($article['thumb'], $this->reptile['domain']) !== FALSE) {
+                $data['thumb'] = '';
+            } else {
+                $thumb = file_get_contents($article['thumb']) ?: '';
+                $data['thumb'] = Storage::disk('public')->put('thumb/' . $article_id . substr($article['thumb'], -5), $thumb)
+                    ? 'thumb/' . $article_id . substr($article['thumb'], -5) : '';
+            }
+            $data['is_full'] = $article['full'] === '完本' ? 1 : 0;
+            $data['info'] = $article['content'];
 
-            $article = $this->getHtml($url, $rules);
-        if (!$article) return FALSE;
+            $reptile_id = substr($url, 5, -5);
+            $data['url'] = $url = 'book/' . floor($reptile_id / 1000) . '/' . $reptile_id;
+            DB::table('articles')->where(['id' => $article_id])->update($data);
+        }
 
-        $article = $article[0];
-        $thumb = file_get_contents($article['thumb']) ?: '';
-
-        $data['thumb'] = Storage::disk('public')->put('thumb/' . $article_id . substr($article['thumb'], -5), $thumb) ? 'thumb/' . $article_id . substr($article['thumb'], -5) : '';
-        $data['info'] = $article['content'];
+        $chapter = $this->getHtml($this->reptile['domain'] . $url, ['area_html' => [$this->reptile['chapter_area_selector'], 'html']]);
+        if (!$chapter) return FALSE;
 
         //章节目录处理
-        preg_match_all('/link|title|string/', $this->reptile['chapter_regx'], $matches);
-        $link_key = $title_key = 0;
+        $chapter = $chapter[0];
+        preg_match_all('/\[link\]|\[title\]|\[string\]/', $this->reptile['chapter_regx'], $matches);
+        $link_key = $title_key = $string_key = 0;
         foreach ($matches[0] as $key => $item) {
-            if ($item == 'link') {
-                $link_key = $key + 1;
-            } elseif ($item == 'title') {
-                $title_key = $key + 1;
+            switch ($item) {
+                case '[link]':
+                    $link_key = $key + 1;
+                    break;
+                case '[title]':
+                    $title_key = $key + 1;
+                    break;
+//                case '[string]':
+//                    $string_key = $key + 1;
+//                    break;
             }
         }
         //获取规则中关键key的顺序
 
         //正则分隔
         $pattern = str_replace(['[link]', '[title]', '[string]', '?', '/', '|', '+', '-', '.', '[', ']', 'XXXX', 'CCCC'], ['XXXX', 'XXXX', 'CCCC', '\\?', '\\/', '\\|', '\\+', '\\-', '\\.', '\\[', '\\]', '([\\w\\W]*?)', '(.*?)'], addslashes($this->reptile['chapter_regx']));
-        preg_match_all('/' . $pattern . '/s', $article['area_html'], $matches);
+        preg_match_all('/' . $pattern . '/s', $chapter['area_html'], $matches);
         for ($i = 0; $i < count($matches[$link_key]); $i++) {
+            //统计字数
+            $title = explode('，共', $matches[$title_key][$i]);
+            $data['font_count'] += (int)substr($title[1], 0, -1);
+
             $chapter_list[$i] = [
                 'id'    => $i,
-                'link'  => $matches[$link_key][$i],
-                'title' => $matches[$title_key][$i]];
+                'link'  => str_replace($this->reptile['domain'] . $url . '/', '', $matches[$link_key][$i]),
+                'title' => $title[0],
+            ];
         }
 
         if ($chapter_list ?? FALSE) {
@@ -135,7 +159,7 @@ class ReptileModel
     {
         $Storage = Storage::disk('local');
         $rules['content'] = [$this->reptile['chapter_cont_selector'], 'html', '-script -a'];
-        $content = $this->getHtml($article->url . '/' . $chapter['link'], $rules, 'chapter_cont_pre_filter');
+        $content = $this->getHtml($this->reptile['domain'].$article->url . '/' . $chapter['link'], $rules, 'chapter_cont_pre_filter');
 
         if ($content = $content[0]['content'] ?? FALSE) {
             $storage_id = floor($article->id / 1000) . '/' . $article->id;
@@ -208,7 +232,7 @@ class ReptileModel
             'Proxy-Client-IP:' . $this->rand_ip,
             'WL-Proxy-Client-IP:' . $this->rand_ip,
             'X-Forwarded-For:' . $this->rand_ip,
-            'Referer:'.$this->referer,
+            'Referer:' . $this->referer,
         ];
 
         curl_setopt($ch, CURLOPT_URL, $url);

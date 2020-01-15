@@ -312,7 +312,7 @@ class ArticlesController extends IndexController
 
             //爬虫判断
             if (!$article->is_full and ((time() - strtotime($article->updated_at)) > 86400 or !$article->last_chapter_id)) {
-                $reptileModel = new ReptileModel();
+                $reptileModel = new \App\Api\Basis\ReptileModel();
                 $reptileModel->getArticle($article->id, $article->url);
 
                 $article = Articles::query()->find($id,$columns);
