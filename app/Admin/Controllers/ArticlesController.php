@@ -28,7 +28,7 @@ class ArticlesController extends AdminController
 
         $form->text('title', trans('admin.title'))->rules('required|max:64');
         $form->text('author', trans('fiction.author'))->rules('required|max:64');
-        $form->image('thumb', trans('fiction.thumb'))->disk('public')->uniqueName()->default('');
+        $form->image('thumb', trans('fiction.thumb'))->uniqueName()->default('');
         $form->ckeditor('info', trans('fiction.info'))->default('&nbsp;&nbsp;')->rules('max:512');
 
         $category = ArticlesCategoryModel::query()->where(['status'=>1])->pluck('name','id');
@@ -74,7 +74,7 @@ class ArticlesController extends AdminController
             $filter->equal('category_id',trans('fiction.category'))->select($category ?? []);
         });
         $grid->tools(function (Grid\Tools $tools) {
-//            $tools->append(new Reptile());
+            $tools->append(new Reptile());
         });
 
         $grid->column('id', 'ID')->sortable();

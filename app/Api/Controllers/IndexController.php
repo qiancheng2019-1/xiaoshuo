@@ -1,11 +1,11 @@
 <?php
 
-namespace App\V1\App\Controllers;
+namespace App\Api\Controllers;
 
 use App\Rules\mobile;
-use App\V1\App\Models\SmsSDK;
+use App\Api\Models\SmsSDK;
 use Dingo\Api\Http\Request;
-use App\V1\Basis\BaseController;
+use App\Api\Basis\BaseController;
 use Illuminate\Support\Facades\Cache;
 
 class IndexController extends BaseController
@@ -13,7 +13,7 @@ class IndexController extends BaseController
 
     public function index()
     {
-        return \OpenApi\scan(__DIR__ . '/')->toJson();
+        return \OpenApi\scan(__DIR__)->toJson();
     }
 
     /**
@@ -46,7 +46,7 @@ class IndexController extends BaseController
     /**
      * @OA\OpenApi(
      *     @OA\Server(
-     *         url="http://192.168.1.61/api/app",
+     *         url="http://192.168.1.61/api",
      *         description="Localhost Fiction API server"
      *     ),
      *     @OA\Server(
@@ -55,7 +55,7 @@ class IndexController extends BaseController
      *     ),
      *     @OA\Info(
      *         version="1.0.0",
-     *         title="Fiction App",
+     *         title="Fiction Api",
      *         @OA\Contact(name="Crazypeak")
      *     )
      * )
@@ -310,7 +310,7 @@ class IndexController extends BaseController
 
         $code = mt_rand(000000,999999);
         $mobile = $request->validate(['mobile'=>['required','string',new mobile()]])['mobile'];
-        $result = SmsSDK::mobileCode([$code,10],$mobile);
+        $result = SmsSDK::mobileCode($code,$mobile);
 
         if(!$result) {
             return $this->apiReturn('未知短信平台错误，请稍后再试', 422, 11);
@@ -319,7 +319,7 @@ class IndexController extends BaseController
             return $this->apiReturn('短信发送失败，请稍后再试', 422, 12);
         }
 
-        Cache::put(md5($mobile),$code,600);
+        Cache::put(md5($mobile),$code,config('env.sms_cache')*60);
         return $this->apiReturn(' 验证码已发送，请关注手机接收', 200, 0);
     }
 
@@ -368,5 +368,10 @@ class IndexController extends BaseController
             return $this->apiReturn('短信验证码成功', 200, 0);
         else
             return $this->apiReturn('短信验证码失败',401,10);
+    }
+
+    public function test(){
+        $object = new \App\Api\Basis\ReptileModel();
+        return $object->getList();
     }
 }

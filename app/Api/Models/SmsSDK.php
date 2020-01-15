@@ -1,20 +1,22 @@
 <?php
 
-namespace App\V1\App\Models;
+namespace App\Api\Models;
 
 class SmsSDK
 {
-    static function mobileCode(array $code,string $mobile)
+    static function mobileCode(int $code,string $mobile)
     {
-        $str = '您好，您的验证码为：'.$code[0].'，请在'.$code[1].'分钟之内填写，请不要把验证码泄露给别人，以防信息外泄';
+        $str = config('env.sms_code_template');
+        $str = str_replace('{sms_code}',$code,$str);
+        $str = str_replace('{sms_cache}',config('env.sms_cache'),$str);
         return self::send($str,$mobile);
     }
 
     static function send($msg , $mobile)
     {
-        $title = '【Hulk】';
-        $api_id = 'I4423247';
-        $api_pwd = 'IWqOdQXRkBc60f';
+        $title = '【'.config('env.sms_title').'】';
+        $api_id = config('env.sms_api_id');
+        $api_pwd = config('env.sms_api_pwd');
 
         $request = [
             'account' => $api_id,
@@ -24,12 +26,12 @@ class SmsSDK
             'msg' => $title . $msg,
             //内容
             'mobile' => '86'.$mobile,
-            //手机，批量“,”分割
+            //手机，批量“,”分割，86适配国际短信接口用，国内短信可省略
         ];
 
         $request = json_encode($request);
         $opts = [
-            CURLOPT_URL => 'http://intapi.253.com/send/json',
+            CURLOPT_URL => config('env.sms_api_url'),
             CURLOPT_POST => 1,
             CURLOPT_POSTFIELDS => $request,
             CURLOPT_TIMEOUT => 30,

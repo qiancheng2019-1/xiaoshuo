@@ -60,7 +60,7 @@ return [
 
         'prefix' => env('ADMIN_ROUTE_PREFIX', 'admin'),
 
-        'namespace' => 'App\\Admin\\Controllers',
+        'namespace' => 'App\Admin\\Controllers',
 
         'middleware' => ['web', 'admin'],
     ],
@@ -154,7 +154,7 @@ return [
     'upload' => [
 
         // Disk in `config/filesystem.php`.
-        'disk' => 'local',
+        'disk' => 'public',
 
         // Image and file upload path under the disk above.
         'directory' => [

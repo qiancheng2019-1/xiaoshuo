@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\V1\Basis;
+namespace App\Api\Basis;
 
 use Illuminate\Support\Facades\DB;
 

@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\V1\App\Models;
+namespace App\Api\Models;
 
-use App\V1\Basis\BaseModel;
+use App\Api\Basis\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 
 class IndexModel extends Model

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\V1\App\Controllers;
+namespace App\Api\Controllers;
 
 
 use Dingo\Api\Http\Request;
-use App\V1\App\Models\Ad;
+use App\Api\Models\Ad;
 
 class AdController extends IndexController {
     /**

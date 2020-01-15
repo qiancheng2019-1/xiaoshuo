@@ -3,20 +3,28 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Forms\Setting;
+use App\Admin\Forms\SmsSetting;
 use Encore\Admin\Grid;
 use Encore\Admin\Form;
 use App\Admin\Models\ConfigModel;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Layout\Content;
 use Illuminate\Support\Facades\Cache;
+use Encore\Admin\Widgets\Tab;
 
-class WebConfigController extends AdminController {
+class WebConfigController extends AdminController
+{
 
     public function index(Content $content)
     {
+        $forms = [
+            'config' => Setting::class,
+            'sms' => SmsSetting::class,
+        ];
+
         return $content
             ->title('系统设置')
-            ->body(new Setting());
+            ->body(Tab::forms($forms));
     }
 
 //    /**

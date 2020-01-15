@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\V1\Basis;
+namespace App\Api\Basis;
 
 use App\Http\Controllers\Controller;
 use Dingo\Api\Routing\Helpers;
@@ -15,7 +15,7 @@ class BaseController extends Controller
     {
         $config = Cache::get('config', []);
         if (!$config) {
-            foreach (\App\Config::all(['key', 'value']) as $item) $config['env.' . $item['key']] = $item['value'];
+            foreach (\App\Api\Models\Config::all(['key', 'value']) as $item) $config['env.' . $item['key']] = $item['value'];
             Cache::forever('config', $config);
         }
 
@@ -38,7 +38,7 @@ class BaseController extends Controller
     {
         $path = $path ?: config('app.url');
         $image = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')
-            ->merge(config('env.web_icon','favicon.png'), .3, true)
+            ->merge('.'.Storage::url(config('env.web_icon')), .3, true)
             ->errorCorrection('H')->size(256)->margin(.1)->generate($path);
         return $this->apiReturn('网站二维码', 200, 0, ['qr_code' => 'data:image/png;base64,' . base64_encode($image)]);
     }

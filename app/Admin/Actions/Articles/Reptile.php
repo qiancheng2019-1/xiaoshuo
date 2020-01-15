@@ -2,7 +2,7 @@
 
 namespace App\Admin\Actions\Articles;
 
-use App\V1\Basis\ReptileModel;
+use App\Api\Basis\ReptileModel;
 use Encore\Admin\Actions\Action;
 use Illuminate\Http\Request;
 
@@ -80,6 +80,12 @@ HTML;
 
             if (response.then) {
               then(response.then);
+            }
+        };
+
+        var actionCatcher = function (request) {
+            if (request && typeof request.responseJSON === 'object') {
+                $.admin.toastr.error(request.responseJSON.message, '', {positionClass:"toast-bottom-center", timeOut: 10000}).css("width","500px")
             }
         };
 

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\V1\App\Models;
+namespace App\Api\Models;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;

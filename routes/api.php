@@ -18,7 +18,7 @@ $api = app('Dingo\Api\Routing\Router');
 //    $api->get('swagger', 'IndexController@index');
 //});
 
-$api->group(['version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'prefix' => 'api/app'], function ($api) {
+$api->group(['version' => 'v1', 'namespace' => 'App\\Api\\Controllers', 'prefix' => 'api'], function ($api) {
     //app接口文档
     $api->get('swagger', 'IndexController@index');
     $api->get('/test', 'IndexController@test');
@@ -27,10 +27,10 @@ $api->group(['version' => 'v1', 'namespace' => 'App\\V1\\App\\Controllers', 'pre
         $api->post('/captcha/sms', 'IndexController@sendSms');
     });
 
+    $api->get('/qr', 'IndexController@getQrCode');
     $api->group(['middleware' => 'apiCache'], function ($api) {
         $api->get('/ad', 'AdController@getAdList');
         $api->get('/config', 'IndexController@getConfig');
-        $api->get('/qr', 'IndexController@getQrCode');
 
         $api->get('articles', 'ArticlesController@getList');
         $api->get('articles/category', 'ArticlesController@getCategory');

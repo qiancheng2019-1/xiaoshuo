@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\V1\App\Controllers;
+namespace App\Api\Controllers;
 
 use App\Rules\mobile;
 use App\User;
 use Dingo\Api\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\V1\App\Models\UsersCollect;
-use App\V1\App\Models\Articles;
+use App\Api\Models\UsersCollect;
+use App\Api\Models\Articles;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -332,7 +332,7 @@ class UserController extends IndexController
     public function postCollect(Request $request)
     {
         $article_id = $request->input('article_id', 0);
-        $article = Articles::get($article_id, ['id']);
+        $article = Articles::query()->find($article_id, ['id']);
         if (!$article) return $this->apiReturn('书本数据不存在', 404, 21);
 
         $user = $this->guard()->user();
