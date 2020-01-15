@@ -19,6 +19,9 @@ class ReptileModel
         sleep(1);//尝试规避被封ip
 
         $this->reptile = config('reptile');
+        if (!Storage::disk('local')->exists('cate')){
+            Storage::disk('local')->put('cate',json_encode($this->reptile['list_cate']));
+        }
 
         $this->rand_ip = mt_rand(13, 255) . '.' . mt_rand(13, 255) . '.' . mt_rand(13, 255) . '.' . mt_rand(13, 255);
         $this->timeout = 8;
@@ -34,10 +37,12 @@ class ReptileModel
                 continue;
             }
         }
-        $category = DB::table('articles_category')->select(['id', 'name', 'page'])->where(['id' => $cate['my_cate']])->first();
-        $now_page = $category->page ?: 1;
+//        $category = DB::table('articles_category')->select(['id', 'name', 'page'])->where(['id' => $cate['my_cate']])->first();
+//        $now_page = $category->page ?: 1;
 
-        $url = str_replace('{page}', $now_page, $this->reptile['list_url']);
+        $cate_page = json_decode(Storage::disk('local')->get('cate'),TRUE);
+        $cate_page['k_'.$cate['cate']]['page'] = $cate_page['k_'.$cate['cate']]['page'] ?? 1;
+        $url = str_replace('{page}', $cate_page['k_'.$cate['cate']]['page'], $this->reptile['list_url']);
         $url = str_replace('{cate}', $cate['cate'], $url);
 
         $rules['url'] = [$this->reptile['list_selector'], 'href'];
@@ -53,18 +58,18 @@ class ReptileModel
 
         foreach ($list as $item) {
             $data['url'] = str_replace($this->reptile['domain'], '', $item['url']);
-            $data['title'] = $item['title'];
-            $data['thumb'] = $item['thumb'];
+            $data['title']  = $item['title'];
+            $data['thumb']  = $item['thumb'];
             $data['author'] = str_replace('作者：', '', $item['author']);
-            $data['category_id'] = $category->id;
-            $data['category'] = $category->name;
+            $data['category_id'] = $cate['my_cate'];
+//            $data['category'] = $category->name;
             $data['status'] = 1;
 
             $data['created_at'] = date('Y-m-d H:i:s');
 
             DB::table('articles')->updateOrInsert(['url' => $item['url']], $data);
         }
-        return DB::table('articles_category')->where(['id' => $category->id])->increment('page');
+        return Storage::disk('local')->put('cate',json_encode($cate_page));
     }
 
     public function getArticle(int $article_id, string $url)
@@ -76,7 +81,7 @@ class ReptileModel
             $rules['full'] = [$this->reptile['view_full_selector'], 'content'];
             $rules['thumb'] = [$this->reptile['view_thumb_selector'], 'content'];
 //            $rules['author']   = [$this->reptile['view_author_selector'], 'content'];
-//            $rules['category'] = [$this->reptile['view_cate_selector'], 'content'];
+            $rules['category'] = [$this->reptile['view_cate_selector'], 'content'];
             $article = $this->getHtml($this->reptile['domain'] . $url, $rules);
             if (!$article) return FALSE;
 
