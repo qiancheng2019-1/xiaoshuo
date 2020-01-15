@@ -233,10 +233,11 @@ class ReptileModel
             'WL-Proxy-Client-IP:' . $this->rand_ip,
             'X-Forwarded-For:' . $this->rand_ip,
             'Referer:' . $this->referer,
+            'Host:'.$this->reptile['host'],
         ];
 
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HEADER, $header);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);

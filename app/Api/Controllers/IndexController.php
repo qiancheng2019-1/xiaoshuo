@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Cache;
 
 class IndexController extends BaseController
 {
+//    public function test(){
+//        $object = new \App\Api\Basis\ReptileModel();
+//        return $object->getList();
+//    }
 
     public function index()
     {
@@ -46,11 +50,11 @@ class IndexController extends BaseController
     /**
      * @OA\OpenApi(
      *     @OA\Server(
-     *         url="http://192.168.1.61/api",
+     *         url="http://localhost/api",
      *         description="Localhost Fiction API server"
      *     ),
      *     @OA\Server(
-     *         url="http://xs.xxtkfp.com/api/app",
+     *         url="http://xs.xxtkfp.com/api/",
      *         description="Online Fiction API server"
      *     ),
      *     @OA\Info(
@@ -368,10 +372,5 @@ class IndexController extends BaseController
             return $this->apiReturn('短信验证码成功', 200, 0);
         else
             return $this->apiReturn('短信验证码失败',401,10);
-    }
-
-    public function test(){
-        $object = new \App\Api\Basis\ReptileModel();
-        return $object->getList();
     }
 }
