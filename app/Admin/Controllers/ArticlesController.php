@@ -73,9 +73,9 @@ class ArticlesController extends AdminController
             foreach (ArticlesCategoryModel::query()->where(['status'=>1])->get(['id','name']) as $item) $category[$item['id']] = $item['name'];
             $filter->equal('category_id',trans('fiction.category'))->select($category ?? []);
         });
-        $grid->tools(function (Grid\Tools $tools) {
-            $tools->append(new Reptile());
-        });
+//        $grid->tools(function (Grid\Tools $tools) {
+//            $tools->append(new Reptile());
+//        });
 
         $grid->column('id', 'ID')->sortable();
         $grid->column('title', trans('admin.title'));

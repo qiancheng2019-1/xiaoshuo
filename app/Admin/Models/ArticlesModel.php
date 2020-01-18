@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ArticlesModel extends Model
 {
-//    protected $table = 'articles_test';
-    protected $table = 'articles';
+    protected $table = 'articles_test';
+//    protected $table = 'articles';
 
     public function views()
     {

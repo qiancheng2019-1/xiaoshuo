@@ -45,6 +45,14 @@ class CreateArticleTables extends Migration
             $table->timestamps();
         });
 
+        Schema::create('articles_chapter', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('title_id')->index()->comment('article_id');
+            $table->unsignedBigInteger('chapter_id')->unique()->comment('章节ID');
+            $table->string('chapter_name',255)->comment('章节名称');
+            $table->timestamps();
+        });
+
         Schema::create('articles_views', function (Blueprint $table) {
             $table->unsignedBigInteger('article_id')->primary();
             $table->integer('week_views')->nullable(false)->default(0)->comment('周点击')->index();
@@ -87,14 +95,6 @@ class CreateArticleTables extends Migration
             $table->unsignedBigInteger('last_chapter_id')->nullable(false)->default(0);
             $table->timestamps();
             $table->softDeletes();
-        });
-
-        Schema::create('articles_chapter', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('title_id')->index()->comment('article_id');
-            $table->unsignedBigInteger('chapter_id')->unique()->comment('章节ID');
-            $table->string('chapter_name',255)->comment('章节名称');
-            $table->timestamps();
         });
     }
 

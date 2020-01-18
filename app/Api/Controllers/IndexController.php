@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Cache;
 
 class IndexController extends BaseController
 {
-//    public function test(){
-//        $object = new \App\Api\Basis\ReptileModel();
-//        return $object->getList();
-//    }
+    public function test(){
+        $object = new \App\Api\Basis\ReptileModel();
+        return $object->getList();
+    }
 
     public function index()
     {

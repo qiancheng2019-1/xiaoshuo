@@ -23,7 +23,7 @@ class ReptileModel
             Storage::disk('local')->put('cate',json_encode($this->reptile['list_cate']));
         }
 
-        $this->reptile['domain'] = array_rand($this->reptile['domain']);
+        $this->reptile['domain'] = $this->reptile['domain'][array_rand($this->reptile['domain'])];
         $this->rand_ip = mt_rand(13, 255) . '.' . mt_rand(13, 255) . '.' . mt_rand(13, 255) . '.' . mt_rand(13, 255);
         $this->timeout = 8;
         $this->user_agent = 'Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)';
@@ -33,18 +33,18 @@ class ReptileModel
     public function getList()
     {
         for ($i = 0; $i < 10; $i++) {
-            $cate = $this->reptile['list_cate'][array_rand($this->reptile['list_cate'])];
-            if (!Cache::get('reptile:' . $cate['cate'], FALSE)) {
+            $cate_k = array_rand($this->reptile['list_cate']);
+            if (!Cache::get('reptile:' . $cate_k, FALSE)) {
                 continue;
             }
         }
 //        $category = DB::table('articles_category')->select(['id', 'name', 'page'])->where(['id' => $cate['my_cate']])->first();
 //        $now_page = $category->page ?: 1;
 
-        $cate_page = json_decode(Storage::disk('local')->get('cate'),TRUE);
-        $cate_page['k_'.$cate['cate']]['page'] = $cate_page['k_'.$cate['cate']]['page'] ?? 1;
-        $url = str_replace('{page}', $cate_page['k_'.$cate['cate']]['page'], $this->reptile['list_url']);
-        $url = str_replace('{cate}', $cate['cate'], $url);
+        $cate_page = json_decode(Storage::disk('local')->get('cate'),TRUE)[$cate_k];
+        $cate_page['page'] = $cate_page['page']??1;
+        $url = str_replace('{page}', $cate_page['page'], $this->reptile['list_url']);
+        $url = str_replace('{cate}', $cate_page['cate'], $url);
 
         $rules['url'] = [$this->reptile['list_selector'], 'href'];
         $rules['title'] = [$this->reptile['list_title_selector'], 'text'];
@@ -52,8 +52,9 @@ class ReptileModel
         $rules['author'] = [$this->reptile['list_author_selector'], 'text'];
 
         $list = $this->getHtml($this->reptile['domain'] . $url, $rules);
+    var_dump($list);die;
         if (!$list) {
-            Cache::put('reptile:' . $cate['cate'], TRUE, 86400);
+            Cache::put('reptile:' . $cate_k, TRUE, 8);
             return FALSE;
         }
 
@@ -62,7 +63,7 @@ class ReptileModel
             $data['title']  = $item['title'];
             $data['thumb']  = $item['thumb'];
             $data['author'] = str_replace('作者：', '', $item['author']);
-            $data['category_id'] = $cate['my_cate'];
+            $data['category_id'] = $cate_page['my_cate'];
 //            $data['category'] = $category->name;
             $data['status'] = 1;
 
@@ -179,6 +180,7 @@ class ReptileModel
 
     private function getHtml(string $url, array $rules = [], string $pre_filter = '')
     {
+        var_dump($url);
         try {
             $html_contents = $this->curlGetContents($url, TRUE);
 
@@ -235,10 +237,10 @@ class ReptileModel
         $ch = curl_init();
         $if_https = substr($url, 0, 8) == 'https://' ? TRUE : FALSE;
         $header = [
-            'Proxy-Client-IP:' . $this->rand_ip,
-            'WL-Proxy-Client-IP:' . $this->rand_ip,
-            'X-Forwarded-For:' . $this->rand_ip,
-            'Referer:' . $this->referer,
+//            'Proxy-Client-IP:' . $this->rand_ip,
+//            'WL-Proxy-Client-IP:' . $this->rand_ip,
+//            'X-Forwarded-For:' . $this->rand_ip,
+//            'Referer:' . $this->referer,
             'Host:'.$this->reptile['host'],
         ];
 
